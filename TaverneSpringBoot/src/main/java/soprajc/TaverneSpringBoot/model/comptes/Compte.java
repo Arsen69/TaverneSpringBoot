@@ -1,7 +1,10 @@
 package soprajc.TaverneSpringBoot.model.comptes;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Version;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -20,7 +27,7 @@ import soprajc.TaverneSpringBoot.model.JsonViews;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="Type_Compte")
-public abstract class Compte {
+public abstract class Compte implements UserDetails{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,13 +38,17 @@ public abstract class Compte {
 	@JsonView(JsonViews.Common.class)
 	protected String prenom;
 	@JsonView(JsonViews.Common.class)
+	@Column(unique= true, nullable=false)
 	protected String login;
 	@JsonView(JsonViews.Common.class)
+	@Column(nullable=false)
 	protected String password;
 	@JsonView(JsonViews.Common.class)
 	protected String mail;
 	@Version
 	protected int version;
+	@Column(nullable=false)
+	protected boolean enabled;
 	
 	public Compte() {}
 
@@ -128,9 +139,40 @@ public abstract class Compte {
 		return Objects.equals(id, other.id);
 	}
 	
+	@Override
+	public String getUsername() {
+		return login;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
 	
-	
-	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Collection<SimpleGrantedAuthority> authorities=new ArrayList<SimpleGrantedAuthority>();
+		authorities.add(new SimpleGrantedAuthority(this.getClass().getSimpleName()));
+		return authorities;
+	}
 	
 
 }

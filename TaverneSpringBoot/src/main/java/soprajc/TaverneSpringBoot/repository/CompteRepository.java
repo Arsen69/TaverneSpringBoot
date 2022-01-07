@@ -1,6 +1,7 @@
 package soprajc.TaverneSpringBoot.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -29,6 +30,8 @@ public interface CompteRepository extends JpaRepository<Compte, Long> {
 	List<Compte> findIntervenant();
 	
 	List<Compte> findByNom(String nom);
+	
+	Optional<Compte> findByLogin(String login);
 
 	@Transactional
 	@Modifying

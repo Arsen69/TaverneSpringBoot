@@ -1,6 +1,7 @@
 package soprajc.TaverneSpringBoot.model.fonctionnalitees;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,11 +23,14 @@ public class Intervention {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private LocalDateTime hDebut;
-	private LocalDateTime hFin;
-	///////
+	private LocalTime hDebut;
+	
+	private LocalTime hFin;
+	
+	private LocalDate date;
+
 	private String typeIntervention;
-	///////
+
 	@Column(nullable = true)
 	private int coutIntervenant;
 	@Column(nullable = true)
@@ -48,11 +52,11 @@ public class Intervention {
 	public Intervention() {}
 
 
-
-	public Intervention(LocalDateTime hDebut, LocalDateTime hFin, String typeIntervention, int coutIntervenant,
+	public Intervention(LocalTime hDebut, LocalTime hFin, LocalDate date, String typeIntervention, int coutIntervenant,
 			int prixClient, Intervenant intervenant, Bar bar) {
 		this.hDebut = hDebut;
 		this.hFin = hFin;
+		this.date = date;
 		this.typeIntervention = typeIntervention;
 		this.coutIntervenant = coutIntervenant;
 		this.prixClient = prixClient;
@@ -110,22 +114,22 @@ public class Intervention {
 	}
 
 
-	public LocalDateTime gethDebut() {
+	public LocalTime gethDebut() {
 		return hDebut;
 	}
 
 
-	public void sethDebut(LocalDateTime hDebut) {
+	public void sethDebut(LocalTime hDebut) {
 		this.hDebut = hDebut;
 	}
 
 
-	public LocalDateTime gethFin() {
+	public LocalTime gethFin() {
 		return hFin;
 	}
 
 
-	public void sethFin(LocalDateTime hFin) {
+	public void sethFin(LocalTime hFin) {
 		this.hFin = hFin;
 	}
 
@@ -158,6 +162,16 @@ public class Intervention {
 	public void setIntervenant(Intervenant intervenant) {
 		this.intervenant = intervenant;
 	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+	
+	
 
 	
 	
