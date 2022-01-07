@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import soprajc.TaverneSpringBoot.model.comptes.Client;
 import soprajc.TaverneSpringBoot.model.fonctionnalitees.Achat;
 
+
 public interface AchatRepository extends JpaRepository<Achat, Long>{
 
 	
