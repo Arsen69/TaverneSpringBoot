@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,13 +38,16 @@ public abstract class Compte implements UserDetails{
 	@JsonView(JsonViews.Common.class)
 	protected String prenom;
 	@JsonView(JsonViews.Common.class)
+	@Column(unique= true, nullable=false)
 	protected String login;
 	@JsonView(JsonViews.Common.class)
+	@Column(nullable=false)
 	protected String password;
 	@JsonView(JsonViews.Common.class)
 	protected String mail;
 	@Version
 	protected int version;
+	@Column(nullable=false)
 	protected boolean enabled;
 	
 	public Compte() {}
