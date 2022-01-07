@@ -18,10 +18,10 @@ public class ConsoleService implements CommandLineRunner {
 	private PasswordEncoder passwordEncoder;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ConsoleService.class);
-
+	
 	@Override
 	public void run(String... args) throws Exception {
-		//initPassword();
+		//initPassword();	
 	}
 
 	private void initPassword() {
