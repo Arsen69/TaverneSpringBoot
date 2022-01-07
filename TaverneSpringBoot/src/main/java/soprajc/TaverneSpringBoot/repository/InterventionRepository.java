@@ -14,14 +14,14 @@ public interface InterventionRepository extends JpaRepository<Intervention, Long
 	
 	List<Intervention> findAll();
 	
-	Optional<Intervention> findByHDebut(LocalTime hDebut);
+	List<Intervention> findByhDebut(LocalTime hDebut);
 	
-	Optional<Intervention> findByHFin(LocalTime hDebut);
+	List<Intervention> findByhFin(LocalTime hFin);
 	
 	List<Intervention> findByDate(LocalDate date);
 	
 	List<Intervention> findByTypeIntervention(String type);
 	
-	List<Intervention> findByStatutIntervention(StatutIntervention statut);
+	List<Intervention> findByStatut(StatutIntervention statut);
 
 }
