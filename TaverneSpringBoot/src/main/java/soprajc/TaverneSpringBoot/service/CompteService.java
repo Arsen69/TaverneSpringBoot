@@ -12,7 +12,6 @@ import soprajc.TaverneSpringBoot.model.comptes.Compte;
 import soprajc.TaverneSpringBoot.model.comptes.Employe;
 import soprajc.TaverneSpringBoot.repository.AchatRepository;
 import soprajc.TaverneSpringBoot.repository.BarRepository;
-import soprajc.TaverneSpringBoot.repository.CarteFideliteRepository;
 import soprajc.TaverneSpringBoot.repository.CompteRepository;
 import soprajc.TaverneSpringBoot.repository.EvenementRepository;
 
@@ -49,7 +48,7 @@ public class CompteService {
 		compteRepo.save(compte);
 	}
 	
-	private void checkCompte(Compte compte) {
+	public void checkCompte(Compte compte) {
 		Check.checkString(compte.getNom());
 		Check.checkString(compte.getPrenom());
 		Check.checkString(compte.getLogin());
@@ -96,7 +95,6 @@ public class CompteService {
 				((Employe) compte).setEvents(eventsRepo.findByEmp((Employe)compte));
 			}
 			break;
-
 		}
 	}
 
