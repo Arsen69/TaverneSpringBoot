@@ -77,14 +77,11 @@ public class StockService {
 		double newVolume = stock.getVolumeTot() - volume;
 		Check.checkNegatif(newVolume);
 		stock.setVolumeTot(newVolume);
-		try {
-			if (newVolume <= stock.getSeuilLimite()) {
-				LOGGER.warn("Le volume du stock '"
-						+ ((Article[]) stock.getArticles().toArray())[0].getTypeProduit().toString() + "' ("
-						+ stock.getVolumeTot() + ") dans le bar " + stock.getBar().getNom()
-						+ "est sous le seuil d'alerte : " + stock.getSeuilLimite().toString());
-			}
-		} catch (Exception e) {
+		if (newVolume <= stock.getSeuilLimite()) {
+			LOGGER.warn(
+					"Le volume du stock '" + ((Article[]) stock.getArticles().toArray())[0].getTypeProduit().toString()
+							+ "' (" + stock.getVolumeTot() + ") dans le bar " + stock.getBar().getNom()
+							+ "est sous le seuil d'alerte : " + stock.getSeuilLimite().toString());
 		}
 
 	}
