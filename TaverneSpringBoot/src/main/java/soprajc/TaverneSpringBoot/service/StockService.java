@@ -75,6 +75,7 @@ public class StockService {
 		try {
 			if (newVolume <= stock.getSeuilLimite()) {
 				logAlerteService.creerAlerte(stock);
+				//Penser à créer un log ici et à l'enregistrer dans un fichier particulier pour consultation
 			}
 		} catch (Exception e) {
 		}
