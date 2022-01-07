@@ -5,6 +5,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import soprajc.TaverneSpringBoot.exception.StockException;
@@ -21,7 +23,7 @@ public class StockService {
 	private StockRepository stockRepo;
 
 	@Autowired
-	private LogAlertService logAlerteService;
+	private JavaMailSender emailSender;
 
 	@Autowired
 	private BarService barService;
@@ -78,10 +80,19 @@ public class StockService {
 		Check.checkNegatif(newVolume);
 		stock.setVolumeTot(newVolume);
 		if (newVolume <= stock.getSeuilLimite()) {
-			LOGGER.warn(
+			SimpleMailMessage message = new SimpleMailMessage();
+			message.setFrom("appli.taverne1@gmail.com");
+			message.setTo("appli.taverne1@gmail.com");
+			message.setSubject("Volume du Stock sous le seuil limite");
+			message.setText(
 					"Le volume du stock '" + ((Article[]) stock.getArticles().toArray())[0].getTypeProduit().toString()
 							+ "' (" + stock.getVolumeTot() + ") dans le bar " + stock.getBar().getNom()
 							+ "est sous le seuil d'alerte : " + stock.getSeuilLimite().toString());
+			emailSender.send(message);
+//			LOGGER.warn(
+//					"Le volume du stock '" + ((Article[]) stock.getArticles().toArray())[0].getTypeProduit().toString()
+//							+ "' (" + stock.getVolumeTot() + ") dans le bar " + stock.getBar().getNom()
+//							+ "est sous le seuil d'alerte : " + stock.getSeuilLimite().toString());
 		}
 
 	}
