@@ -32,6 +32,11 @@ public class CompteService {
 	
 	@Autowired
 	private EvenementRepository eventsRepo;
+	
+	public Compte getByLogin(String login) {
+		Check.checkString(login);
+		return compteRepo.findByLogin(login).orElseThrow(CompteException::new);
+	}
 
 	public void creationClient(Client compte) {
 		checkCompte(compte);
