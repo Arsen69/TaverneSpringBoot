@@ -1,0 +1,13 @@
+:root {
+  --bckColor: #222327;
+  --bckColor2: #121212;
+  --bckColorLight: #ecece6;
+  --titleColor: #ff6e00;
+  --txtColor: #ffbe4f;
+  --scdColor: #00009b;
+}
+
+body {
+  min-height: 120vh;
+  scroll-behavior: smooth;
+}
