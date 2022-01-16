@@ -62,7 +62,7 @@ export class Intervention {
   }
 
   get prixClient(): number | undefined {
-    return this.prixClient;
+    return this._prixClient;
   }
 
   get statut(): StatutIntervention | undefined {
