@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AccueilComponent } from './component/accueil/accueil.component';
 import { CarteComponent } from './component/carte/carte.component';
 import { HeaderComponent } from './component/header/header.component';
+import { StockComponent } from './component/stock/stock.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HeaderComponent } from './component/header/header.component';
     ConnexionComponent,
     AccueilComponent,
     CarteComponent,
-    HeaderComponent
+    HeaderComponent,
+    StockComponent
   ],
   imports: [
     BrowserModule,
