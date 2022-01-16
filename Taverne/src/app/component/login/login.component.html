@@ -1,0 +1,30 @@
+<div><h2>Connexion</h2></div>
+<form (ngSubmit)="login()" [formGroup]="form">
+  <div>
+    login: <input formControlName="login" />
+    <span *ngIf="form.controls['login'].hasError('required')">Vide</span>
+  </div>
+  <div *ngIf="form.controls['login'].dirty && form.controls['login'].invalid">
+    Login Invalide
+  </div>
+
+  <div>
+    <div>Password : <input formControlName="password" /></div>
+  </div>
+
+  <div>
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+  </div>
+</form>
+
+<div>
+  <button class="btn btn-primary" (click)="display()">
+    Afficher infos session
+  </button>
+</div>
+
+<div>
+  <div>
+    <button class="btn btn-primary" (click)="logOff()">Logoff</button>
+  </div>
+</div>

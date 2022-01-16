@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +27,8 @@ import soprajc.TaverneSpringBoot.model.comptes.Employe;
 import soprajc.TaverneSpringBoot.service.CompteService;
 
 @RestController
-@RequestMapping("/comptes")
+@RequestMapping("api/compte")
+@CrossOrigin(origins="*")
 public class CompteRestController {
 	
 	@Autowired
@@ -36,6 +38,11 @@ public class CompteRestController {
 	@JsonView(JsonViews.Common.class)
 	public List<Compte> getAll() {
 		return compteService.getAll();
+	}
+	
+	@GetMapping("/login/{login}")
+	public String login(@PathVariable String login) {
+		return "\"" + compteService.getByLogin(login).getClass().getSimpleName() + "\"";
 	}
 	
 	@GetMapping("/{id}")
