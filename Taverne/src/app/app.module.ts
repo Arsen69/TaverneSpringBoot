@@ -11,13 +11,15 @@ import { IonicModule } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AccueilComponent } from './component/accueil/accueil.component';
 import { CarteComponent } from './component/carte/carte.component';
+import { HeaderComponent } from './component/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ConnexionComponent,
     AccueilComponent,
-    CarteComponent
+    CarteComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
