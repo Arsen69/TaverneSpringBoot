@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AccueilComponent } from './component/accueil/accueil.component';
 import { CarteComponent } from './component/carte/carte.component';
 import { HeaderComponent } from './component/header/header.component';
+import { Carte2Component } from './component/carte2/carte2.component';
 import { LoginComponent } from './component/login/login.component';
 
 @NgModule({
@@ -20,6 +21,8 @@ import { LoginComponent } from './component/login/login.component';
     CarteComponent,
     HeaderComponent,
     LoginComponent,
+    HeaderComponent,
+    Carte2Component
   ],
   imports: [
     BrowserModule,

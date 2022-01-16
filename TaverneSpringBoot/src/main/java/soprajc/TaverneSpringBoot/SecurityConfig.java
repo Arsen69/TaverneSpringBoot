@@ -28,17 +28,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(HttpSecurity http) throws Exception {
 		// @formatter:off
 		
-//		http.antMatcher("/api/**")
-//			.csrf().ignoringAntMatchers("/api/**")
-//			.and()
-//			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//			.and()
-//			.authorizeHttpRequests()
-//				.antMatchers("api/boissons").permitAll()
-//				.antMatchers("/api/**").authenticated()
-//			.and()
-//			.httpBasic();
-		
 		http.antMatcher("/**")
 			.csrf().ignoringAntMatchers("/api/**")
 			.and()
@@ -53,6 +42,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.anyRequest().authenticated()
 			.and()
 			.httpBasic();
+		
+//		http.antMatcher("/**")
+//			.authorizeHttpRequests()
+//				.antMatchers("/reglement").hasRole("Client")
+//				.antMatchers("/inscription","/index.html","/carte").permitAll()
+//				.antMatchers("/compagnon/**").hasAnyRole("COMPAGNION","ADMIN")
+//				.anyRequest().authenticated()
+//			.and()
+//			.formLogin();
 		
 // @formatter:on
 
