@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
       next: (v) => {
         localStorage.setItem('token', btoa(login + ':' + password));
         localStorage.setItem('role', v);
+        localStorage.setItem('login', login);
         console.log(localStorage.getItem('role'));
         this.router.navigate(['home']);
       },

@@ -1,0 +1,100 @@
+<p>form-inscription works!</p>
+
+<div class="container">
+  <form (ngSubmit)="validate()" [formGroup]="form">
+    <div *ngIf="role == 'Admin'" class="row m-2">
+      <div class="col-sm-3"></div>
+      <label class="form-label col-sm-3">Type de compte à créer :</label>
+      <div class="col-sm-3">
+        <select class="form-control" [(ngModel)]="typeCompte">
+          <option value="Admin">Administrateur</option>
+          <option value="Fournisseur">Fournisseur</option>
+          <option value="Employe">Employé</option>
+          <option value="Intervenant">Intervenant</option>
+          <option value="Client">Client</option>
+        </select>
+      </div>
+    </div>
+    <div class="row m-2">
+      <div class="col-sm-3"></div>
+      <label class="form-label col-sm-3">Login</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" [(ngModel)]="compte.login" />
+      </div>
+    </div>
+    <div fromGroupName="password">
+      <div class="row m-2">
+        <label class="form-label col-sm-3">Mot de passe :</label>
+        <div class="col-sm-3">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="compte.password"
+          />
+        </div>
+      </div>
+      <div class="row m-2">
+        <label class="form-label col-sm-3">Confirmer le mot de passe :</label>
+        <div class="col-sm-3">
+          <input [formControl]="confirmCtrl" class="form-control" />
+        </div>
+      </div>
+      <div class="row m-2">
+        <div class="col-sm-3"></div>
+        <div
+          class="col-sm-3"
+          *ngIf="
+            form.controls['passwordGroup'].dirty &&
+            form.controls['passwordGroup'].invalid
+          "
+        >
+          Les mots de passe ne correspondent pas
+        </div>
+      </div>
+    </div>
+
+    <div class="row m-2">
+      <label class="form-label col-sm-3">Email</label>
+      <div class="col-sm-3">
+        <input
+          type="email"
+          class="form-control"
+          placeholder="name@example.com"
+          [(ngModel)]="compte.email"
+        />
+        <small id="emailHelp" class="form-text text-muted"
+          >Nous ne partagerons pas votre adresse mail avec qui que ce soit
+        </small>
+      </div>
+    </div>
+    <div class="row m-2">
+      <div class="col-sm-3">
+        <label class="form-label">Date de naissance</label><br />
+      </div>
+      <div class="col-sm-2">
+        <input type="date" class="form-control" />
+      </div>
+      <small id="birthdayHelp" class="form-text text-muted"
+        >Vous devez être majeur pour créér un compte chez nous
+      </small>
+    </div>
+    <div class="row m-2">
+      <div class="col-sm-3"></div>
+      <label class="form-label col-sm-3">Nom</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" [(ngModel)]="compte.nom" />
+      </div>
+    </div>
+    <div class="row m-2">
+      <div class="col-sm-3"></div>
+      <label class="form-label col-sm-3">Prénom</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" [(ngModel)]="compte.prenom" />
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+      Submit
+    </button>
+  </form>
+</div>
