@@ -1,3 +1,5 @@
+import { Boisson } from './../../model/inventaire/boisson';
+import { BoissonService } from './../../services/boisson.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +8,19 @@ import { Component, HostListener, OnInit } from '@angular/core';
   styleUrls: ['./carte.component.css'],
 })
 export class CarteComponent implements OnInit {
-  constructor() {}
+  constructor(private boissonService: BoissonService) {}
 
-  ngOnInit(): void {}
+  listeBoisson: Boisson[] = [];
+
+  ngOnInit() {
+    this.initCarte();
+  }
+
+  initCarte() {
+    this.boissonService.getAllbyBar(1).subscribe((result) => {
+      this.listeBoisson = result;
+    });
+    console.log(this.listeBoisson);
+  }
 }
+
