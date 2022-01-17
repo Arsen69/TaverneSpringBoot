@@ -1,11 +1,19 @@
 <div class="ref">
   <div class="back">
-    <span class="txtCarte">{{boisson.nom}}</span>
+    <span class="txtCarte">{{ boisson.nom }}</span>
   </div>
-  <div class="anim" [ngClass]="{'anim2': anim2}">
+  <div class="anim" [ngClass]="{ anim2: anim2 }">
     <div class="front">
       <img src="/assets/images/la86.png" alt="image" />
     </div>
-    <div class="otherFront">du texte au pif</div>
+    <div class="otherFront">
+      <div class="description col-12">
+        Ceci est une description bidon, attention à la remplacer avant la
+        présentation =)
+      </div>
+      <div class="btnAdd col-12">
+        <button type="button" class="btn btn-warning" >Ajouter au panier</button>
+      </div>
+    </div>
   </div>
 </div>
