@@ -1,11 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CanActivate } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthenticationService {
+export class AuthenticationService implements CanActivate {
   constructor(private http: HttpClient) {}
 
   canActivate(): boolean {
