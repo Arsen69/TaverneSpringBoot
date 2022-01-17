@@ -3,6 +3,6 @@
     <div class="col-12 titre">
       <h1>Notre carte:</h1>
     </div>
-    <app-carte-item *ngFor="let Boisson of listeBoisson"></app-carte-item>
+    <app-carte-item *ngFor="let Boisson of listeBoisson" [item]="Boisson"></app-carte-item>
   </div>
 </div>
