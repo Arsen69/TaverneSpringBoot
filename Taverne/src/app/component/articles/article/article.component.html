@@ -1,0 +1,11 @@
+<td>{{ article.id }}</td>
+<td>{{ article.nom }}</td>
+<td>{{ article.typeProduit }}</td>
+<td>{{ article.volume }}</td>
+<td>{{ article.cout }}</td>
+<td>{{ article.fournisseur!.nom }}</td>
+<td>
+  <button *ngIf="role == 'Admin'" class="btn btn-primary" (click)="acheter()">
+    Acheter Article
+  </button>
+</td>
