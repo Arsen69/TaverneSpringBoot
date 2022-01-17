@@ -17,7 +17,7 @@ export class Carte2Component implements OnInit {
     //this.boissonService.getAllbyBar(1).subscribe((result) => {
     // this.boisson = result;
     //  });
-    this.boisson = this.boissonService.getAllbyBar(1);
+    this.boisson = this.boissonService.getAll();
   }
 
   delete(id: number) {

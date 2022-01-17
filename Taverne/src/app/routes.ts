@@ -1,3 +1,5 @@
+import { EditBoissonComponent } from './component/edit-boisson/edit-boisson.component';
+
 import { CarteComponent } from './component/carte/carte.component';
 import { StockListComponent } from './component/stock/stock-list/stock-list.component';
 import { ChoixBarComponent } from './component/choix-bar/choix-bar.component';
@@ -28,4 +30,14 @@ export const routes: Routes = [
   { path: 'stock', component: StockListComponent },
   { path: 'choixBar', component: ChoixBarComponent },
   { path: 'listStock', component: StockListComponent },
+  {
+    path: 'boisson/edit',
+    component: EditBoissonComponent,
+    //canActivate: [AuthenticationService],
+  },
+  {
+    path: 'boisson/edit/:id',
+    component: EditBoissonComponent,
+    //canActivate: [AuthenticationService],
+  },
 ];

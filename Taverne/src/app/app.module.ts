@@ -1,3 +1,4 @@
+import { EditBoissonComponent } from './component/edit-boisson/edit-boisson.component';
 import { StockListComponent } from './component/stock/stock-list/stock-list.component';
 import { StockComponent } from './component/stock/stock/stock.component';
 import { NgModule } from '@angular/core';
@@ -42,6 +43,7 @@ import { PanierComponent } from './component/panier/panier.component';
     PanierComponent,
     StockComponent,
     StockListComponent,
+    EditBoissonComponent,
   ],
   imports: [
     BrowserModule,

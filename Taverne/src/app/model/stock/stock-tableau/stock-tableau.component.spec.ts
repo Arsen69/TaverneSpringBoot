@@ -1,16 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StockTableauComponent } from './stock-tableau.component';
-
 describe('StockTableauComponent', () => {
-  let component: StockTableauComponent;
+  let component: StockTableauComponentent;
   let fixture: ComponentFixture<StockTableauComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StockTableauComponent ]
-    })
-    .compileComponents();
+      declarations: [StockTableauComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
