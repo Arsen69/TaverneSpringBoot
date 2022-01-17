@@ -1,3 +1,4 @@
+import { StockComponent } from './component/stock/stock.component';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,6 +16,10 @@ import { LoginComponent } from './connexion/login/login.component';
 import { LogOffComponent } from './connexion/log-off/log-off.component';
 import { InscriptionComponent } from './connexion/inscription/inscription.component';
 import { FormInscriptionComponent } from './connexion/form-inscription/form-inscription.component';
+//import { StockComponent } from './component/stock/stock.component';
+import { Carte2Component } from './component/carte2/carte2.component';
+import { LoginComponent } from './component/login/login.component';
+import { FooterComponent } from './component/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +28,10 @@ import { FormInscriptionComponent } from './connexion/form-inscription/form-insc
     CarteComponent,
     HeaderComponent,
     LoginComponent,
+    HeaderComponent,
+    Carte2Component,
+    FooterComponent,
+    //StockComponent
     LogOffComponent,
     InscriptionComponent,
     FormInscriptionComponent,

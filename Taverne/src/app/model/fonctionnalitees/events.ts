@@ -1,3 +1,4 @@
+import { Bar } from './../inventaire/bar';
 import { Employe } from './../comptes/employe';
 
 export class Events {

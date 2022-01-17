@@ -2,6 +2,6 @@ package soprajc.TaverneSpringBoot.model.inventaire;
 
 public enum TypeArticle {
 
-	Vodka, Biere, Coca;
+	Vodka, Biere, Soft;
 	
 }

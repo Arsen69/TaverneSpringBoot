@@ -246,6 +246,12 @@ header h1 {
   }
 }
 
+img {
+  display: flex;
+  height: 75px;
+  width: 80px;
+}
+
 @media screen and (min-width: 576px) {
   /*sm*/
 }

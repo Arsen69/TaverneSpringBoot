@@ -1,3 +1,4 @@
+import { Bar } from './../inventaire/bar';
 import { Intervenant } from './../comptes/intervenant';
 import { StatutIntervention } from './statutIntervention';
 

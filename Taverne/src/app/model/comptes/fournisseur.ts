@@ -1,3 +1,4 @@
+import { Article } from './../inventaire/article';
 import { Compte } from './compte';
 
 export class Fournisseur extends Compte {

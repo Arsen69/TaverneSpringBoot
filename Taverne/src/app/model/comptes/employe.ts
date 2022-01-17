@@ -1,3 +1,5 @@
+import { Events } from './../fonctionnalitees/events';
+import { Bar } from './../inventaire/bar';
 import { Compte } from './compte';
 
 export class Employe extends Compte {
