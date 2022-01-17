@@ -54,7 +54,7 @@ public class BoissonRestController {
 
 	@GetMapping("/{idBar}/boissons")
 	@JsonView(JsonViews.Common.class)
-	public List<Boisson> getAllByBar(@PathVariable("id") Long id) {
+	public List<Boisson> getAllByBar(@PathVariable("idBar") Long id) {
 		return boissonService.getAllByBar(id);
 	}
 
