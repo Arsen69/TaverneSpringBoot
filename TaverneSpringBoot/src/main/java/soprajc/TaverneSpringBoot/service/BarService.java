@@ -12,9 +12,11 @@ import org.springframework.stereotype.Service;
 import soprajc.TaverneSpringBoot.exception.BoissonException;
 import soprajc.TaverneSpringBoot.model.comptes.Client;
 import soprajc.TaverneSpringBoot.model.fonctionnalitees.Achat;
+import soprajc.TaverneSpringBoot.model.inventaire.Alcool;
 import soprajc.TaverneSpringBoot.model.inventaire.Article;
 import soprajc.TaverneSpringBoot.model.inventaire.Bar;
 import soprajc.TaverneSpringBoot.model.inventaire.Boisson;
+import soprajc.TaverneSpringBoot.model.inventaire.Soft;
 import soprajc.TaverneSpringBoot.model.inventaire.Stock;
 import soprajc.TaverneSpringBoot.model.inventaire.Utilisation;
 import soprajc.TaverneSpringBoot.repository.ArticleRepository;
@@ -59,20 +61,6 @@ public class BarService {
 			System.out.println("Voulez vous ajouter un nouveau stock ?");
 			stockRepo.save(new Stock(article.getVolume(), null, Arrays.asList(article).stream().collect(Collectors.toSet()), bar));
 		}
-	}
-	
-	public void achatBoisson(Client client, Boisson boisson) {
-		if (boisson.getUtilisations()==null) {
-			throw new BoissonException();
-		}
-		Set <Utilisation> utils = boisson.getUtilisations();
-		for(Utilisation u : utils)
-		{
-			double volumeUtilise = u.getVolume();
-			Stock stock = u.getIngredient();
-			stockService.utiliserVolume(volumeUtilise, stock);
-		}
-		achatService.creation(new Achat(LocalDate.now(), boisson, client));
 	}
 
 }

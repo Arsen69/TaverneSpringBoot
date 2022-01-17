@@ -3,6 +3,7 @@ package soprajc.TaverneSpringBoot.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import soprajc.TaverneSpringBoot.exception.CompteException;
@@ -34,6 +35,13 @@ public class CompteService {
 	@Autowired
 	private EvenementRepository eventsRepo;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	private void encode(Compte compte) {
+		compte.setPassword(passwordEncoder.encode(compte.getPassword()));
+	}
+	
 	public Compte getByLogin(String login) {
 		Check.checkString(login);
 		return compteRepo.findByLogin(login).orElseThrow(CompteException::new);
@@ -41,21 +49,26 @@ public class CompteService {
 
 	public void creationClient(Client compte) {
 		checkCompte(compte);
+		encode(compte);
+		compte.setPassword(passwordEncoder.encode(compte.getPassword()));
 		compteRepo.save(compte);
 	}
 	
 	public void creationAdmin(Admin compte) {
 		checkCompte(compte);
+		encode(compte);
 		compteRepo.save(compte);
 	}
 	
 	public void creationEmploye(Employe compte) {
 		checkCompte(compte);
+		encode(compte);
 		compteRepo.save(compte);
 	}
 	
 	public void creationIntervenant(Intervenant compte) {
 		checkCompte(compte);
+		encode(compte);
 		compteRepo.save(compte);
 	}
 	

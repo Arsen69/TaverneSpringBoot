@@ -1,3 +1,4 @@
+import { AdminService } from './services/comptes/admin.service';
 import { CarteComponent } from './component/carte/carte.component';
 import { AccueilComponent } from './component/accueil/accueil.component';
 import { Routes } from '@angular/router';

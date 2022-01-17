@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import soprajc.TaverneSpringBoot.model.comptes.Client;
 import soprajc.TaverneSpringBoot.model.fonctionnalitees.Achat;
+import soprajc.TaverneSpringBoot.model.inventaire.Bar;
 
 
 public interface AchatRepository extends JpaRepository<Achat, Long>{
@@ -20,5 +21,6 @@ public interface AchatRepository extends JpaRepository<Achat, Long>{
 	Optional<Achat> findByClientAndId(Client client, Long id);
 	
 	List<Achat> findAllByClient(Client client);
+	
 
 }

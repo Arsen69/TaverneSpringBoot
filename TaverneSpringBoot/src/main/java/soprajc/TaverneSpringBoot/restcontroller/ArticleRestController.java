@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import soprajc.TaverneSpringBoot.exception.ArticleException;
 import soprajc.TaverneSpringBoot.model.JsonViews;
 import soprajc.TaverneSpringBoot.model.inventaire.Article;
+import soprajc.TaverneSpringBoot.model.inventaire.Stock;
 import soprajc.TaverneSpringBoot.service.ArticleService;
 import soprajc.TaverneSpringBoot.service.BarService;
 import soprajc.TaverneSpringBoot.service.StockService;
@@ -46,6 +47,12 @@ public class ArticleRestController {
 	@JsonView(JsonViews.ArticleWithFournisseur.class)
 	public Article getById(@PathVariable Long idArticle) {
 		return articleService.getById(idArticle);
+	}
+	
+	@GetMapping("/{idArticle}/bar/{idBar}")
+	@JsonView(JsonViews.Common.class)
+	public void acheterArticle(@PathVariable("idArticle") Long idArticle, @PathVariable("idBar") Long idBar) {
+		barService.approvisionner(articleService.getById(idArticle), barService.getById(idBar));
 	}
 
 //	@GetMapping("/{id}/articles/{idFournisseur}")

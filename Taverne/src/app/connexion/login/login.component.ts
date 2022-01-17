@@ -39,14 +39,4 @@ export class LoginComponent implements OnInit {
       },
     });
   }
-
-  logOff() {
-    localStorage.clear();
-  }
-
-  display() {
-    console.log(localStorage.getItem('token'));
-    console.log(localStorage.getItem('role'));
-    console.log(this.error);
-  }
 }

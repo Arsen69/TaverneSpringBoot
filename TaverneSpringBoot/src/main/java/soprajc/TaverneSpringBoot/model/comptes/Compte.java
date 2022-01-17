@@ -40,7 +40,6 @@ public abstract class Compte implements UserDetails{
 	@JsonView(JsonViews.Common.class)
 	@Column(unique= true, nullable=false)
 	protected String login;
-	@JsonView(JsonViews.Common.class)
 	@Column(nullable=false)
 	protected String password;
 	@JsonView(JsonViews.Common.class)
