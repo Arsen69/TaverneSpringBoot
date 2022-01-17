@@ -1,6 +1,6 @@
 import { Boisson } from './../../model/inventaire/boisson';
 import { BoissonService } from './../../services/boisson.service';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-carte',
@@ -12,15 +12,27 @@ export class CarteComponent implements OnInit {
 
   listeBoisson: Boisson[] = [];
 
+  idBar: number = Number(localStorage.getItem('idBar'));
+
+
+
   ngOnInit() {
     this.initCarte();
+    console.log(this.idBar);
   }
 
+
   initCarte() {
-    this.boissonService.getAllbyBar(1).subscribe((result) => {
+    this.boissonService.getAllbyBar(Number(localStorage.getItem('idBar'))).subscribe((result) => {
       this.listeBoisson = result;
     });
     console.log(this.listeBoisson);
+  }
+
+  deleteBar() {
+    localStorage.removeItem('idBar');
+    localStorage.setItem('idBar', '0');
+    window.location.reload();
   }
 }
 

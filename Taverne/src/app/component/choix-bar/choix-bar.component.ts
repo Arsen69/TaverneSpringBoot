@@ -11,18 +11,14 @@ export class ChoixBarComponent implements OnInit {
   ngOnInit(): void {}
 
   tokkenBar1() {
-    console.log('Tu choisis le bar 1');
-    console.log('avant  ' + localStorage.getItem('idBar'));
     localStorage.removeItem('idBar');
     localStorage.setItem('idBar', '1');
-    console.log('après  ' + localStorage.getItem('idBar'));
+    window.location.reload();
   }
 
   tokkenBar2() {
-    console.log('Tu choisis le bar 2');
-    console.log('avant  ' + localStorage.getItem('idBar'));
     localStorage.removeItem('idBar');
     localStorage.setItem('idBar', '2');
-    console.log('après  ' + localStorage.getItem('idBar'));
+    window.location.reload();
   }
 }
