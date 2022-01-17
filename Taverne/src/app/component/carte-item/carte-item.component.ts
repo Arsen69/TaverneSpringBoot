@@ -1,4 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Boisson } from './../../model/inventaire/boisson';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-carte-item',
@@ -7,6 +8,9 @@ import { Component, HostListener, OnInit } from '@angular/core';
 })
 export class CarteItemComponent implements OnInit {
   constructor() {}
+
+  @Input('item')
+  boisson: Boisson = new Boisson();
 
   ngOnInit(): void {}
 

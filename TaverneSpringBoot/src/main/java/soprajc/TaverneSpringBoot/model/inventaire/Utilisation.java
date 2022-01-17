@@ -10,16 +10,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import soprajc.TaverneSpringBoot.model.JsonViews;
+
 @Entity
 public class Utilisation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@JsonView(JsonViews.Common.class)
 	private double volume;
 	
 	@OneToOne
 	@JoinColumn(name="id_ingredient_stock")
+	@JsonView(JsonViews.Common.class)
 	private Stock ingredient;
 	
 	@ManyToOne
@@ -29,7 +35,7 @@ public class Utilisation {
 	public Utilisation() {}
 
 	public Utilisation(double volume, Stock ingredient, Boisson boisson) {
-		volume = volume;
+		this.volume = volume;
 		this.ingredient = ingredient;
 		this.boisson = boisson;
 	}
@@ -67,14 +73,16 @@ public class Utilisation {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+	
+	
+
+	@Override
 	public String toString() {
 		return "Utilisation [id=" + id + ", volume=" + volume + ", ingredient=" + ingredient + ", boisson=" + boisson
 				+ "]";
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
 	}
 
 	@Override

@@ -109,12 +109,6 @@ public class Bar {
 	}
 
 	@Override
-	public String toString() {
-		return "Bar [idBar=" + idBar + ", nom=" + nom + ", stocks=" + stocks + ", events=" + events + ", employes="
-				+ employes + ", interventions=" + interventions + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		return Objects.hash(idBar);
 	}

@@ -3,9 +3,9 @@ import { Boisson } from '../model/inventaire/boisson';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-// @Injectable({
-//   providedIn: 'root',
-// })
+@Injectable({
+  providedIn: 'root',
+})
 export class BoissonService {
   private static URL: string = 'http://localhost:8080/Taverne/boisson';
   constructor(

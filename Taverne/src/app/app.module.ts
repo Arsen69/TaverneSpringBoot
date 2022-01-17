@@ -15,8 +15,6 @@ import { HeaderComponent } from './component/header/header.component';
 import { LoginComponent } from './connexion/login/login.component';
 import { LogOffComponent } from './connexion/log-off/log-off.component';
 import { InscriptionComponent } from './connexion/inscription/inscription.component';
-import { FormInscriptionComponent } from './connexion/form-inscription/form-inscription.component';
-//import { StockComponent } from './component/stock/stock.component';
 import { Carte2Component } from './component/carte2/carte2.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { StockListComponent } from './model/stock/stock-list/stock-list.component';

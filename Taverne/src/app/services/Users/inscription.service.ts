@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Admin } from '../model/comptes/admin';
-import { Client } from '../model/comptes/client';
-import { Compte } from '../model/comptes/compte';
-import { Employe } from '../model/comptes/employe';
-import { Fournisseur } from '../model/comptes/fournisseur';
-import { Intervenant } from '../model/comptes/intervenant';
+import { Admin } from 'src/app/model/comptes/admin';
+import { Client } from 'src/app/model/comptes/client';
+import { Employe } from 'src/app/model/comptes/employe';
+import { Fournisseur } from 'src/app/model/comptes/fournisseur';
+import { Intervenant } from 'src/app/model/comptes/intervenant';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +13,7 @@ import { Intervenant } from '../model/comptes/intervenant';
 export class InscriptionService {
   constructor(private http: HttpClient) {}
 
-  inscription(compte: Compte, type: string): Observable<any> {
+  inscription(compte: any, type: string): Observable<any> {
     let o;
     if (type == 'Client') {
       o = this.compteToJson(compte as Client);
@@ -40,7 +39,7 @@ export class InscriptionService {
       prenom: c.prenom,
       login: c.login,
       password: c.password,
-      email: c.email,
+      mail: c.mail,
       enabled: true,
     };
   }

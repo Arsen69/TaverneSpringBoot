@@ -28,6 +28,7 @@ public class Stock {
 	@JsonView(JsonViews.Common.class)
 	private Long idStock;
 	@JsonView(JsonViews.Common.class)
+	@Column(name = "volume_tot")
 	private double volumeTot;
 	@JsonView(JsonViews.Common.class)
 	@Column(name = "seuil_limite")

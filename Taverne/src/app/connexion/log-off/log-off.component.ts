@@ -13,7 +13,6 @@ export class LogOffComponent implements OnInit {
 
   logoff() {
     localStorage.setItem('token', '');
-    localStorage.setItem('login', '');
     localStorage.setItem('role', '');
     this.router.navigate(['/home']);
   }

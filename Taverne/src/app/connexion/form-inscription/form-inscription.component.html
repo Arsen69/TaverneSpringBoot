@@ -1,28 +1,32 @@
 <div class="container">
-  <form (ngSubmit)="validate()" [formGroup]="form">
-    <div *ngIf="role == 'Admin'" class="row m-2">
-      <label class="form-label col-sm-3">Type de compte à créer :</label>
-      <div class="col-sm-3">
-        <select class="form-control" [(ngModel)]="typeCompte">
-          <option value="Admin">Administrateur</option>
-          <option value="Fournisseur">Fournisseur</option>
-          <option value="Employe">Employé</option>
-          <option value="Intervenant">Intervenant</option>
-          <option value="Client">Client</option>
-        </select>
-      </div>
+  <div *ngIf="role == 'Admin'" class="row m-2">
+    <label class="form-label col-sm-3">Type de compte à créer :</label>
+    <div class="col-sm-3">
+      <select class="form-control" [(ngModel)]="typeCompte">
+        <option value="Admin">Administrateur</option>
+        <option value="Fournisseur">Fournisseur</option>
+        <option value="Employe">Employé</option>
+        <option value="Intervenant">Intervenant</option>
+        <option value="Client">Client</option>
+      </select>
     </div>
+  </div>
+
+  <div>{{ typeCompte }} et</div>
+
+  <form (ngSubmit)="validate()" [formGroup]="form">
     <div class="row m-2">
       <label class="form-label col-sm-3">Login</label>
       <div class="col-sm-3">
         <input type="text" class="form-control" [(ngModel)]="compte.login" />
       </div>
     </div>
-    <div fromGroupName="password">
+    <div fromGroupName="group1">
       <div class="row m-2">
         <label class="form-label col-sm-3">Mot de passe :</label>
         <div class="col-sm-3">
           <input
+            [formControl]="passwordCtrl"
             type="text"
             class="form-control"
             [(ngModel)]="compte.password"
@@ -56,7 +60,7 @@
           type="email"
           class="form-control"
           placeholder="name@example.com"
-          [(ngModel)]="compte.email"
+          [(ngModel)]="compte.mail"
         />
         <small id="emailHelp" class="form-text text-muted"
           >Nous ne partagerons pas votre adresse mail avec qui que ce soit
@@ -86,15 +90,16 @@
         <input type="text" class="form-control" [(ngModel)]="compte.prenom" />
       </div>
     </div>
-    <div *ngIf="compte.login == 'Fournisseur'" class="row m-2">
+    <div *ngIf="typeCompte == 'Fournisseur'" class="row m-2">
       <label class="form-label col-sm-3">Entreprise</label>
       <div class="col-sm-3">
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="compte.prenom"
-          [placeholder]="typeCompte"
-        />
+        <input type="text" class="form-control" [(ngModel)]="entreprise" />
+      </div>
+    </div>
+    <div *ngIf="typeCompte == 'Intervenant'" class="row m-2">
+      <label class="form-label col-sm-3">Nom d'artiste</label>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" [(ngModel)]="artiste" />
       </div>
     </div>
 

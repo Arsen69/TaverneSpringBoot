@@ -1,8 +1,15 @@
-<div class="page">
-  <div class="frame">
-    <div class="col-12 titre">
-      <h1>Notre carte:</h1>
-    </div>
-    <app-carte-item *ngFor="let Boisson of listeBoisson"></app-carte-item>
+<div *ngIf="idBar == 0 || idBar == null">
+  <app-choix-bar></app-choix-bar>
+</div>
+<div class="page" *ngIf="idBar != 0">
+  <button class="btn btn-primary btnBar" (click)="deleteBar()">
+    Changer de bar
+  </button>
+  <div class="col-12">
+    <h1 class="titre">Notre carte:</h1>
   </div>
+  <app-carte-item
+    *ngFor="let Boisson of listeBoisson"
+    [item]="Boisson"
+  ></app-carte-item>
 </div>
