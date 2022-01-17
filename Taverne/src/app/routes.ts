@@ -11,6 +11,7 @@ import { InscriptionComponent } from './connexion/inscription/inscription.compon
 import { Carte2Component } from './component/carte2/carte2.component';
 import { LoginComponent } from './connexion/login/login.component';
 import { AuthenticationService } from './services/Users/authentication.service';
+import { CatalogueGlobalComponent } from './component/articles/catalogue-global/catalogue-global.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -40,4 +41,5 @@ export const routes: Routes = [
     component: EditBoissonComponent,
     //canActivate: [AuthenticationService],
   },
+  { path: 'catalogue', component: CatalogueGlobalComponent },
 ];

@@ -18,7 +18,7 @@ public class ArticleService {
 	@Autowired
 	private ArticleRepository articleRepo;
 	@Autowired
-	private FournisseurService fournisseurService;
+	private CompteService compteService;
 	
 	public List<Article> getAll(){
 		return articleRepo.findAll();
@@ -33,9 +33,9 @@ public class ArticleService {
 		return articleRepo.findAllByFournisseur(fournisseur);
 	}
 	
-//	public List<Article> getAllByFournisseur(Long id){
-//		return getAllByFournisseur(CompteService.getByFournisseur(id));
-//	}
+	public List<Article> getAllByFournisseur(Long id){
+		return getAllByFournisseur((Fournisseur)compteService.getBy(id));
+	}
 	
 	public List<Article> getAllByTypeArticle(String typeProduit){
 		if(Arrays.asList(TypeArticle.values()).contains(TypeArticle.valueOf(typeProduit))) {
@@ -67,5 +67,13 @@ public class ArticleService {
 		return articleRepo.save(article);
 	}
 	
+	public void delete(Article article) {
+		Check.checkLong(article.getId());
+		articleRepo.delete(article);
+	}
+	
+	public void delete(Long id) {
+		delete(articleRepo.getById(id));
+	}
 
 }

@@ -36,11 +36,11 @@ export class Article {
     this._cout = value;
   }
 
-  public get typerproduit(): TypeArticle | undefined {
+  public get typeProduit(): TypeArticle | undefined {
     return this._typeProduit;
   }
 
-  public set typerproduit(value: TypeArticle | undefined) {
+  public set typeProduit(value: TypeArticle | undefined) {
     this._typeProduit = value;
   }
 

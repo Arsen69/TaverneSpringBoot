@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 16 jan. 2022 à 17:17
+-- Généré le : lun. 17 jan. 2022 à 20:07
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -32,22 +32,23 @@ USE `taverne`;
 DROP TABLE IF EXISTS `achat`;
 CREATE TABLE IF NOT EXISTS `achat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `dateAchat` date DEFAULT NULL,
+  `date_achat` date DEFAULT NULL,
   `id_boisson` int(11) DEFAULT NULL,
   `id_client` int(11) DEFAULT NULL,
-  `date_achat` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKrgygua15xhmu3qdjn28ymva4g` (`id_boisson`),
   KEY `FKhit11h0ok1k9meer0c1qucp4d` (`id_client`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `achat`
 --
 
-INSERT INTO `achat` (`id`, `dateAchat`, `id_boisson`, `id_client`, `date_achat`) VALUES
-(1, '2021-12-08', 2, 10, NULL),
-(2, '2021-12-08', 1, 10, NULL);
+INSERT INTO `achat` (`id`, `date_achat`, `id_boisson`, `id_client`) VALUES
+(1, '2021-12-08', 2, 10),
+(2, '2021-12-08', 1, 10),
+(4, '2022-01-17', 2, 10),
+(5, '2022-01-17', 2, 10);
 
 -- --------------------------------------------------------
 
@@ -66,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   `version` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FKsj3w2fli459s4lsl77th2vqrn` (`id_fournisseur`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `article`
@@ -74,7 +75,8 @@ CREATE TABLE IF NOT EXISTS `article` (
 
 INSERT INTO `article` (`id`, `cout`, `nom`, `type_produit`, `volume`, `id_fournisseur`, `version`) VALUES
 (1, 12, 'Biere', 'Biere', 25, 6, 0),
-(2, 12, 'Coca', 'Coca', 25, 7, 0);
+(2, 12, 'Coca', 'Coca', 25, 7, 0),
+(3, 150, 'Vodka', 'Vodka', 15, 8, 0);
 
 -- --------------------------------------------------------
 
@@ -97,7 +99,8 @@ CREATE TABLE IF NOT EXISTS `articles_de_stock` (
 INSERT INTO `articles_de_stock` (`Stock_id_stock`, `articles_id`) VALUES
 (1, 2),
 (1, 2),
-(2, 1);
+(2, 1),
+(3, 3);
 
 -- --------------------------------------------------------
 
@@ -110,14 +113,15 @@ CREATE TABLE IF NOT EXISTS `bar` (
   `id_bar` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_bar`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `bar`
 --
 
 INSERT INTO `bar` (`id_bar`, `nom`) VALUES
-(1, 'Le Bar');
+(1, 'Le Bar'),
+(2, 'Le Meilleur Bar');
 
 -- --------------------------------------------------------
 
@@ -137,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `boisson` (
   `version` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FKfwhp2p8xd70r13clr783ujtl3` (`id_bar`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `boisson`
@@ -145,7 +149,8 @@ CREATE TABLE IF NOT EXISTS `boisson` (
 
 INSERT INTO `boisson` (`Type_Boisson`, `id`, `nom`, `prixHT`, `prixHThh`, `tva`, `id_bar`, `version`) VALUES
 ('Alcool', 1, 'Demi de Biere', 5, 5, 1.2, 1, 0),
-('Soft', 2, 'Bouteille de coca', 4, 4, 1.1, 1, 0);
+('Soft', 2, 'Bouteille de coca', 4, 4, 1.1, 1, 0),
+('Alcool', 3, 'Vodka-coca', 6, 4, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -192,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `compte` (
   PRIMARY KEY (`id`),
   KEY `FKvsg1ufkvuf5e7rucp6slfmbt` (`id_carte`),
   KEY `FKe7bu4xkyti845gkm6ihktodwf` (`id_bar`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `compte`
@@ -282,21 +287,21 @@ DROP TABLE IF EXISTS `stock`;
 CREATE TABLE IF NOT EXISTS `stock` (
   `id_stock` int(11) NOT NULL AUTO_INCREMENT,
   `seuil_limite` int(11) DEFAULT NULL,
-  `volumeTot` double NOT NULL,
+  `volume_tot` double NOT NULL,
   `id_bar` int(11) DEFAULT NULL,
   `version` int(11) NOT NULL,
-  `volume_tot` double NOT NULL,
   PRIMARY KEY (`id_stock`),
   KEY `FK8pah0km0jmvhm9lgkw1hw0550` (`id_bar`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `stock`
 --
 
-INSERT INTO `stock` (`id_stock`, `seuil_limite`, `volumeTot`, `id_bar`, `version`, `volume_tot`) VALUES
-(1, NULL, 49.67, 1, 0, 0),
-(2, NULL, 24.75, 1, 0, 0);
+INSERT INTO `stock` (`id_stock`, `seuil_limite`, `volume_tot`, `id_bar`, `version`) VALUES
+(1, NULL, 49.010000000000005, 1, 3),
+(2, NULL, 24.75, 1, 0),
+(3, NULL, 15, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -313,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `utilisation` (
   PRIMARY KEY (`id`),
   KEY `FK7ua82lyrtygm7mgwefmfknm6y` (`id_boisson`),
   KEY `FKfth5nte38cf82kpw9vsuda49v` (`id_ingredient_stock`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `utilisation`
@@ -321,7 +326,9 @@ CREATE TABLE IF NOT EXISTS `utilisation` (
 
 INSERT INTO `utilisation` (`id`, `Volume`, `id_boisson`, `id_ingredient_stock`) VALUES
 (1, 0.25, 1, 2),
-(2, 0.33, 2, 1);
+(2, 0.33, 2, 1),
+(3, 0.05, 3, 3),
+(4, 0.33, 3, 1);
 
 --
 -- Contraintes pour les tables déchargées
