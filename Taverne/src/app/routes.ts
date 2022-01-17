@@ -6,6 +6,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { LogOffComponent } from './connexion/log-off/log-off.component';
 import { InscriptionComponent } from './connexion/inscription/inscription.component';
 import { Carte2Component } from './component/carte2/carte2.component';
+import { LoginComponent } from './connexion/login/login.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
