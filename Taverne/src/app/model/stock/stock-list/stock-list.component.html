@@ -1,0 +1,131 @@
+<p>stock-list works!</p>
+<head>
+  <meta charset="utf-8" />
+  <title>Stocks</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+    crossorigin="anonymous"
+  />
+  <script
+    src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+    crossorigin="anonymous"
+  ></script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <h1>Liste des stocks</h1>
+    <input
+      class="btn btn-success"
+      type="submit"
+      name=""
+      value="Ajouter"
+      onclick="toggle_ajout();"
+    />
+    <app-stock-tableau></app-stock-tableau>
+
+    <!--<th>id</th>
+      <th>Planète de départ</th>
+      <th>Planète d'arrivée</th>
+      <th>Date de départ</th>
+      <th>Heure de départ</th>
+      <th>Nom du vaisseau</th>
+      <th>Actions</th>*/-->
+    <div id="DisplayAjout" class="container-fluid Form hide">
+      <h3>Enregistrer nouveau Stock</h3>
+      <div id="BlocAjout" class="shadow">
+        <form class="FormGr" action="stocks.html" method="get">
+          <div class="form-group">
+            <label for="add_typeProduit">Type Produit</label> <br /><input
+              class="form-control"
+              required
+              id="add_typeProduit"
+              name="TypeProduit"
+              type="text"
+              placeholder="Type de Produit"
+            /><br />
+            <label for="add_Seuil">Seuil d'alerte</label> <br />
+            <input
+              class="form-control"
+              id="add_Seuil"
+              name="Seuil"
+              type="number"
+              placeholder="Seuil d'alerte"
+            /><br />
+            <input
+              class="btn btn-success form-control"
+              type="submit"
+              name="ajouter"
+              value="Ajouter"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="DisplayModif" class="container-fluid Form hide">
+      <h3>Modifier Limite</h3>
+      <div id="BlocModif" class="shadow">
+        <form class="FormGr" action="Gestion_clients.html" method="get">
+          <div class="form-group">
+            <label for="modif_Login">Login</label> <br /><input
+              class="form-control"
+              required
+              id="modif_Login"
+              name="Login"
+              type="text"
+              placeholder="Login"
+            /><br />
+            <label for="modif_Nom">Nom</label> <br />
+            <input
+              class="form-control"
+              required
+              id="modif_Nom"
+              name="Nom"
+              type="text"
+              placeholder="Nom"
+            /><br />
+            <label for="modif_prenom">Prénom</label> <br /><input
+              class="form-control"
+              id="modif_prenom"
+              name="Prenom"
+              type="text"
+              placeholder="Prénom"
+            /><br />
+            <label for="modif_mail">Mail</label><br />
+            <input
+              class="form-control"
+              id="modif_mail"
+              name="Mail"
+              type="mail"
+              placeholder="exemple@email.com"
+            /><br />
+            <label for="modif_points">Points sur la carte</label><br />
+            <input
+              class="form-control"
+              id="modif_points"
+              name="PointsCarte"
+              type="number"
+              placeholder="Nombre de points sur la carte"
+            /><br />
+            <br />
+            <input
+              class="btn btn-success form-control"
+              type="submit"
+              name="ajouter"
+              value="Ajouter"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
