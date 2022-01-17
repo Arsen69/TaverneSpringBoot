@@ -30,7 +30,6 @@ import soprajc.TaverneSpringBoot.service.BoissonService;
 @RestController
 @RequestMapping("/boisson")
 @CrossOrigin(origins="*")
-
 public class BoissonRestController {
 	
 	@Autowired 

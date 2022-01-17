@@ -19,6 +19,10 @@ import { FormInscriptionComponent } from './connexion/form-inscription/form-insc
 //import { StockComponent } from './component/stock/stock.component';
 import { Carte2Component } from './component/carte2/carte2.component';
 import { FooterComponent } from './component/footer/footer.component';
+import { StockListComponent } from './model/stock/stock-list/stock-list.component';
+import { StockTableauComponent } from './model/stock/stock-tableau/stock-tableau.component';
+import { ChoixBarComponent } from './component/choix-bar/choix-bar.component';
+import { CarteItemComponent } from './component/carte-item/carte-item.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,10 @@ import { FooterComponent } from './component/footer/footer.component';
     LogOffComponent,
     InscriptionComponent,
     FormInscriptionComponent,
+    StockListComponent,
+    StockTableauComponent,
+    ChoixBarComponent,
+    CarteItemComponent,
   ],
   imports: [
     BrowserModule,
