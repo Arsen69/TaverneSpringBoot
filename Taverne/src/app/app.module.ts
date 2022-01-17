@@ -21,6 +21,7 @@ import { StockListComponent } from './model/stock/stock-list/stock-list.componen
 import { StockTableauComponent } from './model/stock/stock-tableau/stock-tableau.component';
 import { ChoixBarComponent } from './component/choix-bar/choix-bar.component';
 import { CarteItemComponent } from './component/carte-item/carte-item.component';
+import { FormInscriptionComponent } from './connexion/form-inscription/form-inscription.component';
 
 @NgModule({
   declarations: [
