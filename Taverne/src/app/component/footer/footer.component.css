@@ -1,0 +1,27 @@
+#foot {
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+  height: 500px;
+}
+
+footer {
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+  height: 500px;
+}
+
+#cont {
+  display: flex;
+  width: 100%;
+}
+
+#subcont {
+  display: flex;
+}
+
+#title {
+  display: flex;
+  justify-content: flex-start;
+}

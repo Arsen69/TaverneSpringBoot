@@ -21,6 +21,7 @@
     "@ionic/angular": "^6.0.2",
     "boostrap": "^2.0.0",
     "bootstrap": "^5.1.3",
+    "font-awesome": "^4.7.0",
     "ionicons": "^6.0.0",
     "jquery": "^3.6.0",
     "rxjs": "~7.4.0",

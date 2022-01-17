@@ -7,7 +7,7 @@ import { Carte2Component } from './component/carte2/carte2.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: AccueilComponent },
-  { path: 'connexion', component: ConnexionComponent },
+  //{ path: 'connexion', component: ConnexionComponent },
   { path: 'carte', component: CarteComponent },
   { path: 'connexion', component: LoginComponent },
   { path: 'carte2', component: Carte2Component },
