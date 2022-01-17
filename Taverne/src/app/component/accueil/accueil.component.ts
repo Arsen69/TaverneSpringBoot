@@ -9,4 +9,8 @@ export class AccueilComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  showMe() {
+    console.log(localStorage.getItem('idBar'));
+  }
 }
