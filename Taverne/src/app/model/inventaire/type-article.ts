@@ -1,5 +1,5 @@
 export enum TypeArticle {
-  Vodka,
-  Biere,
-  Softs,
+  Vodka = 'Vodka',
+  Biere = 'Biere',
+  Softs = 'Softs',
 }

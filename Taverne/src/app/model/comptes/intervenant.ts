@@ -1,3 +1,4 @@
+import { Intervention } from './../fonctionnalitees/intervention';
 import { Compte } from './compte';
 
 export class Intervenant extends Compte {

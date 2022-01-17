@@ -49,7 +49,7 @@ export class Bar {
   }
 
   public set employes(value: Employe | undefined) {
-    this._interventions = value;
+    this._employes = value;
   }
 
   public get interventions(): Intervention | undefined {
