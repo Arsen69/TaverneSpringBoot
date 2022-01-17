@@ -12,8 +12,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AccueilComponent } from './component/accueil/accueil.component';
 import { CarteComponent } from './component/carte/carte.component';
 import { HeaderComponent } from './component/header/header.component';
+//import { StockComponent } from './component/stock/stock.component';
 import { Carte2Component } from './component/carte2/carte2.component';
 import { LoginComponent } from './component/login/login.component';
+import { FooterComponent } from './component/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { LoginComponent } from './component/login/login.component';
     LoginComponent,
     HeaderComponent,
     Carte2Component,
-    StockComponent,
+    FooterComponent,
+    //StockComponent
   ],
   imports: [
     BrowserModule,
