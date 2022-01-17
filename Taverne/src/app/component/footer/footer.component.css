@@ -5,9 +5,9 @@ footer {
   bottom: 0;
   display: block;
   position: relative;
-  height: 350px;
+  height: fit-content;
   background-color: var(--bckColor);
-  box-shadow: -3px 0px 3px 0px var(--bckColor);
+  box-shadow: -3px 0px 3px 0px var(--bckColor), 3px 0px 3px 0px var(--bckColor);;
   clear: both;
 }
 
