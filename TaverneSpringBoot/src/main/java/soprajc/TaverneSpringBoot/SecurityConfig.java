@@ -3,6 +3,7 @@ package soprajc.TaverneSpringBoot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -33,10 +34,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
 			.authorizeHttpRequests()
-				.antMatchers("api/boissons").permitAll()
+				.antMatchers(HttpMethod.OPTIONS).permitAll()
 				.antMatchers("/api/**").authenticated()
+				.antMatchers("api/boissons").permitAll()
+				.antMatchers(HttpMethod.POST,"api/compte/Client","api/compte/Intervenant").permitAll()
 				.antMatchers("/api/reglement").hasRole("Client")
-				.antMatchers("client","/intervenant","/index.html","/carte").permitAll()
+				.antMatchers("/index.html","/carte").permitAll()
 				.antMatchers("/stock/**").hasAnyRole("Admin","Employe")
 				.anyRequest().authenticated()
 			.and()

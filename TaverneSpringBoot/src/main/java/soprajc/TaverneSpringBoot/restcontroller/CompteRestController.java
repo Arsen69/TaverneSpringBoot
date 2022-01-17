@@ -55,7 +55,7 @@ public class CompteRestController {
 		return getById(id);
 	}
 	
-	@PostMapping("/client")
+	@PostMapping("/Client")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(JsonViews.Common.class)
 	public Compte create(@Valid @RequestBody Client compte, BindingResult br) {
@@ -66,7 +66,7 @@ public class CompteRestController {
 		return compte;
 	}
 	
-	@PostMapping("/admin")
+	@PostMapping("/Admin")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(JsonViews.Common.class)
 	public Compte create(@Valid @RequestBody Admin compte, BindingResult br) {
@@ -77,7 +77,7 @@ public class CompteRestController {
 		return compte;
 	}
 	
-	@PostMapping("/employe")
+	@PostMapping("/Employe")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(JsonViews.Common.class)
 	public Compte create(@Valid @RequestBody Employe compte, BindingResult br) {

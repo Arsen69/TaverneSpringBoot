@@ -10,6 +10,7 @@ import soprajc.TaverneSpringBoot.model.comptes.Admin;
 import soprajc.TaverneSpringBoot.model.comptes.Client;
 import soprajc.TaverneSpringBoot.model.comptes.Compte;
 import soprajc.TaverneSpringBoot.model.comptes.Employe;
+import soprajc.TaverneSpringBoot.model.comptes.Intervenant;
 import soprajc.TaverneSpringBoot.repository.AchatRepository;
 import soprajc.TaverneSpringBoot.repository.BarRepository;
 import soprajc.TaverneSpringBoot.repository.CompteRepository;
@@ -49,6 +50,11 @@ public class CompteService {
 	}
 	
 	public void creationEmploye(Employe compte) {
+		checkCompte(compte);
+		compteRepo.save(compte);
+	}
+	
+	public void creationIntervenant(Intervenant compte) {
 		checkCompte(compte);
 		compteRepo.save(compte);
 	}
