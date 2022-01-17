@@ -1,128 +1,15 @@
-<div class="page">
-  <div class="frame">
-    <div class="col-12 titre">
-      <h1>Notre carte:</h1>
-    </div>
-    <div class="ref">
-      <div class="back">
-        <span class="txtCarte">La 86</span>
-      </div>
-      <div class="anim">
-        <div class="front">
-          <img src="/assets/images/la86.png" alt="image" />
-        </div>
-        <div class="otherFront">du texte au pif</div>
-      </div>
-    </div>
-    <div class="ref">
-      <div class="back">
-        <span class="txtCarte">La 86</span>
-      </div>
-      <div class="anim">
-        <div class="front">
-          <img src="/assets/images/la86.png" alt="image" />
-        </div>
-        <div class="otherFront">du texte au pif</div>
-      </div>
-    </div>
-    <div class="ref">
-      <div class="back">
-        <span class="txtCarte">La 86</span>
-      </div>
-      <div class="anim">
-        <div class="front">
-          <img src="/assets/images/la86.png" alt="image" />
-        </div>
-        <div class="otherFront">du texte au pif</div>
-      </div>
-    </div>
-    <div class="ref">
-      <div class="back">
-        <span class="txtCarte">La 86</span>
-      </div>
-      <div class="anim">
-        <div class="front">
-          <img src="/assets/images/la86.png" alt="image" />
-        </div>
-        <div class="otherFront">du texte au pif</div>
-      </div>
-    </div>
-    <div class="ref">
-      <div class="back">
-        <span class="txtCarte">La 86</span>
-      </div>
-      <div class="anim">
-        <div class="front">
-          <img src="/assets/images/la86.png" alt="image" />
-        </div>
-        <div class="otherFront">du texte au pif</div>
-      </div>
-    </div>
-    <div class="ref">
-      <div class="back">
-        <span class="txtCarte">La 86</span>
-      </div>
-      <div class="anim">
-        <div class="front">
-          <img src="/assets/images/la86.png" alt="image" />
-        </div>
-        <div class="otherFront">du texte au pif</div>
-      </div>
-    </div>
-    <div class="ref">
-      <div class="back">
-        <span class="txtCarte">La 86</span>
-      </div>
-      <div class="anim">
-        <div class="front">
-          <img src="/assets/images/la86.png" alt="image" />
-        </div>
-        <div class="otherFront">du texte au pif</div>
-      </div>
-    </div>
-    <div class="ref">
-      <div class="back">
-        <span class="txtCarte">La 86</span>
-      </div>
-      <div class="anim">
-        <div class="front">
-          <img src="/assets/images/la86.png" alt="image" />
-        </div>
-        <div class="otherFront">du texte au pif</div>
-      </div>
-    </div>
-    <div class="ref">
-      <div class="back">
-        <span class="txtCarte">La 86</span>
-      </div>
-      <div class="anim">
-        <div class="front">
-          <img src="/assets/images/la86.png" alt="image" />
-        </div>
-        <div class="otherFront">du texte au pif</div>
-      </div>
-    </div>
-    <div class="ref">
-      <div class="back">
-        <span class="txtCarte">La 86</span>
-      </div>
-      <div class="anim">
-        <div class="front">
-          <img src="/assets/images/la86.png" alt="image" />
-        </div>
-        <div class="otherFront">du texte au pif</div>
-      </div>
-    </div>
-    <div class="ref">
-      <div class="back">
-        <span class="txtCarte">La 86</span>
-      </div>
-      <div class="anim">
-        <div class="front">
-          <img src="/assets/images/la86.png" alt="image" />
-        </div>
-        <div class="otherFront">du texte au pif</div>
-      </div>
-    </div>
+<div *ngIf="idBar == 0 || idBar == null">
+  <app-choix-bar></app-choix-bar>
+</div>
+<div class="page" *ngIf="idBar != 0">
+  <button class="btn btn-primary btnBar" (click)="deleteBar()">
+    Changer de bar
+  </button>
+  <div class="col-12">
+    <h1 class="titre">Notre carte:</h1>
   </div>
+  <app-carte-item
+    *ngFor="let Boisson of listeBoisson"
+    [item]="Boisson"
+  ></app-carte-item>
 </div>

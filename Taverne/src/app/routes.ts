@@ -1,4 +1,4 @@
-import { AdminService } from './services/comptes/admin.service';
+import { ChoixBarComponent } from './component/choix-bar/choix-bar.component';
 import { CarteComponent } from './component/carte/carte.component';
 import { AccueilComponent } from './component/accueil/accueil.component';
 import { Routes } from '@angular/router';
@@ -6,7 +6,8 @@ import { LogOffComponent } from './connexion/log-off/log-off.component';
 import { InscriptionComponent } from './connexion/inscription/inscription.component';
 import { Carte2Component } from './component/carte2/carte2.component';
 import { LoginComponent } from './connexion/login/login.component';
-import { AuthenticationService } from './services/Users/authentication.service';
+import { AuthenticationService } from './services/authentication.service';
+import { StockListComponent } from './model/stock/stock-list/stock-list.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,4 +24,6 @@ export const routes: Routes = [
     component: InscriptionComponent,
   },
   { path: 'carte2', component: Carte2Component },
+  { path: 'stock', component: StockListComponent },
+  { path: 'choixBar', component: ChoixBarComponent },
 ];

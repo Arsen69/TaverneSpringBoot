@@ -1,4 +1,3 @@
-import { AuthenticationService } from './authentification.service';
 import { Injectable } from '@angular/core';
 import { Boisson } from '../model/inventaire/boisson';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -10,25 +9,24 @@ import { Observable } from 'rxjs';
 export class BoissonService {
   private static URL: string = 'http://localhost:8080/Taverne/boisson';
   constructor(
-    private http: HttpClient,
-    private auth: AuthentificationService
+    private http: HttpClient //private auth: AuthentificationService
   ) {}
 
   public getAll(): Observable<Boisson[]> {
     return this.http.get<Boisson[]>(BoissonService.URL, {
-      headers: this.auth.headers, //authentification des clients pour voir les boissons
+      // headers: this.auth.headers, //authentification des clients pour voir les boissons
     });
   }
 
   public getAllbyBar(id: number): Observable<Boisson[]> {
     return this.http.get<Boisson[]>(BoissonService.URL + '/bar' + '/' + id, {
-      headers: this.auth.headers, //authentification des clients pour voir les boissons
+      // headers: this.auth.headers, //authentification des clients pour voir les boissons
     });
   }
 
   public getById(id: number): Observable<Boisson> {
     return this.http.get<Boisson>(BoissonService.URL + '/' + id, {
-      headers: this.auth.headers,
+      // headers: this.auth.headers,
     });
   }
 
@@ -37,7 +35,7 @@ export class BoissonService {
       BoissonService.URL + '/' + boisson.id,
       boisson,
       {
-        headers: this.auth.headers,
+        //headers: this.auth.headers,
       }
     );
   }
@@ -47,13 +45,13 @@ export class BoissonService {
       nom: boisson.nom,
     };
     return this.http.post<Boisson>(BoissonService.URL, o, {
-      headers: this.auth.headers,
+      //headers: this.auth.headers,
     });
   }
 
   public delete(id: number): Observable<void> {
     return this.http.delete<void>(BoissonService.URL + '/' + id, {
-      headers: this.auth.headers,
+      //headers: this.auth.headers,
     });
   }
 }

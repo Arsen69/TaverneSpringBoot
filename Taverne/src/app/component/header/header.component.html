@@ -1,20 +1,14 @@
 <header class="row noMargin">
   <div class="noMargin hLeft d-none d-lg-flex col-lg-4 row">
     <div class="logo col-lg-4">
-      <img src="/assets/images/LogoPetit.png" alt="image" />
+      <h1>LOGO</h1>
     </div>
     <div class="rezo col-lg-8">
       <a href="#" target="_blank">
         <span class="rezoLogo"><ion-icon name="logo-facebook"></ion-icon></span>
       </a>
-      <a href="www.twitter.com/" target="_blank">
-        <span class="rezoLogo"
-          ><ion-icon
-            name="logo-twitter"
-            redirectTo="http://twitter.com
-          "
-          ></ion-icon
-        ></span>
+      <a href="#" target="_blank">
+        <span class="rezoLogo"><ion-icon name="logo-twitter"></ion-icon></span>
       </a>
       <a href="#" target="_blank">
         <span class="rezoLogo"
@@ -68,7 +62,6 @@
   <div class="noMargin hRight col-12 col-lg-4 row">
     <ul>
       <li
-        *ngIf="role == '' || role == null; else Connected"
         class="navListe"
         routerLink="/connexion"
         routerLinkActive="active-link"
@@ -80,20 +73,6 @@
           <span class="iconLabel">Compte</span>
         </a>
       </li>
-      <ng-template #Connected>
-        <li
-          class="navListe"
-          routerLink="/monCompte"
-          routerLinkActive="active-link"
-        >
-          <a>
-            <span class="icon">
-              <ion-icon name="person-outline"></ion-icon>
-            </span>
-            <span class="iconLabel">Compte</span>
-          </a>
-        </li></ng-template
-      >
       <li
         class="navListe"
         routerLink="/calendrier"

@@ -2,9 +2,30 @@ router-outlet {
   display: block;
 }
 
-div {
+.page {
   height: 100vh;
   scroll-behavior: smooth;
   overflow: auto;
   margin: 0 0 350px 0;
+  background: linear-gradient(
+    90deg,
+    white 0%,
+    var(--txtColor) 20%,
+    var(--txtColor) 80%,
+    white 100%
+  );
+}
+
+.page::-webkit-scrollbar {
+  display: none;
+}
+
+.onTop {
+  position: relative;
+  z-index: 1000;
+}
+
+.notOnTop {
+  position: relative;
+  z-index: 500;
 }

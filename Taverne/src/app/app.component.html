@@ -1,8 +1,5 @@
-<div>
-  <app-header></app-header>
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
-
-  <app-footer></app-footer>
+<div class="page">
+  <app-header class="onTop"></app-header>
+  <router-outlet class="notOnTop"></router-outlet>
+  <app-footer class="onTop"></app-footer>
 </div>
