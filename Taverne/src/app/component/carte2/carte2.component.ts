@@ -9,13 +9,20 @@ import { BoissonService } from 'src/app/services/boisson.service';
   styleUrls: ['./carte2.component.css'],
 })
 export class Carte2Component implements OnInit {
-  //boisson: Observable<Boisson[]> | null = null;
-  boisson: Boisson[] = [];
+  boisson: Observable<Boisson[]> | null = null;
+  //boisson: Boisson[] = [];
   constructor(private boissonService: BoissonService) {}
 
   ngOnInit(): void {
-    this.boissonService.getAll().subscribe((result) => {
-      this.boisson = result;
+    //this.boissonService.getAllbyBar(1).subscribe((result) => {
+    // this.boisson = result;
+    //  });
+    this.boisson = this.boissonService.getAllbyBar(1);
+  }
+
+  delete(id: number) {
+    this.boissonService.delete(id).subscribe((ok) => {
+      this.boisson = this.boissonService.getAll();
     });
   }
 }

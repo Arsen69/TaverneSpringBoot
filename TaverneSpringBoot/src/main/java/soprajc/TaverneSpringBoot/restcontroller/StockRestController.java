@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ import soprajc.TaverneSpringBoot.service.StockService;
 
 @RestController
 @RequestMapping("api/bar")
+@CrossOrigin(origins="*")
 public class StockRestController {
 
 	@Autowired
@@ -36,7 +38,9 @@ public class StockRestController {
 	@GetMapping("/{id}/stocks")
 	@JsonView(JsonViews.Common.class)
 	public List<Stock> getAllStocks(@PathVariable Long id) {
+		System.out.println(stockService.getAllByBar(id));
 		return stockService.getAllByBar(id);
+		
 	}
 
 	@GetMapping("/{id}/stocks/{idStock}")
