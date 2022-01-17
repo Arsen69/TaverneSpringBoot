@@ -26,7 +26,6 @@ export class CarteComponent implements OnInit {
     this.boissonService.getAllbyBar(Number(localStorage.getItem('idBar'))).subscribe((result) => {
       this.listeBoisson = result;
     });
-    console.log(this.listeBoisson);
   }
 
   deleteBar() {
