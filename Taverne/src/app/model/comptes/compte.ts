@@ -5,7 +5,7 @@ export class Compte {
     protected _prenom?: string,
     protected _login?: string,
     protected _password?: string,
-    protected _email?: string,
+    protected _mail?: string,
     protected _version?: number,
     protected _enabled?: boolean
   ) {}
@@ -30,8 +30,8 @@ export class Compte {
     return this._password;
   }
 
-  get email(): string | undefined {
-    return this._email;
+  get mail(): string | undefined {
+    return this._mail;
   }
 
   get version(): number | undefined {
@@ -62,8 +62,8 @@ export class Compte {
     this._password = value;
   }
 
-  set email(value: string | undefined) {
-    this._email = value;
+  set mail(value: string | undefined) {
+    this._mail = value;
   }
 
   set version(value: number | undefined) {

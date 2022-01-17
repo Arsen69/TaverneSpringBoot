@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AuthenticationService } from 'src/app/services/Users/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
       next: (v) => {
         localStorage.setItem('token', btoa(login + ':' + password));
         localStorage.setItem('role', v);
-        localStorage.setItem('login', login);
         console.log(localStorage.getItem('role'));
         this.router.navigate(['home']);
       },
