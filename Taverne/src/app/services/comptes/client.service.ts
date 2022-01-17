@@ -1,9 +1,10 @@
+import { CanActivate } from '@angular/router';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ClientService {
+export class ClientService implements CanActivate {
   constructor() {}
 
   canActivate(): boolean {

@@ -1,8 +1,8 @@
-import { Compte } from '../model/comptes/compte';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthenticationService } from './authentication.service';
+import { Compte } from 'src/app/model/comptes/compte';
+import { AuthenticationService } from '../authentication.service';
 
 @Injectable({
   providedIn: 'root',
