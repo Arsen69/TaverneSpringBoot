@@ -3,7 +3,6 @@ package soprajc.TaverneSpringBoot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -28,29 +27,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(HttpSecurity http) throws Exception {
 		// @formatter:off
 		
-		http.antMatcher("/**")
+		http.antMatcher("/api/**")
 			.csrf().ignoringAntMatchers("/api/**")
 			.and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
 			.authorizeHttpRequests()
-				.antMatchers(HttpMethod.OPTIONS).permitAll()
-				.antMatchers("/compte/login").authenticated()
+				.antMatchers("api/boissons").permitAll()
+				.antMatchers("/api/**").authenticated()
+			.and()
+			.httpBasic();
+		
+		http.antMatcher("/**")
+			.authorizeHttpRequests()
 				.antMatchers("/reglement").hasRole("Client")
 				.antMatchers("/inscription","/index.html","/carte").permitAll()
 				.antMatchers("/compagnon/**").hasAnyRole("COMPAGNION","ADMIN")
 				.anyRequest().authenticated()
 			.and()
-			.httpBasic();
-		
-//		http.antMatcher("/**")
-//			.authorizeHttpRequests()
-//				.antMatchers("/reglement").hasRole("Client")
-//				.antMatchers("/inscription","/index.html","/carte").permitAll()
-//				.antMatchers("/compagnon/**").hasAnyRole("COMPAGNION","ADMIN")
-//				.anyRequest().authenticated()
-//			.and()
-//			.formLogin();
+			.formLogin();
 		
 // @formatter:on
 
