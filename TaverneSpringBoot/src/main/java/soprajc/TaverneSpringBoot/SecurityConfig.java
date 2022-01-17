@@ -35,13 +35,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.authorizeHttpRequests()
 				.antMatchers(HttpMethod.OPTIONS).permitAll()
-				.antMatchers("/api/**").authenticated()
-				.antMatchers("api/boissons").permitAll()
+				//.antMatchers("/api/**").authenticated()
+				.antMatchers("/api/**").permitAll()
+				.antMatchers(HttpMethod.GET,"/boisson/**").permitAll()
+				.antMatchers("/boisson/**").permitAll()
 				.antMatchers(HttpMethod.POST,"api/compte/Client","api/compte/Intervenant").permitAll()
 				.antMatchers("/api/reglement").hasRole("Client")
 				.antMatchers("/index.html","/carte").permitAll()
 				.antMatchers("/stock/**").hasAnyRole("Admin","Employe")
-				.anyRequest().authenticated()
+//				.anyRequest().authenticated()
 			.and()
 			.httpBasic();
 		
