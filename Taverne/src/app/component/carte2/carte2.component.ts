@@ -1,4 +1,7 @@
+import { Boisson } from './../../model/inventaire/boisson';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { BoissonService } from 'src/app/services/boisson.service';
 
 @Component({
   selector: 'app-carte2',
@@ -6,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./carte2.component.css'],
 })
 export class Carte2Component implements OnInit {
-  constructor() {}
+  //boisson: Observable<Boisson[]> | null = null;
+  boisson: Boisson[] = [];
+  constructor(private boissonService: BoissonService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.boissonService.getAll().subscribe((result) => {
+      this.boisson = result;
+    });
+  }
 }

@@ -1,9 +1,6 @@
-<p>form-inscription works!</p>
-
 <div class="container">
   <form (ngSubmit)="validate()" [formGroup]="form">
     <div *ngIf="role == 'Admin'" class="row m-2">
-      <div class="col-sm-3"></div>
       <label class="form-label col-sm-3">Type de compte à créer :</label>
       <div class="col-sm-3">
         <select class="form-control" [(ngModel)]="typeCompte">
@@ -16,7 +13,6 @@
       </div>
     </div>
     <div class="row m-2">
-      <div class="col-sm-3"></div>
       <label class="form-label col-sm-3">Login</label>
       <div class="col-sm-3">
         <input type="text" class="form-control" [(ngModel)]="compte.login" />
@@ -79,17 +75,26 @@
       </small>
     </div>
     <div class="row m-2">
-      <div class="col-sm-3"></div>
       <label class="form-label col-sm-3">Nom</label>
       <div class="col-sm-3">
         <input type="text" class="form-control" [(ngModel)]="compte.nom" />
       </div>
     </div>
     <div class="row m-2">
-      <div class="col-sm-3"></div>
       <label class="form-label col-sm-3">Prénom</label>
       <div class="col-sm-3">
         <input type="text" class="form-control" [(ngModel)]="compte.prenom" />
+      </div>
+    </div>
+    <div *ngIf="compte.login == 'Fournisseur'" class="row m-2">
+      <label class="form-label col-sm-3">Entreprise</label>
+      <div class="col-sm-3">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="compte.prenom"
+          [placeholder]="typeCompte"
+        />
       </div>
     </div>
 

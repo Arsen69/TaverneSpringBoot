@@ -1,15 +1,12 @@
-#foot {
-  width: 100%;
-  bottom: 0;
-  position: absolute;
-  height: 500px;
-}
-
 footer {
   width: 100%;
   bottom: 0;
-  position: absolute;
-  height: 500px;
+  display: block;
+  position: relative;
+  height: fit-content;
+  background-color: var(--bckColor);
+  box-shadow: -3px 0px 3px 0px var(--bckColor), 3px 0px 3px 0px var(--bckColor);;
+  clear: both;
 }
 
 #cont {

@@ -1,5 +1,4 @@
 import { ChoixBarComponent } from './component/choix-bar/choix-bar.component';
-/* import { ConnexionComponent } from './component/connexion/connexion.component'; */
 import { CarteComponent } from './component/carte/carte.component';
 import { AccueilComponent } from './component/accueil/accueil.component';
 import { Routes } from '@angular/router';

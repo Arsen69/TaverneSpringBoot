@@ -1,0 +1,14 @@
+router-outlet {
+  display: block;
+}
+
+.page {
+  height: 100vh;
+  scroll-behavior: smooth;
+  overflow: auto;
+  margin: 0 0 350px 0;
+}
+
+.page::-webkit-scrollbar {
+  display: none;
+}

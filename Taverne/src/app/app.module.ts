@@ -22,6 +22,7 @@ import { FooterComponent } from './component/footer/footer.component';
 import { StockListComponent } from './model/stock/stock-list/stock-list.component';
 import { StockTableauComponent } from './model/stock/stock-tableau/stock-tableau.component';
 import { ChoixBarComponent } from './component/choix-bar/choix-bar.component';
+import { CarteItemComponent } from './component/carte-item/carte-item.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ChoixBarComponent } from './component/choix-bar/choix-bar.component';
     StockListComponent,
     StockTableauComponent,
     ChoixBarComponent,
+    CarteItemComponent,
   ],
   imports: [
     BrowserModule,
