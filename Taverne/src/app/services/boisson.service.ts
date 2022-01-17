@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BoissonService {
-  private static URL: string = 'http://localhost:8080/Taverne/boisson';
+  private static URL: string = 'http://localhost:8080/Taverne/api/bar/';
   constructor(
     private http: HttpClient //private auth: AuthentificationService
   ) {}
@@ -19,20 +19,20 @@ export class BoissonService {
   }
 
   public getAllbyBar(id: number): Observable<Boisson[]> {
-    return this.http.get<Boisson[]>(BoissonService.URL + '/bar' + '/' + id, {
+    return this.http.get<Boisson[]>(BoissonService.URL + id + '/boissons', {
       // headers: this.auth.headers, //authentification des clients pour voir les boissons
     });
   }
 
   public getById(id: number): Observable<Boisson> {
-    return this.http.get<Boisson>(BoissonService.URL + '/' + id, {
+    return this.http.get<Boisson>(BoissonService.URL + id, {
       // headers: this.auth.headers,
     });
   }
 
   public update(boisson: Boisson): Observable<Boisson> {
     return this.http.put<Boisson>(
-      BoissonService.URL + '/' + boisson.id,
+      BoissonService.URL + boisson.id,
       boisson,
       {
         //headers: this.auth.headers,

@@ -22,6 +22,7 @@ import { StockTableauComponent } from './model/stock/stock-tableau/stock-tableau
 import { ChoixBarComponent } from './component/choix-bar/choix-bar.component';
 import { CarteItemComponent } from './component/carte-item/carte-item.component';
 import { FormInscriptionComponent } from './connexion/form-inscription/form-inscription.component';
+import { PanierComponent } from './component/panier/panier.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { FormInscriptionComponent } from './connexion/form-inscription/form-insc
     StockTableauComponent,
     ChoixBarComponent,
     CarteItemComponent,
+    PanierComponent,
   ],
   imports: [
     BrowserModule,
