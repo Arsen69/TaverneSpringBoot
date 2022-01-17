@@ -1,6 +1,7 @@
 package soprajc.TaverneSpringBoot.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import soprajc.TaverneSpringBoot.exception.BoissonException;
 import soprajc.TaverneSpringBoot.model.inventaire.Alcool;
 import soprajc.TaverneSpringBoot.model.inventaire.Boisson;
 import soprajc.TaverneSpringBoot.model.inventaire.Soft;
+import soprajc.TaverneSpringBoot.model.inventaire.Utilisation;
 import soprajc.TaverneSpringBoot.repository.AlcoolRepository;
 import soprajc.TaverneSpringBoot.repository.BarRepository;
 import soprajc.TaverneSpringBoot.repository.BoissonRepository;
@@ -30,6 +32,8 @@ public class BoissonService {
 	private BarRepository barRepo;
 	@Autowired 
 	private BarService barService;
+	@Autowired
+	private UtilisationService utilisationService;
 	
 	
 	//CREATE
@@ -41,16 +45,27 @@ public class BoissonService {
 		BoissonRepo.save(boisson);
 	}
 	
-	public void create(Alcool alcool) {
+	public Alcool create(Alcool alcool) {
 		if (alcool.getNom() == null) {
 			throw new BoissonException();
 		}
-		BoissonRepo.save(alcool);
+		Alcool a = BoissonRepo.save(alcool);
+		Set<Utilisation> utils = alcool.getUtilisations();
+		System.out.println(utils);
+		utils.forEach( u -> {
+			u.setBoisson(alcool);
+			utilisationService.create(u);
+		});
+		return a;
 	}
 	
 	public void create(Soft soft) {
 		if (soft.getNom() == null) {
 			throw new BoissonException();
+		}
+		Set<Utilisation> utils = soft.getUtilisations();
+		for(Utilisation u : utils) {
+			utilisationService.create(u);
 		}
 		BoissonRepo.save(soft);
 	}

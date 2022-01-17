@@ -1,4 +1,5 @@
 package soprajc.TaverneSpringBoot.model.inventaire;
+
 import java.util.Objects;
 import java.util.Set;
 
@@ -18,36 +19,38 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import soprajc.TaverneSpringBoot.model.JsonViews;
 
-
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="Type_Boisson")
-public abstract class Boisson{
-	
+@DiscriminatorColumn(name = "Type_Boisson")
+public abstract class Boisson {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
-	@JsonView({JsonViews.Common.class,JsonViews.BoissonByBar.class})
+
+	@JsonView({ JsonViews.Common.class, JsonViews.BoissonByBar.class })
 	protected Long id;
-	@JsonView({JsonViews.Common.class,JsonViews.BoissonByBar.class})
+	@JsonView({ JsonViews.Common.class, JsonViews.BoissonByBar.class })
 	protected String nom;
+	@JsonView({ JsonViews.Common.class, JsonViews.BoissonByBar.class })
 	protected double prixHT;
+	@JsonView({ JsonViews.Common.class, JsonViews.BoissonByBar.class })
 	protected double prixHThh;
+	@JsonView({ JsonViews.Common.class, JsonViews.BoissonByBar.class })
 	protected double tva;
-	
-	
+
 	@JsonView(JsonViews.BoissonByBar.class)
 	@ManyToOne
 	@JoinColumn(name = "id_bar")
 	protected Bar bar;
-	
-	@OneToMany(mappedBy="boisson")
-	protected Set<Utilisation> utilisations;
-	
-	public Boisson() {}
 
-	public Boisson(String nom, double prixHT, double prixHThh, double tva, Bar bar,
-			Set<Utilisation> utilisations) {
+	@OneToMany(mappedBy = "boisson")
+	@JsonView(JsonViews.Common.class)
+	protected Set<Utilisation> utilisations;
+
+	public Boisson() {
+	}
+
+	public Boisson(String nom, double prixHT, double prixHThh, double tva, Bar bar, Set<Utilisation> utilisations) {
 		this.nom = nom;
 		this.prixHT = prixHT;
 		this.prixHThh = prixHThh;
@@ -112,15 +115,8 @@ public abstract class Boisson{
 		this.utilisations = utilisations;
 	}
 
-	@Override
-	public String toString() {
-		return "Boisson [id=" + id + ", nom=" + nom + ", prixHT=" + prixHT + ", prixHThh=" + prixHThh + ", tva=" + tva
-				+ ", bar=" + bar + ", utilisations=" + utilisations + "]";
-	}
-	
 	@Version
 	private int version;
-
 
 	@Override
 	public int hashCode() {
@@ -150,14 +146,5 @@ public abstract class Boisson{
 				&& Double.doubleToLongBits(tva) == Double.doubleToLongBits(other.tva)
 				&& Objects.equals(utilisations, other.utilisations);
 	}
-	
-	
-	
-	
-	
 
-	
-	
-	
-	
 }

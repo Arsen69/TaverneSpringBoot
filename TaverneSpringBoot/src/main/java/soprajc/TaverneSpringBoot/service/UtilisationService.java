@@ -19,5 +19,11 @@ public class UtilisationService {
 		Check.checkLong(boisson.getId());
 		return utilisationRepo.findAllByBoisson(boisson);
 	}
+	
+	public Utilisation create(Utilisation util) {
+		Check.checkLong(util.getBoisson().getId());
+		Check.checkLong(util.getIngredient().getIdStock());
+		return utilisationRepo.save(util);
+	}
 
 }

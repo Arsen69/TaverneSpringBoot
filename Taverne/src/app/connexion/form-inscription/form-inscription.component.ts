@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Compte } from 'src/app/model/comptes/compte';
-import { InscriptionService } from 'src/app/services/inscription.service';
+import { InscriptionService } from 'src/app/services/Users/inscription.service';
 
 @Component({
   selector: 'app-form-inscription',
@@ -20,6 +20,9 @@ export class FormInscriptionComponent implements OnInit {
   role = localStorage.getItem('role');
   typeCompte: string = 'Client';
   compte: Compte = new Compte();
+
+  entreprise: string = '';
+  artiste: string = ';';
 
   passwordCtrl: FormControl = new FormControl('', [Validators.required]);
   confirmCtrl: FormControl = new FormControl('');
@@ -52,10 +55,15 @@ export class FormInscriptionComponent implements OnInit {
 
   validate() {
     let group = this.form.controls['passwordGroup'] as FormGroup;
-    let user = new Compte(
-      this.form.controls['login'].value,
-      group.controls['password'].value
-    );
+    let user = {
+      login: this.form.controls['login'].value,
+      password: group.controls['password'].value,
+      nom: this.form.controls['nom'].value,
+      prenom: this.form.controls['prenom'].value,
+      mail: this.form.controls['mail'].value,
+      entreprise: this.form.controls['entreprise'].value,
+      artiste: this.form.controls['artiste'].value,
+    };
     this.inscriptionService
       .inscription(user, this.typeCompte)
       .subscribe((ok) => {

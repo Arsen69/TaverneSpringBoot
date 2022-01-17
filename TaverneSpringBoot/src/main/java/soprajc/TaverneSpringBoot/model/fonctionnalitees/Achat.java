@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,28 +12,32 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import soprajc.TaverneSpringBoot.model.JsonViews;
 import soprajc.TaverneSpringBoot.model.comptes.Client;
 import soprajc.TaverneSpringBoot.model.inventaire.Boisson;
 
 @Entity
 public class Achat {
-	
-	//static Context context = Context.getInstance();
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(JsonViews.Common.class)
 	private Long id;
+	@Column(name = "date_achat")
+	@JsonView(JsonViews.Common.class)
 	private LocalDate dateAchat;
 	
 	@ManyToOne
 	@JoinColumn(name="id_boisson")
+	@JsonView(JsonViews.Common.class)
 	private Boisson boisson;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="id_client")
+	@JsonView(JsonViews.Common.class)
 	private Client client;
-	
-	
 	
 
 	@Override
@@ -99,10 +104,6 @@ public class Achat {
 		this.client = client;
 	}
 
-	@Override
-	public String toString() {
-		return "Achat [id=" + id + ", dateAchat=" + dateAchat + ", boisson=" + boisson + ", client=" + client + "]";
-	}
 	
 	
 	

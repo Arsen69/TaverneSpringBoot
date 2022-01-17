@@ -25,22 +25,25 @@ import soprajc.TaverneSpringBoot.model.JsonViews;
 import soprajc.TaverneSpringBoot.model.inventaire.Alcool;
 import soprajc.TaverneSpringBoot.model.inventaire.Boisson;
 import soprajc.TaverneSpringBoot.model.inventaire.Soft;
+import soprajc.TaverneSpringBoot.service.BarService;
 import soprajc.TaverneSpringBoot.service.BoissonService;
 
 @RestController
-@RequestMapping("/boisson")
+@RequestMapping("api/bar")
 @CrossOrigin(origins="*")
 public class BoissonRestController {
-	
-	@Autowired 
+
+	@Autowired
 	private BoissonService boissonService;
-	
-	@GetMapping("")
+	@Autowired
+	private BarService barService;
+
+	@GetMapping("/boissons")
 	@JsonView(JsonViews.Common.class)
 	public List<Boisson> getAll() {
 		return boissonService.getAll();
 	}
-	
+
 //	@GetMapping("/{id}/bar")
 //	@JsonView(JsonViews.Common.class)
 //	public Boisson getByIdWithBar(@PathVariable Long id) {
@@ -48,60 +51,60 @@ public class BoissonRestController {
 //		//Long id = bar.getIdBar();
 //		return boissonService.getByIdWithBar(id);
 //	}
-	
-	@GetMapping("/bar/{id}")
+
+	@GetMapping("/{idBar}/boissons")
 	@JsonView(JsonViews.Common.class)
-	public List <Boisson> getAllByBar(@PathVariable("id") Long id) {
+	public List<Boisson> getAllByBar(@PathVariable("id") Long id) {
 		return boissonService.getAllByBar(id);
 	}
-	
-	@GetMapping("/{id}")
+
+	@GetMapping("/boisson/{id}")
 	@JsonView(JsonViews.Common.class)
 	public Boisson getById(@PathVariable("id") Long id) {
 		return boissonService.getById(id);
 	}
-	
 
-	//Post soft	
-	@PostMapping("/soft")
+	// Post soft
+	@PostMapping("/{id}/soft")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(JsonViews.Common.class)
-	public Soft create(@Valid @RequestBody Soft soft, BindingResult br) {
-		if(br.hasErrors()) {
+	public Soft create(@Valid @RequestBody Soft soft, BindingResult br, @PathVariable("id") Long id) {
+		if (br.hasErrors()) {
 			throw new BoissonException();
 		}
 		boissonService.create(soft);
 		return soft;
 	}
-	
-	//Post alcool	
-		@PostMapping("/alcool")
-		@ResponseStatus(code = HttpStatus.CREATED)
-		@JsonView(JsonViews.Common.class)
-		public Alcool create(@Valid @RequestBody Alcool alcool, BindingResult br) {
-			if(br.hasErrors()) {
-				throw new BoissonException();
-			}
-			boissonService.create(alcool);
-			return alcool;
-		}
-		
 
-	//Put Soft
+	// Post alcool
+	@PostMapping("/{id}/alcool")
+	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(JsonViews.Common.class)
-	@PutMapping("/soft/{id}")
-	public Soft replace(@Valid @RequestBody Soft soft, BindingResult br, @PathVariable("id") Long id) {
+	public Alcool create(@Valid @RequestBody Alcool alcool, BindingResult br, @PathVariable("id") Long id) {
+		if (br.hasErrors()) {
+			throw new BoissonException();
+		}
+		alcool.setBar(barService.getById(id));
+		return boissonService.create(alcool);
+		
+	}
+
+	// Put Soft
+	@JsonView(JsonViews.Common.class)
+	@PutMapping("/{idBar}/soft/{id}")
+	public Soft replace(@Valid @RequestBody Soft soft, BindingResult br, @PathVariable("id") Long id,@PathVariable("idBar") Long idBar) {
 		boissonService.update(soft);
 		return soft;
 	}
-	
-	//Put Alcool
-		@JsonView(JsonViews.Common.class)
-		@PutMapping("/alcool/{id}")
-		public Alcool replace(@Valid @RequestBody Alcool alcool, BindingResult br, @PathVariable("id") Long id) {
-			boissonService.update(alcool);
-			return alcool;
-		}
+
+	// Put Alcool
+	@JsonView(JsonViews.Common.class)
+	@PutMapping("/{idBar}/alcool/{id}")
+	public Alcool replace(@Valid @RequestBody Alcool alcool, BindingResult br, @PathVariable("id") Long id,@PathVariable("idBar") Long idBar) {
+		boissonService.update(alcool);
+		return alcool;
+	}
+
 //	
 //	@JsonView(JsonViews.Common.class)
 //	@PatchMapping("/{id}")
@@ -117,12 +120,10 @@ public class BoissonRestController {
 //		return compagnon;
 //	}
 //	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{idBar}/boisson/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable Long id) {
+	public void delete(@PathVariable("idBar") Long idBar, @PathVariable("id") Long id) {
 		boissonService.suppression(id);
 	}
-	
-	
-}
 
+}
