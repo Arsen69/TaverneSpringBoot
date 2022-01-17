@@ -1,13 +1,20 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Compte } from '../model/comptes/compte';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
   constructor(private http: HttpClient) {}
+
+  canActivate(): boolean {
+    if (localStorage.getItem('token') != null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   public getHeaders(): HttpHeaders {
     if (localStorage.getItem('token') != null) {

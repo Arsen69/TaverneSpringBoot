@@ -11,7 +11,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AccueilComponent } from './component/accueil/accueil.component';
 import { CarteComponent } from './component/carte/carte.component';
 import { HeaderComponent } from './component/header/header.component';
-import { LoginComponent } from './component/login/login.component';
+import { LoginComponent } from './connexion/login/login.component';
+import { LogOffComponent } from './connexion/log-off/log-off.component';
+import { InscriptionComponent } from './connexion/inscription/inscription.component';
+import { FormInscriptionComponent } from './connexion/form-inscription/form-inscription.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,9 @@ import { LoginComponent } from './component/login/login.component';
     CarteComponent,
     HeaderComponent,
     LoginComponent,
+    LogOffComponent,
+    InscriptionComponent,
+    FormInscriptionComponent,
   ],
   imports: [
     BrowserModule,
