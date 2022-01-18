@@ -10,6 +10,8 @@ import { Boisson } from 'src/app/model/inventaire/boisson';
 })
 export class EditBoissonComponent implements OnInit {
   boisson: Boisson = new Boisson();
+  id: number = 0;
+  idBar: number = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -27,15 +29,18 @@ export class EditBoissonComponent implements OnInit {
     });
   }
 
-  save() {
+  saveSoft() {
+    console.log('entrée dans saveSoft');
     if (!!this.boisson.id) {
-      this.boissonService.update(this.boisson).subscribe((ok) => {
-        this.router.navigate(['/carte2']);
-      });
-    } else {
-      this.boissonService.create(this.boisson).subscribe((ok) => {
-        this.router.navigate(['/carte2']);
-      });
+      this.boissonService
+        .updateSoft(this.boisson, this.id, this.idBar)
+        .subscribe((ok) => {
+          this.router.navigate(['/carte2']);
+        });
+      // } else {
+      //   // this.boissonService.createSoft(this.boisson).subscribe((ok) => {
+      //   //   this.router.navigate(['/carte2']);
+      //   });
     }
   }
 }

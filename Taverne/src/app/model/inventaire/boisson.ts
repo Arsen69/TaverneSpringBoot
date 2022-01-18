@@ -1,6 +1,7 @@
 export class Boisson {
   constructor(
     protected _id?: number,
+    protected _idBar?: number,
     protected _nom?: string,
     protected _prixHT?: number,
     protected _prixHThh?: number,
@@ -8,6 +9,10 @@ export class Boisson {
   ) {}
 
   get id(): number | undefined {
+    return this._id;
+  }
+
+  get id_Bar(): number | undefined {
     return this._id;
   }
 
@@ -29,6 +34,10 @@ export class Boisson {
 
   set id(value: number | undefined) {
     this._id = value;
+  }
+
+  set idBar(value: number | undefined) {
+    this._idBar = value;
   }
 
   set nom(value: string | undefined) {

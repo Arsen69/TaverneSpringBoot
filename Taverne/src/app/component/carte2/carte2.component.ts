@@ -17,12 +17,19 @@ export class Carte2Component implements OnInit {
     //this.boissonService.getAllbyBar(1).subscribe((result) => {
     // this.boisson = result;
     //  });
-    this.boisson = this.boissonService.getAll();
+    console.log('id du bar: ' + localStorage.getItem('idBar'));
+    console.log('id du bar: ' + Number(localStorage.getItem('idBar')));
+
+    this.boisson = this.boissonService.getAllbyBar(
+      Number(localStorage.getItem('idBar'))
+    ); // ajouter localStorage.getItem('idBar')
   }
 
-  delete(id: number) {
-    this.boissonService.delete(id).subscribe((ok) => {
-      this.boisson = this.boissonService.getAll();
+  delete(id: number, idBar: number) {
+    this.boissonService.delete(id, idBar).subscribe((ok) => {
+      this.boisson = this.boissonService.getAllbyBar(
+        Number(localStorage.getItem('idBar'))
+      );
     });
   }
 }

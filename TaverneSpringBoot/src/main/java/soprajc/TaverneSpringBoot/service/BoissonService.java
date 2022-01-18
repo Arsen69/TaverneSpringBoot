@@ -15,6 +15,7 @@ import soprajc.TaverneSpringBoot.repository.AlcoolRepository;
 import soprajc.TaverneSpringBoot.repository.BarRepository;
 import soprajc.TaverneSpringBoot.repository.BoissonRepository;
 import soprajc.TaverneSpringBoot.repository.SoftRepository;
+import soprajc.TaverneSpringBoot.repository.UtilisationRepository;
 
 
 //traitment
@@ -34,6 +35,8 @@ public class BoissonService {
 	private BarService barService;
 	@Autowired
 	private UtilisationService utilisationService;
+	@Autowired
+	private UtilisationRepository utilisationRepo;
 	
 	
 	//CREATE
@@ -104,9 +107,12 @@ public class BoissonService {
 
 	public void suppression(Boisson boisson) {
 		//Check.checkLong(boisson.getId());
+		List <Utilisation> UtilisationEnBase = utilisationRepo.findAllByBoisson(boisson);
 		Boisson BoissonEnBase = BoissonRepo.findById(boisson.getId()).orElseThrow(BoissonException::new);
 //		boissonRepo.deleteByBar(BoissonEnBase);
 		BoissonRepo.delete(BoissonEnBase);
+		utilisationService.delete(UtilisationEnBase);
+		
 	}
 	
 	public void suppression(Long id) {

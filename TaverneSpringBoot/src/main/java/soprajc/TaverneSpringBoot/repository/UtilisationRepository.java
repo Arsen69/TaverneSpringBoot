@@ -12,5 +12,6 @@ import soprajc.TaverneSpringBoot.model.inventaire.Utilisation;
 public interface UtilisationRepository extends JpaRepository<Utilisation, Long>{
 	
 	public List<Utilisation> findAllByBoisson(Boisson boisson);
+	public List<Utilisation> deleteByBoisson(Boisson boisson);
 
 }
