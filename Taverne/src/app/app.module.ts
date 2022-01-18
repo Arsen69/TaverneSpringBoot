@@ -25,6 +25,7 @@ import { FormInscriptionComponent } from './connexion/form-inscription/form-insc
 import { PanierComponent } from './component/panier/panier.component';
 import { CatalogueGlobalComponent } from './component/articles/catalogue-global/catalogue-global.component';
 import { ArticleComponent } from './component/articles/article/article.component';
+import { FormArticleComponent } from './component/articles/form-article/form-article.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ArticleComponent } from './component/articles/article/article.component
     EditBoissonComponent,
     CatalogueGlobalComponent,
     ArticleComponent,
+    FormArticleComponent,
   ],
   imports: [
     BrowserModule,

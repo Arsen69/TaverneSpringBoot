@@ -71,7 +71,7 @@ public class ArticleRestController {
 	}
 
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@JsonView(JsonViews.ArticleWithFournisseur.class)
+	@JsonView(JsonViews.Common.class)
 	@PostMapping("")
 	public Article create(@Valid @RequestBody Article article, BindingResult br) {
 		if (br.hasErrors()) {

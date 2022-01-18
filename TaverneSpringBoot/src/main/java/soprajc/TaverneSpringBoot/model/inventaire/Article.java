@@ -38,7 +38,6 @@ public class Article {
 	@Enumerated(EnumType.STRING)
 	@Column(name="type_produit")
 	@JsonView(JsonViews.Common.class)
-	@NotNull
 	private TypeArticle typeProduit;
 	@JsonView(JsonViews.Common.class)
 	@DecimalMin("0.0")
@@ -48,7 +47,6 @@ public class Article {
 	@ManyToOne
 	@JoinColumn(name="id_fournisseur")
 	@JsonView(JsonViews.ArticleWithFournisseur.class)
-	@NotNull
 	private Fournisseur fournisseur;
 	
 	@Version
@@ -65,6 +63,13 @@ public class Article {
 		this.fournisseur = fournisseur;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return "Article [id=" + id + ", nom=" + nom + ", cout=" + cout + ", typeProduit=" + typeProduit + ", volume="
+				+ volume + ", version=" + version + "]";
+	}
 
 
 	public Long getId() {

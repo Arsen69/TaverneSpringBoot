@@ -52,13 +52,16 @@ public class BarService {
 	
 	public void approvisionner(Article article, Bar bar) {
 		try {
-
+			System.out.println(article);
 			Stock stock = stockService.getByTypeArticle(article.getTypeProduit(), bar);
 			stockService.ajouterVolume(article.getVolume(), stock);
 			stockRepo.save(stock);
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Voulez vous ajouter un nouveau stock ?");
+			Stock s =new Stock(article.getVolume(), null, Arrays.asList(article).stream().collect(Collectors.toSet()), bar);
+			System.out.println(s);
 			stockRepo.save(new Stock(article.getVolume(), null, Arrays.asList(article).stream().collect(Collectors.toSet()), bar));
 		}
 	}
