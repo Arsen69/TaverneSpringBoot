@@ -7,6 +7,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +30,7 @@ import soprajc.TaverneSpringBoot.service.StockService;
 
 @RestController
 @RequestMapping("api/articles")
+@CrossOrigin(origins = "*")
 public class ArticleRestController {
 	
 	@Autowired
@@ -55,15 +58,15 @@ public class ArticleRestController {
 		barService.approvisionner(articleService.getById(idArticle), barService.getById(idBar));
 	}
 
-//	@GetMapping("/{id}/articles/{idFournisseur}")
-//	@JsonView(JsonViews.Common.class)
-//	public List<Article> getAllByFournisseur(@PathVariable Long idFournissseur) {
-//		return articleService.getByFournisseur(idFournisseur);
-//	}
+	@GetMapping("/Fournisseur/{idFournisseur}")
+	@JsonView(JsonViews.Common.class)
+	public List<Article> getAllByFournisseur(@PathVariable("idFournisseur") Long id) {
+		return articleService.getAllByFournisseur(id);
+	}
 
 	@GetMapping("/types/{typeArticle}")
 	@JsonView(JsonViews.ArticleWithFournisseur.class)
-	public List<Article> getAllById(@PathVariable String typeArticle) {
+	public List<Article> getAllByTypeArticle(@PathVariable String typeArticle) {
 		return articleService.getAllByTypeArticle(typeArticle);
 	}
 
@@ -87,6 +90,12 @@ public class ArticleRestController {
 			article.setId(idArticle);
 		}
 		return articleService.update(article);
+	}
+	
+	@DeleteMapping("/{idArticle}")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	public void delete(@PathVariable("idArticle") Long id) {
+		articleService.delete(id);
 	}
 
 }

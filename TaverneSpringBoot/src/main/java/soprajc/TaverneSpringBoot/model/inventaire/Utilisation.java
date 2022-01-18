@@ -74,15 +74,7 @@ public class Utilisation {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
-	}
-	
-	
-
-	@Override
-	public String toString() {
-		return "Utilisation [id=" + id + ", volume=" + volume + ", ingredient=" + ingredient + ", boisson=" + boisson
-				+ "]";
+		return Objects.hash(id, ingredient, volume);
 	}
 
 	@Override
@@ -94,8 +86,11 @@ public class Utilisation {
 		if (getClass() != obj.getClass())
 			return false;
 		Utilisation other = (Utilisation) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(id, other.id) && Objects.equals(ingredient, other.ingredient)
+				&& Double.doubleToLongBits(volume) == Double.doubleToLongBits(other.volume);
 	}
+
+	
 	
 	
 }

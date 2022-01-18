@@ -40,9 +40,14 @@ public class CompteRestController {
 		return compteService.getAll();
 	}
 	
-	@GetMapping("/login/{login}")
+	@GetMapping("/role/{login}")
 	public String login(@PathVariable String login) {
 		return "\"" + compteService.getByLogin(login).getClass().getSimpleName() + "\"";
+	}
+	
+	@GetMapping("/login/{login}")
+	public String getIdByLogin(@PathVariable String login) {
+		return "\"" + Long.toString(compteService.getByLogin(login).getId()) + "\"";
 	}
 	
 	@GetMapping("/{id}")

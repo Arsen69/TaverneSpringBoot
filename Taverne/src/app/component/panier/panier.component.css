@@ -1,0 +1,26 @@
+.panier {
+  position: fixed;
+  height: 50px;
+  width: 50px;
+  background: var(--bckColor);
+  top: 105px;
+  right: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  color: var(--txtColor);
+  width: 30px;
+}
+
+.panier::after {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: var(--white);
+  scale: 2;
+}

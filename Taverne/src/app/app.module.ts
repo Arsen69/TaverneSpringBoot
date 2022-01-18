@@ -1,3 +1,4 @@
+import { EditBoissonComponent } from './component/edit-boisson/edit-boisson.component';
 import { StockListComponent } from './component/stock/stock-list/stock-list.component';
 import { StockComponent } from './component/stock/stock/stock.component';
 import { NgModule } from '@angular/core';
@@ -22,6 +23,8 @@ import { ChoixBarComponent } from './component/choix-bar/choix-bar.component';
 import { CarteItemComponent } from './component/carte-item/carte-item.component';
 import { FormInscriptionComponent } from './connexion/form-inscription/form-inscription.component';
 import { PanierComponent } from './component/panier/panier.component';
+import { CatalogueGlobalComponent } from './component/articles/catalogue-global/catalogue-global.component';
+import { ArticleComponent } from './component/articles/article/article.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,6 @@ import { PanierComponent } from './component/panier/panier.component';
     HeaderComponent,
     Carte2Component,
     FooterComponent,
-    //StockComponent
     LogOffComponent,
     InscriptionComponent,
     FormInscriptionComponent,
@@ -42,6 +44,9 @@ import { PanierComponent } from './component/panier/panier.component';
     PanierComponent,
     StockComponent,
     StockListComponent,
+    EditBoissonComponent,
+    CatalogueGlobalComponent,
+    ArticleComponent,
   ],
   imports: [
     BrowserModule,
