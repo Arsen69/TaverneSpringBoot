@@ -33,7 +33,7 @@ export class AuthenticationService implements CanActivate {
       Authorization: 'Basic ' + btoa(login + ':' + password),
     });
     return this.http.get<any>(
-      'http://localhost:8080/Taverne/api/compte/login/' + login,
+      'http://localhost:8080/Taverne/api/compte/role/' + login,
       {
         headers: headers,
       }

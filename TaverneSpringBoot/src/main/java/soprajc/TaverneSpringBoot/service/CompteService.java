@@ -46,6 +46,14 @@ public class CompteService {
 		Check.checkString(login);
 		return compteRepo.findByLogin(login).orElseThrow(CompteException::new);
 	}
+	
+//	public Compte getAllByTypeCompte(String type) {
+//		if (type != "Admin" || type != "Client" || type != "Fournisseur" || type != "Employe"
+//				|| type != "Intervenant") {
+//			throw new CompteException();
+//		}
+//		return compteRepo.findByTypeCompte(type);
+//	}
 
 	public void creationClient(Client compte) {
 		checkCompte(compte);
