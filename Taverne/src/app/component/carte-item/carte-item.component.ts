@@ -21,7 +21,7 @@ export class CarteItemComponent implements OnInit {
 
   prix: number = 0;
 
-  qty: number = 0;
+  qty: number = 1;
 
   @Output()
   commande: EventEmitter<{
@@ -53,7 +53,6 @@ export class CarteItemComponent implements OnInit {
   }
 
   addPanier() {
-    this.qty += 1;
     this.commande.emit({id: this.boisson.id!, nom:this.boisson.nom!, prix:this.prix, qty: this.qty});
   }
 }

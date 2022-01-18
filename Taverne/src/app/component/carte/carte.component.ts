@@ -13,6 +13,8 @@ export class CarteComponent implements OnInit {
 
   listeBoisson: Boisson[] = [];
 
+  total: number = 0;
+
   panier: {
     id: number;
     nom: string;
@@ -27,8 +29,12 @@ export class CarteComponent implements OnInit {
     setTimeout(() => {
       if (localStorage.getItem('panier') != null) {
         this.decodePanier(localStorage.getItem('panier')!);
+        for (let o of this.panier) {
+          this.total += o.prix * o.qty;
+        }
       }
     }, 500);
+
   }
 
   initCarte() {
@@ -53,45 +59,25 @@ export class CarteComponent implements OnInit {
     prix: number;
     qty: number;
   }) {
+    this.total = 0;
     let incremented = false;
-    if (nouvelleCommande.qty == 0) {
-      for (let o of this.panier) {
-        if (o.id == nouvelleCommande.id) {
+    for (let o of this.panier) {
+      if (o.id == nouvelleCommande.id) {
+        o.qty += nouvelleCommande.qty;
+        incremented = true;
+        if (o.qty <= 0) {
           this.panier.splice(this.panier.indexOf(o), 1);
         }
       }
-    } else {
-      for (let o of this.panier) {
-        if (o.id == nouvelleCommande.id) {
-          o.qty += 1;
-          incremented = true;
-        }
-      }
-      if (!incremented) {
-        this.panier.push(nouvelleCommande);
-      }
+    }
+    if (!incremented) {
+      this.panier.push(nouvelleCommande);
     }
     localStorage.removeItem('panier');
-    localStorage.setItem('panier', this.objectToString(this.panier));
-  }
-
-  objectToString(
-    liste: {
-      id: number;
-      nom: string;
-      prix: number;
-      qty: number;
-    }[]
-  ): string {
-    let codedString: string = '';
-    for (let o of liste) {
-      codedString += String(o.id);
-      codedString += ':';
-      codedString += String(o.qty);
-      codedString += ';';
+    for (let o of this.panier) {
+      this.total += o.prix * o.qty;
     }
-    codedString = codedString.slice(0, codedString.length - 1);
-    return codedString;
+    localStorage.setItem('panier', this.objectToString(this.panier));
   }
 
   decodePanier(code: string) {
@@ -119,7 +105,26 @@ export class CarteComponent implements OnInit {
       }
     }
     console.log(localStorage.getItem('panier'));
-    console.log(restoredPanier);
     this.panier = restoredPanier;
+    console.log(this.panier);
+  }
+
+  objectToString(
+    liste: {
+      id: number;
+      nom: string;
+      prix: number;
+      qty: number;
+    }[]
+  ): string {
+    let codedString: string = '';
+    for (let o of liste) {
+      codedString += String(o.id);
+      codedString += ':';
+      codedString += String(o.qty);
+      codedString += ';';
+    }
+    codedString = codedString.slice(0, codedString.length - 1);
+    return codedString;
   }
 }

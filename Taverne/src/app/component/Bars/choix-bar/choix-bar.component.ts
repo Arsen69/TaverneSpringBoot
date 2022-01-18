@@ -20,14 +20,14 @@ export class ChoixBarComponent implements OnInit {
   tokkenBar1() {
     localStorage.removeItem('idBar');
     localStorage.setItem('idBar', '1');
-    /* window.location.reload(); */
+    window.location.reload();
     console.log(localStorage.getItem('idBar'));
   }
 
   tokkenBar2() {
     localStorage.removeItem('idBar');
     localStorage.setItem('idBar', '2');
-    /*  window.location.reload(); */
+    window.location.reload();
     console.log(localStorage.getItem('idBar'));
   }
 }

@@ -152,6 +152,7 @@ header h1 {
   border: 6px solid var(--bckColor);
   transition: 0.5s;
   box-shadow: 0 3px 2px 0 var(--bckColor);
+  opacity: 0;
 }
 
 .iconActive::before {
@@ -180,18 +181,22 @@ header h1 {
 
 .hRight ul li:nth-child(1).active-link ~ .iconActive {
   transform: translateX(-150px);
+  opacity: 1;
 }
 
 .hRight ul li:nth-child(2).active-link ~ .iconActive {
   transform: translateX(-50px);
+  opacity: 1;
 }
 
 .hRight ul li:nth-child(3).active-link ~ .iconActive {
   transform: translateX(50px);
+  opacity: 1;
 }
 
 .hRight ul li:nth-child(4).active-link ~ .iconActive {
   transform: translateX(150px);
+  opacity: 1;
 }
 
 .rezo {
