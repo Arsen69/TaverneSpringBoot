@@ -11,6 +11,7 @@
   <app-carte-item
     *ngFor="let Boisson of listeBoisson"
     [item]="Boisson"
+    (commande)="addPanier($event)"
   ></app-carte-item>
-  <app-panier></app-panier>
+  <app-panier [panier] = "panier"></app-panier>
 </div>

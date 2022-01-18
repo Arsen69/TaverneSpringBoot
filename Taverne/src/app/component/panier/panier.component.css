@@ -1,4 +1,4 @@
-.panier {
+.btnPanier {
   position: fixed;
   height: 50px;
   width: 50px;
@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .icon {
@@ -16,11 +17,8 @@
   width: 30px;
 }
 
-.panier::after {
-  position: absolute;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  background: var(--white);
-  scale: 2;
+.listePanier {
+  height: fit-content;
+  width: fit-content;
 }
+
