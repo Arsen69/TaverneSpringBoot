@@ -1,7 +1,7 @@
+import { StockListComponent } from './component/stock/stock-list/stock-list.component';
 import { EditBoissonComponent } from './component/edit-boisson/edit-boisson.component';
 
 import { CarteComponent } from './component/carte/carte.component';
-import { StockListComponent } from './component/stock/stock-list/stock-list.component';
 import { ChoixBarComponent } from './component/choix-bar/choix-bar.component';
 
 import { AccueilComponent } from './component/accueil/accueil.component';

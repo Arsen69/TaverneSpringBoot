@@ -11,8 +11,11 @@
         Ceci est une description bidon, attention à la remplacer avant la
         présentation =)
       </div>
+      <div class="prix col-12">
+        {{this.prix | currency:'€':'€':'1.2-2'}}
+      </div>
       <div class="btnAdd col-12">
-        <button type="button" class="btn btn-warning" >Ajouter au panier</button>
+        <button type="button" class="btn btn-warning" (click)="addPanier()">Ajouter au panier</button>
       </div>
     </div>
   </div>

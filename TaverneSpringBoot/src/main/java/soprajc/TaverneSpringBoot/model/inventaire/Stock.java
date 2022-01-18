@@ -108,11 +108,7 @@ public class Stock {
 		this.volumeTot+=volume;
 	}
 
-	@Override
-	public String toString() {
-		return "Stock [id_stock=" + idStock + ", qte=" + volumeTot + ", seuilLimite=" + seuilLimite + ", article="
-				+ articles + ", bar=" + bar + "]";
-	}
+	
 
 	@Override
 	public int hashCode() {

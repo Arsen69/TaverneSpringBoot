@@ -1,19 +1,27 @@
-<div>
+<td>{{ stock.idStock }}</td>
+<td>{{ stock.volumeTot }}</td>
+<td>{{ stock.seuilLimite }}</td>
+<td>{{ stock.articles![0].typeProduit }}</td>
+<td>
   <div class="form-group">
     <button (click)="validation()" class="btn btn-outline-primary">
       valider
     </button>
   </div>
+</td>
 
+<td>
   <div class="form-group">
     <button (click)="validation()" class="btn btn-outline-primary">
       modifier
     </button>
   </div>
+</td>
 
+<td>
   <div class="form-group">
     <button (click)="validation()" class="btn btn-outline-primary">
       supprimer
     </button>
   </div>
-</div>
+</td>

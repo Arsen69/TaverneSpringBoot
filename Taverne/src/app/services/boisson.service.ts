@@ -25,7 +25,7 @@ export class BoissonService {
   }
 
   public getById(id: number): Observable<Boisson> {
-    return this.http.get<Boisson>(BoissonService.URL + id, {
+    return this.http.get<Boisson>(BoissonService.URL + 'boisson/' + id, {
       // headers: this.auth.headers,
     });
   }

@@ -1,5 +1,12 @@
 import { Boisson } from './../../model/inventaire/boisson';
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 
 @Component({
   selector: 'app-carte-item',
@@ -12,7 +19,26 @@ export class CarteItemComponent implements OnInit {
   @Input('item')
   boisson: Boisson = new Boisson();
 
-  ngOnInit(): void {}
+  prix: number = 0;
+
+  qty: number = 0;
+
+  @Output()
+  commande: EventEmitter<{
+    id: number;
+    nom: string;
+    prix: number;
+    qty: number;
+  }> = new EventEmitter<{
+    id: number;
+    nom: string;
+    prix: number;
+    qty: number;
+  }>();
+
+  ngOnInit(): void {
+    this.prix = Number(this.boisson.prixHT!) * Number(this.boisson.tva!);
+  }
 
   anim2: boolean = false;
 
@@ -24,5 +50,10 @@ export class CarteItemComponent implements OnInit {
   @HostListener('mouseleave')
   reverseAnim2() {
     this.anim2 = false;
+  }
+
+  addPanier() {
+    this.qty += 1;
+    this.commande.emit({id: this.boisson.id!, nom:this.boisson.nom!, prix:this.prix, qty: this.qty});
   }
 }
