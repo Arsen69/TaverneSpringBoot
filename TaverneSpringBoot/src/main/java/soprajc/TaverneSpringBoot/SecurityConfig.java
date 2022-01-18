@@ -43,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/api/bar/stocks/**").hasAnyRole("Admin","Employe")
 				.antMatchers("/api/**").authenticated()
 //				.anyRequest().authenticated()
+				
 			.and()
 			.httpBasic();
 		
