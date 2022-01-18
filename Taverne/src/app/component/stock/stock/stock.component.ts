@@ -12,6 +12,7 @@ export class StockComponent implements OnInit {
 
   @Input()
   stockRecu: Stock = new Stock();
+  role = localStorage.getItem('role');
 
   stock: Stock = new Stock();
 
