@@ -19,10 +19,10 @@ public interface StockRepository extends JpaRepository<Stock, Long>{
 	@Query("select distinct s from Stock s join fetch s.articles where seuil_limite = null")
 	public List<Stock> findAllLimitNull();
 	
-	@Query("from Stock s join s.articles a where a.typeProduit=:lib and s.bar=:bar")
+	@Query("select distinct s from Stock s join s.articles a where a.typeProduit=:lib and s.bar=:bar")
 	public Optional<Stock> findByTypeArticle(@Param ("lib") TypeArticle typeArticle, @Param("bar") Bar bar);
 
-	@Query("from Stock s join fetch s.articles a where s.idStock=:idStock and s.bar=:bar")
+	@Query("select distinct s from Stock s join fetch s.articles a where s.idStock=:idStock and s.bar=:bar")
 	public Optional<Stock> findByIdStockAndBar(@Param("idStock") Long idStock,@Param("bar") Bar bar);
 
 }

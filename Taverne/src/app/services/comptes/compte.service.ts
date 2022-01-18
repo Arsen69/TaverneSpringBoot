@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Compte } from 'src/app/model/comptes/compte';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../Users/authentication.service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,5 +21,15 @@ export class CompteService {
     return this.http.get<Compte>(`${CompteService.URL}/${id}`, {
       headers: this.auth.getHeaders(),
     });
+  }
+
+  public getIdByLoginConnected(): Observable<any> {
+    return this.http.get<any>(
+      'http://localhost:8080/Taverne/api/compte/login/' +
+        localStorage.getItem('login'),
+      {
+        headers: this.auth.getHeaders(),
+      }
+    );
   }
 }

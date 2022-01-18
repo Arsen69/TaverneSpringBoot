@@ -12,13 +12,13 @@ export class ArticleService {
 
   constructor(private http: HttpClient, private auth: AuthenticationService) {}
 
-  public acheterArticle(id: number, idBar: number): Observable<Article> {
-    return this.http.get<Article>(
-      ArticleService.URL + '/' + id + '/bar/' + idBar,
-      {
-        headers: this.auth.getHeaders(),
-      }
-    );
+  public acheterArticle(id: number, idBar: number): any {
+    console.log(id);
+    console.log(idBar);
+    console.log(ArticleService.URL + '/' + id + '/bar/' + idBar);
+    return this.http.get<any>(ArticleService.URL + '/' + id + '/bar/' + idBar, {
+      headers: this.auth.getHeaders(),
+    });
   }
 
   public getAll(): Observable<Article[]> {
@@ -39,28 +39,17 @@ export class ArticleService {
   }
 
   public update(data: Article): Observable<Article> {
-    return this.http.put<Article>(ArticleService.URL + '/' + data.id, data, {
+    const o = this.articleToJson(data);
+    return this.http.put<Article>(ArticleService.URL + '/' + o.id, o, {
       headers: this.auth.getHeaders(),
     });
   }
 
   public create(data: Article): Observable<Article> {
-    const o = {
-      nom: data.nom,
-      cout: data.cout,
-      typeProduit: data.typeProduit,
-      volume: data.volume,
-      fournisseur: {
-        id: this.http.get<any>(
-          'http://localhost:8080/Taverne/api/compte/login/' +
-            localStorage.getItem('login'),
-          {
-            headers: this.auth.getHeaders(),
-          }
-        ),
-      },
-    };
-    return this.http.post<Article>(ArticleService.URL, data, {
+    const o = this.articleToJson(data);
+    console.log(o);
+    console.log(o.fournisseur.id);
+    return this.http.post<Article>(ArticleService.URL, o, {
       headers: this.auth.getHeaders(),
     });
   }
@@ -69,5 +58,22 @@ export class ArticleService {
     return this.http.delete<void>(ArticleService.URL + '/' + id, {
       headers: this.auth.getHeaders(),
     });
+  }
+
+  articleToJson(data: Article): any {
+    const o = {
+      id: data.id,
+      nom: data.nom,
+      cout: data.cout,
+      typeProduit: data.typeProduit,
+      volume: data.volume,
+      fournisseur: {
+        id: data.fournisseur!.id,
+      },
+    };
+    if (!!data.id) {
+      Object.assign(o, { id: data.id });
+    }
+    return o;
   }
 }

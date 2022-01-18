@@ -1,11 +1,51 @@
-<td>{{ article.id }}</td>
-<td>{{ article.nom }}</td>
-<td>{{ article.typeProduit }}</td>
-<td>{{ article.volume }}</td>
-<td>{{ article.cout }}</td>
-<td>{{ article.fournisseur!.nom }}</td>
-<td>
-  <button *ngIf="role == 'Admin'" class="btn btn-primary" (click)="acheter()">
-    Acheter Article
-  </button>
-</td>
+<!-- La ligne en mode affichage -->
+
+<ng-container *ngIf="!edition; else editionTemplate">
+  <td>{{ article.id }}</td>
+  <td>{{ article.nom }}</td>
+  <td>{{ article.typeProduit }}</td>
+  <td>{{ article.volume }}</td>
+  <td>{{ article.cout }}</td>
+  <td>{{ article.fournisseur!.entreprise }}</td>
+  <td>
+    <button *ngIf="role == 'Admin'" class="btn btn-primary" (click)="acheter()">
+      Acheter Article
+    </button>
+    <button
+      *ngIf="login == article.fournisseur!.login"
+      class="btn btn-warning"
+      (click)="editer()"
+    >
+      Editer Article
+    </button>
+  </td>
+  <td>
+    <button
+      *ngIf="login == article.fournisseur!.login"
+      class="btn btn-danger"
+      (click)="delete(article.id!)"
+    >
+      Supprimer Article
+    </button>
+  </td></ng-container
+>
+
+<!-- La ligne en mode edition -->
+<ng-template #editionTemplate>
+  <td>{{ article.id }}</td>
+  <td><input [(ngModel)]="article.nom" class="form-control" /></td>
+  <td>
+    <select [(ngModel)]="article.typeProduit" class="form-control">
+      <option *ngFor="let t of typesProduits | keyvalue" [value]="t.key">
+        {{ t.value }}
+      </option>
+    </select>
+  </td>
+  <td><input [(ngModel)]="article.volume" class="form-control" /></td>
+  <td><input [(ngModel)]="article.cout" class="form-control" /></td>
+  <td>{{ article.fournisseur!.entreprise }}</td>
+  <td>
+    <button class="btn btn-success" (click)="save()">Enregistrer</button>
+    <button class="btn btn-warning" (click)="cancel()">Annuler</button>
+  </td>
+</ng-template>

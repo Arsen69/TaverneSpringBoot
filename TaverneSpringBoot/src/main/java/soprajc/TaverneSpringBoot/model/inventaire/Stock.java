@@ -103,20 +103,6 @@ public class Stock {
 		this.version = version;
 	}
 
-	public void utiliserVolume(double volume) {
-		this.volumeTot-=volume;
-
-		try {
-			if(this.volumeTot<=seuilLimite) {
-				//Context.getInstance().getDaoLogAlerte().creerAlerte(this);
-			}
-		}
-		catch(Exception e) {
-		}
-
-	}
-
-
 	public void ajouterVolume(double volume) 
 	{
 		this.volumeTot+=volume;
