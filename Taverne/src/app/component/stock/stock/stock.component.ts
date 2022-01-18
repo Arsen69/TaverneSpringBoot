@@ -19,7 +19,7 @@ export class StockComponent implements OnInit {
   stockList() {
     this.StockService.getAll().subscribe((result) => {
       this.listeStock = result;
+      console.log(this.listeStock);
     });
-    console.log(this.listeStock);
   }
 }

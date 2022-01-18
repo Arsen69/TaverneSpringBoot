@@ -36,12 +36,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeHttpRequests()
 				.antMatchers(HttpMethod.OPTIONS).permitAll()
 				.antMatchers(HttpMethod.GET,"/boissons/**").permitAll()
+				.antMatchers(HttpMethod.GET,"/api/bar/**").permitAll()
 				.antMatchers(HttpMethod.POST,"api/compte/Client","api/compte/Intervenant").permitAll()
 //				.antMatchers("/api/reglement").hasRole("Client")
 				.antMatchers("/index.html","/carte").permitAll()
 				.antMatchers("/api/bar/stocks/**").hasAnyRole("Admin","Employe")
 				.antMatchers("/api/**").authenticated()
 //				.anyRequest().authenticated()
+				
 			.and()
 			.httpBasic();
 		

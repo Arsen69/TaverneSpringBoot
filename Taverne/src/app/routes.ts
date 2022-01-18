@@ -7,7 +7,7 @@ import { LogOffComponent } from './connexion/log-off/log-off.component';
 import { InscriptionComponent } from './connexion/inscription/inscription.component';
 import { Carte2Component } from './component/carte2/carte2.component';
 import { LoginComponent } from './connexion/login/login.component';
-import { StockListComponent } from './model/stock/stock-list/stock-list.component';
+
 import { AuthenticationService } from './services/Users/authentication.service';
 
 export const routes: Routes = [
