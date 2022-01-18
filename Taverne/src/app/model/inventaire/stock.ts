@@ -4,9 +4,9 @@ import { Bar } from './bar';
 export class Stock {
   constructor(
     private _idStock?: number,
-    private _volumTot?: number,
+    private _volumeTot?: number,
     private _seuilLimite?: number,
-    private _articles?: Article,
+    private _articles?: Article[],
     private _bar?: Bar,
     private _version?: number
   ) {}
@@ -19,12 +19,12 @@ export class Stock {
     this._idStock = value;
   }
 
-  public get volumTot(): number | undefined {
-    return this._volumTot;
+  public get volumeTot(): number | undefined {
+    return this._volumeTot;
   }
 
-  public set volumTot(value: number | undefined) {
-    this._volumTot = value;
+  public set volumeTot(value: number | undefined) {
+    this._volumeTot = value;
   }
   public get seuilLimite(): number | undefined {
     return this._seuilLimite;
@@ -34,11 +34,11 @@ export class Stock {
     this._seuilLimite = value;
   }
 
-  public get aticles(): Article | undefined {
+  public get articles(): Article[] | undefined {
     return this._articles;
   }
 
-  public set aticles(value: Article | undefined) {
+  public set articles(value: Article[] | undefined) {
     this._articles = value;
   }
 

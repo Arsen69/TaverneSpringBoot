@@ -1,5 +1,20 @@
-<h1>Ceci est la page listant les stocks</h1>
+<h1>Ceci est la page affichant les stocks</h1>
 
-<table>
-  <app-stock></app-stock>
-</table>
+<div class="container-fluid p-3">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>idStock</th>
+        <th>volumeTot</th>
+        <th>seuil limite</th>
+        <th>article</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of stock" [stockRecu]="s" app-stock></tr>
+    </tbody>
+  </table>
+</div>
