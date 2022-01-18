@@ -51,12 +51,13 @@ public class StockRestController {
 
 	@PutMapping("/{id}/stocks/{idStock}")
 	@JsonView(JsonViews.Common.class)
-	public Stock updateLimit(@Valid @RequestBody Stock stock, BindingResult br, @PathVariable("id") Long idBar,
+	public Stock updateLimit(@RequestBody Integer seuil, BindingResult br, @PathVariable("id") Long idBar,
 			@PathVariable Long idStock) {
-		if (stock.getIdStock() == null) {
-			stock.setIdStock(idStock);
+		Stock stock =stockService.getById(idStock);
+		if(seuil<0) {
+			return stockService.updateSeuilLimite(stock, null);
 		}
-		return stockService.getByIdStockAndBar(idStock, idBar);
+		return stockService.updateSeuilLimite(stock, seuil);
 	}
 
 	@DeleteMapping("/{id}/stocks/{idStock}")

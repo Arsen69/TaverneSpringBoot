@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 17 jan. 2022 à 20:07
+-- Généré le : mar. 18 jan. 2022 à 22:04
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -67,16 +67,21 @@ CREATE TABLE IF NOT EXISTS `article` (
   `version` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FKsj3w2fli459s4lsl77th2vqrn` (`id_fournisseur`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `article`
 --
 
 INSERT INTO `article` (`id`, `cout`, `nom`, `type_produit`, `volume`, `id_fournisseur`, `version`) VALUES
-(1, 12, 'Biere', 'Biere', 25, 6, 0),
+(1, 12, 'Biere', 'Bush', 25, 6, 0),
 (2, 12, 'Coca', 'Coca', 25, 7, 0),
-(3, 150, 'Vodka', 'Vodka', 15, 8, 0);
+(3, 150, 'Vodka', 'Vodka', 15, 8, 0),
+(4, 5, 'Test Coca', 'Coca', 50, 8, 0),
+(6, 120, 'Chouffe', 'Chouffe', 20, 8, 1),
+(8, 120, 'Rhum', 'Rhum', 30, 8, 0),
+(9, 110, 'Chouffe metro', 'Chouffe', 20, 6, 2),
+(10, 50, 'Le BreizhCola', 'Coca', 30, 6, 0);
 
 -- --------------------------------------------------------
 
@@ -100,7 +105,10 @@ INSERT INTO `articles_de_stock` (`Stock_id_stock`, `articles_id`) VALUES
 (1, 2),
 (1, 2),
 (2, 1),
-(3, 3);
+(3, 3),
+(4, 8),
+(5, 6),
+(6, 8);
 
 -- --------------------------------------------------------
 
@@ -112,6 +120,7 @@ DROP TABLE IF EXISTS `bar`;
 CREATE TABLE IF NOT EXISTS `bar` (
   `id_bar` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) DEFAULT NULL,
+  `url_image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_bar`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
@@ -119,9 +128,9 @@ CREATE TABLE IF NOT EXISTS `bar` (
 -- Déchargement des données de la table `bar`
 --
 
-INSERT INTO `bar` (`id_bar`, `nom`) VALUES
-(1, 'Le Bar'),
-(2, 'Le Meilleur Bar');
+INSERT INTO `bar` (`id_bar`, `nom`, `url_image`) VALUES
+(1, 'Le Bar', 'assets\\images\\Bar1.png'),
+(2, 'Le Meilleur Bar', 'assets\\images\\Bar2.jpg');
 
 -- --------------------------------------------------------
 
@@ -141,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `boisson` (
   `version` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FKfwhp2p8xd70r13clr783ujtl3` (`id_bar`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `boisson`
@@ -150,7 +159,8 @@ CREATE TABLE IF NOT EXISTS `boisson` (
 INSERT INTO `boisson` (`Type_Boisson`, `id`, `nom`, `prixHT`, `prixHThh`, `tva`, `id_bar`, `version`) VALUES
 ('Alcool', 1, 'Demi de Biere', 5, 5, 1.2, 1, 0),
 ('Soft', 2, 'Bouteille de coca', 4, 4, 1.1, 1, 0),
-('Alcool', 3, 'Vodka-coca', 6, 4, 0, 1, 0);
+('Alcool', 3, 'Vodka-coca', 6, 4, 1.2, 1, 0),
+('Alcool', 5, 'Rhum-coca', 8, 5, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -194,6 +204,7 @@ CREATE TABLE IF NOT EXISTS `compte` (
   `id_bar` int(11) DEFAULT NULL,
   `enabled` bit(1) NOT NULL,
   `version` int(11) NOT NULL,
+  `date_naissance` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKvsg1ufkvuf5e7rucp6slfmbt` (`id_carte`),
   KEY `FKe7bu4xkyti845gkm6ihktodwf` (`id_bar`)
@@ -203,17 +214,17 @@ CREATE TABLE IF NOT EXISTS `compte` (
 -- Déchargement des données de la table `compte`
 --
 
-INSERT INTO `compte` (`Type_Compte`, `id`, `login`, `mail`, `nom`, `password`, `prenom`, `artiste`, `entreprise`, `id_carte`, `id_bar`, `enabled`, `version`) VALUES
-('Intervenant', 1, 'Master', 'fabien@olicard.com', 'OLICARD', '$2a$10$16jISFF7jpD9V7wUq3YZ.O9aoDUOKEDTX8THAKCR0XHgj6KxYZYb2', 'Fabien', 'Fabien_OLICARD', 'mentalism&Co', NULL, NULL, b'1', 1),
-('Intervenant', 2, 'Abid', 'jordanabid@gmail.com', 'ABID', '$2a$10$BmEQ0QVETjvN9R4ezyC5rebVOIffqyt9Nx8242O1mPJ9fneJd4Nee', 'Jordan', 'Hypnotiseur/Mentaliste/Magicien', 'Auto-entrepreneur', NULL, NULL, b'1', 1),
-('Intervenant', 3, 'Wazaa', 'Atchoum', 'Salut', '$2a$10$NCHXOKOPZqqcJlVH4lS1iOCBQitWF1m2EuqlOYGnKvytlkeqc97Ha', 'Hello', 'Bingo', 'Ciao', NULL, NULL, b'1', 1),
-('Admin', 4, 'root', 'admin@mail.com', 'admin', '$2a$10$WohXUMn.sLPjK3l/48KfqOIVd5CrBf.Ub1xGYYxG976sng6nzqYUK', 'admin', NULL, NULL, NULL, NULL, b'1', 1),
-('Employe', 5, 'titi', 'employe@employe.com', 'employe', '$2a$10$SUCnhdcWbMUu5tpntAPC2OhiMQCCCei1bxaJXDRAYp7RVYDh2ux7S', 'employe', NULL, NULL, NULL, 1, b'1', 1),
-('Fournisseur', 6, 'Metro', 'metrcash&carry@metro.com', 'PELTIER', '$2a$10$FStFng0CwhwqCdMM0bhxh.lqA2QBsGInYyFb559Kpvh1RQgUiVVru', 'Pascal', NULL, 'MetroCash&CarryFrance', NULL, NULL, b'1', 1),
-('Fournisseur', 7, 'Leclerc', 'Leclerc@leclerc.com', 'MAUGER', '$2a$10$Xf07tJJigQKWnfhUgIz.JeG0lTOl4JUgxEVF2V.pO4/adbC9of2Sy', 'Christophe', NULL, 'Leclerc', NULL, NULL, b'1', 1),
-('Fournisseur', 8, 'Beer', 'C10_fournisseur@C10.com', 'DE-MARCELUS', '$2a$10$JU1h3HtnyjmbJXQk/5rHt.Ay4dIU74W0zV7.GsdHhFyyeYzp0uxkO', 'Guillaume', NULL, 'C10', NULL, NULL, b'1', 1),
-('Fournisseur', 9, 'Heineken', 'Beer@Heineken.com', 'GILET', '$2a$10$ohZdsGJ2TOmCCUBaIOWgV.DPN0flAwoxjcXdsixhvR3.QG2LBK.Ja', 'Pascal', NULL, 'Heineken', NULL, NULL, b'1', 1),
-('Client', 10, 'toto', 'bobdylan@mail.com', 'Bob', '$2a$10$yc8k2OlZBVPX5.luJvL85ejBEEkLF/AZRpUOdkkSupKZBA81fc.E2', 'Dylan', NULL, NULL, 1, NULL, b'1', 1);
+INSERT INTO `compte` (`Type_Compte`, `id`, `login`, `mail`, `nom`, `password`, `prenom`, `artiste`, `entreprise`, `id_carte`, `id_bar`, `enabled`, `version`, `date_naissance`) VALUES
+('Intervenant', 1, 'Master', 'fabien@olicard.com', 'OLICARD', '$2a$10$16jISFF7jpD9V7wUq3YZ.O9aoDUOKEDTX8THAKCR0XHgj6KxYZYb2', 'Fabien', 'Fabien_OLICARD', 'mentalism&Co', NULL, NULL, b'1', 1, '1981-12-08'),
+('Intervenant', 2, 'Abid', 'jordanabid@gmail.com', 'ABID', '$2a$10$BmEQ0QVETjvN9R4ezyC5rebVOIffqyt9Nx8242O1mPJ9fneJd4Nee', 'Jordan', 'Hypnotiseur/Mentaliste/Magicien', 'Auto-entrepreneur', NULL, NULL, b'1', 1, '1981-12-08'),
+('Intervenant', 3, 'Wazaa', 'Atchoum', 'Salut', '$2a$10$NCHXOKOPZqqcJlVH4lS1iOCBQitWF1m2EuqlOYGnKvytlkeqc97Ha', 'Hello', 'Bingo', 'Ciao', NULL, NULL, b'1', 1, '1981-12-08'),
+('Admin', 4, 'root', 'admin@mail.com', 'admin', '$2a$10$WohXUMn.sLPjK3l/48KfqOIVd5CrBf.Ub1xGYYxG976sng6nzqYUK', 'admin', NULL, NULL, NULL, NULL, b'1', 1, '1981-12-08'),
+('Employe', 5, 'titi', 'employe@employe.com', 'employe', '$2a$10$SUCnhdcWbMUu5tpntAPC2OhiMQCCCei1bxaJXDRAYp7RVYDh2ux7S', 'employe', NULL, NULL, NULL, 1, b'1', 1, '1981-12-08'),
+('Fournisseur', 6, 'Metro', 'metrcash&carry@metro.com', 'PELTIER', '$2a$10$FStFng0CwhwqCdMM0bhxh.lqA2QBsGInYyFb559Kpvh1RQgUiVVru', 'Pascal', NULL, 'MetroCash&CarryFrance', NULL, NULL, b'1', 1, '1981-12-08'),
+('Fournisseur', 7, 'Leclerc', 'Leclerc@leclerc.com', 'MAUGER', '$2a$10$Xf07tJJigQKWnfhUgIz.JeG0lTOl4JUgxEVF2V.pO4/adbC9of2Sy', 'Christophe', NULL, 'Leclerc', NULL, NULL, b'1', 1, '1981-12-08'),
+('Fournisseur', 8, 'Beer', 'C10_fournisseur@C10.com', 'DE-MARCELUS', '$2a$10$JU1h3HtnyjmbJXQk/5rHt.Ay4dIU74W0zV7.GsdHhFyyeYzp0uxkO', 'Guillaume', NULL, 'C10', NULL, NULL, b'1', 1, '1981-12-08'),
+('Fournisseur', 9, 'Heineken', 'Beer@Heineken.com', 'GILET', '$2a$10$ohZdsGJ2TOmCCUBaIOWgV.DPN0flAwoxjcXdsixhvR3.QG2LBK.Ja', 'Pascal', NULL, 'Heineken', NULL, NULL, b'1', 1, '1981-12-08'),
+('Client', 10, 'toto', 'bobdylan@mail.com', 'Bob', '$2a$10$yc8k2OlZBVPX5.luJvL85ejBEEkLF/AZRpUOdkkSupKZBA81fc.E2', 'Dylan', NULL, NULL, 1, NULL, b'1', 1, '1981-12-08');
 
 -- --------------------------------------------------------
 
@@ -292,16 +303,19 @@ CREATE TABLE IF NOT EXISTS `stock` (
   `version` int(11) NOT NULL,
   PRIMARY KEY (`id_stock`),
   KEY `FK8pah0km0jmvhm9lgkw1hw0550` (`id_bar`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `stock`
 --
 
 INSERT INTO `stock` (`id_stock`, `seuil_limite`, `volume_tot`, `id_bar`, `version`) VALUES
-(1, NULL, 49.010000000000005, 1, 3),
-(2, NULL, 24.75, 1, 0),
-(3, NULL, 15, 1, 0);
+(1, NULL, 224.01, 1, 17),
+(2, NULL, 99.75, 1, 3),
+(3, NULL, 90, 1, 5),
+(4, NULL, 60, 1, 1),
+(5, NULL, 80, 1, 3),
+(6, NULL, 30, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -318,7 +332,7 @@ CREATE TABLE IF NOT EXISTS `utilisation` (
   PRIMARY KEY (`id`),
   KEY `FK7ua82lyrtygm7mgwefmfknm6y` (`id_boisson`),
   KEY `FKfth5nte38cf82kpw9vsuda49v` (`id_ingredient_stock`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `utilisation`
@@ -328,7 +342,9 @@ INSERT INTO `utilisation` (`id`, `Volume`, `id_boisson`, `id_ingredient_stock`) 
 (1, 0.25, 1, 2),
 (2, 0.33, 2, 1),
 (3, 0.05, 3, 3),
-(4, 0.33, 3, 1);
+(4, 0.33, 3, 1),
+(7, 0.1, 5, 4),
+(8, 0.25, 5, 1);
 
 --
 -- Contraintes pour les tables déchargées
