@@ -1,7 +1,40 @@
-<div class="btnPanier">
-  <ion-icon (click)="Temporary()" name="card-outline" class="icon"></ion-icon>
+<div
+  class="listePanier"
+  [ngClass]="{ cacher: total == 0 || hide, 'fade-in': !hide }"
+>
+  <div class="item row">
+    <div class="col-6">Article</div>
+    <div class="col-3">Prix</div>
+    <div class="col-3">Quantité</div>
+  </div>
+  <div *ngFor="let e of panier" class="item row">
+    <div class="nomItem col-6">{{ e.nom }}</div>
+    <div class="prixItem col-3">{{ e.prix | currency: "€":"€":"1.2-2" }}</div>
+    <div class="nbItem col-3 row">
+      <ion-icon name="remove-circle-outline" class="btnQty col-5" (click)="remQty(e)"></ion-icon>
+      <div class="qty col-2">{{ e.qty }}</div>
+      <ion-icon name="add-circle-outline" class="btnQty col-5" (click)="addQty(e)"></ion-icon>
+    </div>
+  </div>
+  <div class="dashe row">-----------------------------------------</div>
+  <div class="item row">
+    <div class="col-6">Total:</div>
+    <div class="col-3">{{total| currency: "€":"€":"1.2-2" }}</div>
+    <div class="col-3">
+      <button class="btn btn-primary btnPaiement">Paiement</button>
+    </div>
+  </div>
 </div>
 
-<div class="listePanier">
-  <div></div>
+<div class="btnPanier" (click)="swap()" [ngClass]="{ cacher: total == 0 }">
+  <ion-icon
+    name="card-outline"
+    class="icon"
+    [ngClass]="{ cacher: !hide }"
+  ></ion-icon>
+  <ion-icon
+    name="close-circle-outline"
+    class="iconX"
+    [ngClass]="{ cacher: hide }"
+  ></ion-icon>
 </div>
