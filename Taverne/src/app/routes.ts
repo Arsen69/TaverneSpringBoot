@@ -12,17 +12,26 @@ import { Carte2Component } from './component/carte2/carte2.component';
 import { LoginComponent } from './connexion/login/login.component';
 import { AuthenticationService } from './services/Users/authentication.service';
 import { CatalogueGlobalComponent } from './component/articles/catalogue-global/catalogue-global.component';
+import { BarChosenService } from './services/Users/bar-chosen.service';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: AccueilComponent },
-  { path: 'carte', component: CarteComponent },
+  {
+    path: 'home',
+    component: AccueilComponent,
+    canActivate: [BarChosenService],
+  },
+  { path: 'carte', component: CarteComponent, canActivate: [BarChosenService] },
   {
     path: 'connexion',
     component: LoginComponent,
     canActivate: [AuthenticationService],
   },
-  { path: 'monCompte', component: LogOffComponent },
+  {
+    path: 'monCompte',
+    component: LogOffComponent,
+    canActivate: [BarChosenService],
+  },
   {
     path: 'inscription',
     component: InscriptionComponent,
@@ -42,5 +51,5 @@ export const routes: Routes = [
     //canActivate: [AuthenticationService],
   },
   { path: 'catalogue', component: CatalogueGlobalComponent },
-  { path: 'ChoixBar', component: ChoixBarComponent },
+  { path: 'choixBar', component: ChoixBarComponent },
 ];
