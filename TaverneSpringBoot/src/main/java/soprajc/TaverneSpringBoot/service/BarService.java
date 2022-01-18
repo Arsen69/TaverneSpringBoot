@@ -3,6 +3,7 @@ package soprajc.TaverneSpringBoot.service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -44,6 +45,10 @@ public class BarService {
 	
 	@Autowired
 	private AchatService achatService;
+	
+	public List<Bar> getAll() {
+		return barRepo.findAll();
+	}
 	
 	public Bar getById(Long id) {
 		Check.checkLong(id);

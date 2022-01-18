@@ -9,7 +9,8 @@ export class Bar {
     private _stocks?: Stock,
     private _events?: Events,
     private _employes?: Employe,
-    private _interventions?: Intervention
+    private _interventions?: Intervention,
+    private _urlImage?: string
   ) {}
 
   public get idBar(): number | undefined {
@@ -58,5 +59,20 @@ export class Bar {
 
   public set interventions(value: Intervention | undefined) {
     this._interventions = value;
+  }
+  /**
+   * Getter urlImage
+   * @return {string}
+   */
+  public get urlImage(): string | undefined {
+    return this._urlImage;
+  }
+
+  /**
+   * Setter urlImage
+   * @param {string} value
+   */
+  public set urlImage(value: string | undefined) {
+    this._urlImage = value;
   }
 }

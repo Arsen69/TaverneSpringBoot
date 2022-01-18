@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Bar } from 'src/app/model/inventaire/bar';
+import { BarService } from 'src/app/services/bar.service';
 
 @Component({
   selector: 'app-choix-bar',
@@ -6,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./choix-bar.component.css'],
 })
 export class ChoixBarComponent implements OnInit {
-  constructor() {}
+  constructor(private barService: BarService) {}
 
-  ngOnInit(): void {}
+  bars: Observable<Bar[]> | null = null;
+
+  ngOnInit(): void {
+    this.bars = this.barService.getAll();
+  }
 
   tokkenBar1() {
     localStorage.removeItem('idBar');

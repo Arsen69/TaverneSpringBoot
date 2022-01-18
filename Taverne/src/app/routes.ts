@@ -2,7 +2,7 @@ import { StockListComponent } from './component/stock/stock-list/stock-list.comp
 import { EditBoissonComponent } from './component/edit-boisson/edit-boisson.component';
 
 import { CarteComponent } from './component/carte/carte.component';
-import { ChoixBarComponent } from './component/choix-bar/choix-bar.component';
+import { ChoixBarComponent } from './component/Bars/choix-bar/choix-bar.component';
 
 import { AccueilComponent } from './component/accueil/accueil.component';
 import { Routes } from '@angular/router';
@@ -42,4 +42,5 @@ export const routes: Routes = [
     //canActivate: [AuthenticationService],
   },
   { path: 'catalogue', component: CatalogueGlobalComponent },
+  { path: 'ChoixBar', component: ChoixBarComponent },
 ];
