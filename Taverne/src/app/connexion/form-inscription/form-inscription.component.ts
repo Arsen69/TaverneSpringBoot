@@ -38,12 +38,12 @@ export class FormInscriptionComponent implements OnInit {
         Validators.required,
         this.loginUnique.checkPasDansListe,
       ]),
-      prenom: new FormControl('', [Validators.required]),
-      nom: new FormControl('', [Validators.required]),
+      prenom: new FormControl(''),
+      nom: new FormControl(''),
       mail: new FormControl('', [Validators.required]),
       birthday: new FormControl('', [Validators.required]),
-      entreprise: new FormControl('', [Validators.required]),
-      artiste: new FormControl('', [Validators.required]),
+      entreprise: new FormControl(''),
+      artiste: new FormControl(''),
       passwordGroup: new FormGroup(
         {
           password: this.passwordCtrl,
