@@ -38,23 +38,12 @@ public class BoissonService {
 	@Autowired
 	private UtilisationRepository utilisationRepo;
 	
-	
-	//CREATE
-	
-	public void create(Boisson boisson) {
-		if (boisson.getNom() == null) {
-			throw new BoissonException();
-		}
-		BoissonRepo.save(boisson);
-	}
-	
 	public Alcool create(Alcool alcool) {
 		if (alcool.getNom() == null) {
 			throw new BoissonException();
 		}
 		Alcool a = BoissonRepo.save(alcool);
 		Set<Utilisation> utils = alcool.getUtilisations();
-		System.out.println(utils);
 		utils.forEach( u -> {
 			u.setBoisson(alcool);
 			utilisationService.create(u);
@@ -67,9 +56,10 @@ public class BoissonService {
 			throw new BoissonException();
 		}
 		Set<Utilisation> utils = soft.getUtilisations();
-		for(Utilisation u : utils) {
+		utils.forEach( u -> {
+			u.setBoisson(soft);
 			utilisationService.create(u);
-		}
+		});
 		BoissonRepo.save(soft);
 	}
 	
@@ -106,12 +96,15 @@ public class BoissonService {
 	}
 
 	public void suppression(Boisson boisson) {
-		//Check.checkLong(boisson.getId());
-		List <Utilisation> UtilisationEnBase = utilisationRepo.findAllByBoisson(boisson);
+		Check.checkLong(boisson.getId());
+		Set<Utilisation> utils = boisson.getUtilisations();
+		utils.forEach( u -> {
+			Check.checkLong(u.getId());
+			Utilisation utilEnBase= utilisationService.getById(u.getId());
+			utilisationService.delete(utilEnBase);
+		});
 		Boisson BoissonEnBase = BoissonRepo.findById(boisson.getId()).orElseThrow(BoissonException::new);
-//		boissonRepo.deleteByBar(BoissonEnBase);
 		BoissonRepo.delete(BoissonEnBase);
-		utilisationService.delete(UtilisationEnBase);
 		
 	}
 	
