@@ -1,6 +1,7 @@
 import { Boisson } from './../../model/inventaire/boisson';
 import { BoissonService } from './../../services/boisson.service';
 import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carte',
@@ -8,7 +9,7 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
   styleUrls: ['./carte.component.css'],
 })
 export class CarteComponent implements OnInit {
-  constructor(private boissonService: BoissonService) {}
+  constructor(private boissonService: BoissonService, private router: Router) {}
 
   listeBoisson: Boisson[] = [];
 
@@ -43,8 +44,7 @@ export class CarteComponent implements OnInit {
   deleteBar() {
     localStorage.removeItem('idBar');
     localStorage.removeItem('panier');
-    localStorage.setItem('idBar', '0');
-    window.location.reload();
+    this.router.navigate(['/choixBar']);
   }
 
   addPanier(nouvelleCommande: {

@@ -23,10 +23,14 @@ public class Bar {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_bar")
-	@JsonView(JsonViews.Evenement.class)
+	@JsonView(JsonViews.Common.class)
 	private Long idBar;
-	@JsonView(JsonViews.Evenement.class)
+	@JsonView(JsonViews.Common.class)
 	private String nom;
+	
+	@Column(name = "url_image", nullable = true)
+	@JsonView(JsonViews.Common.class)
+	private String urlImage;
 
 	@OneToMany(mappedBy = "bar")
 	Set<Stock> stocks;
