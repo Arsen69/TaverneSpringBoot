@@ -1,10 +1,14 @@
 <td>{{ stock.idStock }}</td>
 <td>{{ stock.volumeTot }}</td>
 <td>{{ stock.seuilLimite }}</td>
-<td>{{ stock.articles![0].typeProduit }}</td>
+<td>{{ stock.articles![0].nom }}</td>
 <td>
   <div class="form-group">
-    <button (click)="validation()" class="btn btn-outline-primary">
+    <button
+      *ngIf="role == 'Admin'"
+      class="btn btn-primary"
+      (click)="validation()"
+    >
       valider
     </button>
   </div>
@@ -12,7 +16,11 @@
 
 <td>
   <div class="form-group">
-    <button (click)="validation()" class="btn btn-outline-primary">
+    <button
+      *ngIf="role == 'Admin'"
+      class="btn btn-primary"
+      (click)="validation()"
+    >
       modifier
     </button>
   </div>
@@ -20,7 +28,11 @@
 
 <td>
   <div class="form-group">
-    <button (click)="validation()" class="btn btn-outline-primary">
+    <button
+      *ngIf="role == 'Admin'"
+      class="btn btn-primary"
+      (click)="validation()"
+    >
       supprimer
     </button>
   </div>

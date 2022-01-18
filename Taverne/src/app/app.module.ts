@@ -19,12 +19,14 @@ import { LogOffComponent } from './connexion/log-off/log-off.component';
 import { InscriptionComponent } from './connexion/inscription/inscription.component';
 import { Carte2Component } from './component/carte2/carte2.component';
 import { FooterComponent } from './component/footer/footer.component';
-import { ChoixBarComponent } from './component/choix-bar/choix-bar.component';
+import { ChoixBarComponent } from './component/Bars/choix-bar/choix-bar.component';
 import { CarteItemComponent } from './component/carte-item/carte-item.component';
 import { FormInscriptionComponent } from './connexion/form-inscription/form-inscription.component';
 import { PanierComponent } from './component/panier/panier.component';
 import { CatalogueGlobalComponent } from './component/articles/catalogue-global/catalogue-global.component';
 import { ArticleComponent } from './component/articles/article/article.component';
+import { FormArticleComponent } from './component/articles/form-article/form-article.component';
+import { DisplayBarComponent } from './component/Bars/display-bar/display-bar.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { ArticleComponent } from './component/articles/article/article.component
     EditBoissonComponent,
     CatalogueGlobalComponent,
     ArticleComponent,
+    FormArticleComponent,
+    DisplayBarComponent,
   ],
   imports: [
     BrowserModule,

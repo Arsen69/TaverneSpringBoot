@@ -3,6 +3,7 @@ package soprajc.TaverneSpringBoot.service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -45,6 +46,10 @@ public class BarService {
 	@Autowired
 	private AchatService achatService;
 	
+	public List<Bar> getAll() {
+		return barRepo.findAll();
+	}
+	
 	public Bar getById(Long id) {
 		Check.checkLong(id);
 		return barRepo.findById(id).orElseThrow(RuntimeException::new);
@@ -52,13 +57,16 @@ public class BarService {
 	
 	public void approvisionner(Article article, Bar bar) {
 		try {
-
+			System.out.println(article);
 			Stock stock = stockService.getByTypeArticle(article.getTypeProduit(), bar);
 			stockService.ajouterVolume(article.getVolume(), stock);
 			stockRepo.save(stock);
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Voulez vous ajouter un nouveau stock ?");
+			Stock s =new Stock(article.getVolume(), null, Arrays.asList(article).stream().collect(Collectors.toSet()), bar);
+			System.out.println(s);
 			stockRepo.save(new Stock(article.getVolume(), null, Arrays.asList(article).stream().collect(Collectors.toSet()), bar));
 		}
 	}

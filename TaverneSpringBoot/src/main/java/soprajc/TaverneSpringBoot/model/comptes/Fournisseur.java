@@ -7,12 +7,16 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import soprajc.TaverneSpringBoot.model.JsonViews;
 import soprajc.TaverneSpringBoot.model.inventaire.Article;
 
 @Entity
 @DiscriminatorValue("Fournisseur")
 public class Fournisseur extends Compte {
 	
+	@JsonView(JsonViews.Common.class)
 	private String entreprise;
 	
 

@@ -1,0 +1,10 @@
+<div id="contenu" class="container">
+  <div class="row">
+    <div
+      class="col"
+      *ngFor="let b of bars | async"
+      app-display-bar
+      [bar]="b"
+    ></div>
+  </div>
+</div>
