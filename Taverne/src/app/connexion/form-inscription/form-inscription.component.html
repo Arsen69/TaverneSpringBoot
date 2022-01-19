@@ -89,7 +89,10 @@
         <input type="text" class="form-control" formControlName="prenom" />
       </div>
     </div>
-    <div *ngIf="typeCompte == 'Fournisseur'" class="row m-2">
+    <div
+      *ngIf="typeCompte == 'Fournisseur' || typeCompte == 'Intervenant'"
+      class="row m-2"
+    >
       <label class="form-label col-sm-3">Entreprise</label>
       <div class="col-sm-3">
         <input type="text" class="form-control" formControlName="entreprise" />
