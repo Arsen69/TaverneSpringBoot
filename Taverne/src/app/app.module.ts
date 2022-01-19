@@ -1,3 +1,4 @@
+import { AchatEffectueComponent } from './component/achat-effectue/achat-effectue.component';
 import { EditBoissonComponent } from './component/edit-boisson/edit-boisson.component';
 import { StockListComponent } from './component/stock/stock-list/stock-list.component';
 import { StockComponent } from './component/stock/stock/stock.component';
@@ -31,7 +32,7 @@ import { PaiementComponent } from './component/paiement/paiement.component';
 import { CheckService } from './services/Users/check.service';
 import { CheckDataService } from './services/Users/check-data.service';
 import { BtnAccueilComponent } from './component/btn-accueil/btn-accueil.component';
-import { AchatEffectueComponent } from './component/achat-effectue/achat-effectue.component';
+import { MonCompteComponent } from './component/mon-compte/mon-compte.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { AchatEffectueComponent } from './component/achat-effectue/achat-effectu
     PaiementComponent,
     BtnAccueilComponent,
     AchatEffectueComponent,
+    MonCompteComponent,
   ],
   imports: [
     BrowserModule,
