@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Stock } from './../../../model/inventaire/stock';
 import { StockService } from './../../../services/stock/stock-service.service';
 import { Component, OnInit, Input } from '@angular/core';
@@ -12,10 +13,12 @@ export class StockComponent implements OnInit {
 
   @Input()
   stockRecu: Stock = new Stock();
+  /* stockRecus: Observable<Stock> = new Stock(); */
+
   role = localStorage.getItem('role');
   visible: boolean = false;
-
   stock: Stock = new Stock();
+  variableresult: number = 0;
 
   ngOnInit(): void {
     this.stock.idStock = this.stockRecu.idStock;
@@ -24,17 +27,28 @@ export class StockComponent implements OnInit {
     this.stock.articles = this.stockRecu.articles;
   }
 
-  validation() {
-    console.log(this.stock);
-    this.visible = false;
-  }
-
   modifier() {
     console.log(this.stock.idStock);
-    console.log(this.stock.articles![0].nom);
     this.visible = true;
-    console.log(this.visible);
   }
 
-  if(visible = true) {}
+  save() {
+    this.visible = false;
+    console.log(this.stock);
+    console.log('changement du ID ' + this.stock.idStock);
+    console.log('nouvau seuil ' + this.stock.seuilLimite);
+    this.StockService.updatelimit(
+      this.stock.idStock!,
+      this.stock.seuilLimite!
+    ).subscribe((result) => {
+      console.log(result);
+      this.stockRecu.seuilLimite = result.seuilLimite;
+      this.stock.seuilLimite = result.seuilLimite;
+    });
+  }
+
+  cancel() {
+    this.visible = false;
+    this.stock.seuilLimite = this.stockRecu.seuilLimite;
+  }
 }

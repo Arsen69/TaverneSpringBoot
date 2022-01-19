@@ -36,6 +36,7 @@ export class CatalogueGlobalComponent implements OnInit {
 
   getNewListe(articles: Observable<Article[]>): Observable<Article[]> {
     this.articles = articles;
+    console.log(this.articles);
     return this.articles;
   }
 }
