@@ -12,8 +12,8 @@ export class Boisson {
     return this._id;
   }
 
-  get id_Bar(): number | undefined {
-    return this._id;
+  get idBar(): number | undefined {
+    return this._idBar;
   }
 
   get nom(): string | undefined {

@@ -28,7 +28,7 @@ export class BoissonService {
   }
 
   public getById(id: number): Observable<Boisson> {
-    return this.http.get<Boisson>(BoissonService.URL + 'boisson/' + id, {
+    return this.http.get<Boisson>(BoissonService.URL + '/boisson/' + id, {
       // headers: this.auth.headers,
     });
   }
@@ -110,6 +110,7 @@ export class BoissonService {
     const b = {
       id: boisson.id,
       nom: boisson.nom,
+      idBar: boisson.idBar,
     };
 
     // if (!!personnage.familier && personnage.familier.id !== undefined) {

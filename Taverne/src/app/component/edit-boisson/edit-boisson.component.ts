@@ -31,16 +31,15 @@ export class EditBoissonComponent implements OnInit {
 
   saveSoft() {
     console.log('entrée dans saveSoft');
-    if (!!this.boisson.id) {
-      this.boissonService
-        .updateSoft(this.boisson, this.id, this.idBar)
-        .subscribe((ok) => {
-          this.router.navigate(['/carte2']);
-        });
-      // } else {
-      //   // this.boissonService.createSoft(this.boisson).subscribe((ok) => {
-      //   //   this.router.navigate(['/carte2']);
-      //   });
-    }
+    // if (!!this.boisson.id) {
+    this.boissonService
+      .updateSoft(this.boisson, this.id, this.idBar)
+      .subscribe((ok) => {
+        this.router.navigate(['/carte2']);
+        // });
+        // } else {
+        //   // this.boissonService.createSoft(this.boisson).subscribe((ok) => {
+        //   //   this.router.navigate(['/carte2']);
+      });
   }
 }
