@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime, map, Observable, of } from 'rxjs';
-import { LoginUnique } from 'src/app/CustomValidators/login-unique';
+import { DobValide } from 'src/app/CustomValidators/dob-valide';
 import { Compte } from 'src/app/model/comptes/compte';
 import { CheckDataService } from 'src/app/services/Users/check-data.service';
 import { CheckService } from 'src/app/services/Users/check.service';
@@ -25,6 +25,8 @@ export class FormInscriptionComponent implements OnInit {
   role = localStorage.getItem('role');
   typeCompte: string = 'Client';
   compte: Compte = new Compte();
+
+  DOB: Date = new Date();
 
   entreprise: string = '';
   artiste: string = '';
@@ -46,8 +48,14 @@ export class FormInscriptionComponent implements OnInit {
       ),
       prenom: new FormControl(''),
       nom: new FormControl(''),
-      mail: new FormControl('', [Validators.required]),
-      birthday: new FormControl('', [Validators.required]),
+      mail: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+      ]),
+      birthday: new FormControl('', [
+        Validators.required,
+        DobValide.dobValidate,
+      ]),
       entreprise: new FormControl(''),
       artiste: new FormControl(''),
       passwordGroup: new FormGroup(
@@ -102,5 +110,11 @@ export class FormInscriptionComponent implements OnInit {
       .subscribe((ok) => {
         this.router.navigate(['/home']);
       });
+  }
+
+  testDate() {
+    console.log(this.DOB);
+    let d = this.DOB.toString;
+    console.log(this.DOB.getMonth());
   }
 }

@@ -30,6 +30,7 @@ export class CatalogueGlobalComponent implements OnInit {
 
     this.compteService.getIdByLoginConnected().subscribe((result) => {
       this.id = result;
+      console.log(this.id);
     });
   }
 
