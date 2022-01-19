@@ -13,6 +13,7 @@ export class StockComponent implements OnInit {
   @Input()
   stockRecu: Stock = new Stock();
   role = localStorage.getItem('role');
+  visible: boolean = false;
 
   stock: Stock = new Stock();
 
@@ -25,12 +26,15 @@ export class StockComponent implements OnInit {
 
   validation() {
     console.log(this.stock);
+    this.visible = false;
   }
 
-  /* stockList() {
-    this.StockService.getAll().subscribe((result) => {
-      this.listeStock = result;
-      console.log(this.listeStock);
-    });
-  } */
+  modifier() {
+    console.log(this.stock.idStock);
+    console.log(this.stock.articles![0].nom);
+    this.visible = true;
+    console.log(this.visible);
+  }
+
+  if(visible = true) {}
 }

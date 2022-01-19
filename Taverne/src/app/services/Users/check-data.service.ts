@@ -8,7 +8,20 @@ import { Observable } from 'rxjs';
 export class CheckDataService {
   constructor(private http: HttpClient) {}
 
-  checkDataInList(data: any): Observable<any> {
-    return this.http.get('http://localhost:8080/Taverne/api/compte');
+  public checkDataInList(data: string): Observable<any> | null {
+    this.http
+      .get('http://localhost:8080/Taverne/api/compte/login' + data)
+      .subscribe({
+        next: (v) => {
+          return v;
+        },
+        error: (e) => {
+          return e;
+        },
+        complete: () => {
+          return null;
+        },
+      });
+    return null;
   }
 }

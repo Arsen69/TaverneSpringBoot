@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginUnique } from 'src/app/CustomValidators/login-unique';
 import { Compte } from 'src/app/model/comptes/compte';
 import { InscriptionService } from 'src/app/services/Users/inscription.service';
 
@@ -29,10 +30,20 @@ export class FormInscriptionComponent implements OnInit {
 
   constructor(
     private inscriptionService: InscriptionService,
-    private router: Router
+    private router: Router,
+    private loginUnique: LoginUnique
   ) {
     this.form = new FormGroup({
-      login: new FormControl('', Validators.required),
+      login: new FormControl('', [
+        Validators.required,
+        this.loginUnique.checkPasDansListe,
+      ]),
+      prenom: new FormControl(''),
+      nom: new FormControl(''),
+      mail: new FormControl('', [Validators.required]),
+      birthday: new FormControl('', [Validators.required]),
+      entreprise: new FormControl(''),
+      artiste: new FormControl(''),
       passwordGroup: new FormGroup(
         {
           password: this.passwordCtrl,

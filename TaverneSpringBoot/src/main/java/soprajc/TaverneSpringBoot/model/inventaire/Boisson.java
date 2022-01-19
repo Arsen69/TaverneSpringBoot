@@ -3,6 +3,7 @@ package soprajc.TaverneSpringBoot.model.inventaire;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,7 +44,7 @@ public abstract class Boisson {
 	@JoinColumn(name = "id_bar")
 	protected Bar bar;
 
-	@OneToMany(mappedBy = "boisson")
+	@OneToMany(mappedBy = "boisson", cascade = CascadeType.ALL)
 	@JsonView(JsonViews.Common.class)
 	protected Set<Utilisation> utilisations;
 

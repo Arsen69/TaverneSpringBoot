@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import soprajc.TaverneSpringBoot.exception.BoissonException;
+import soprajc.TaverneSpringBoot.exception.UtilisationException;
 import soprajc.TaverneSpringBoot.model.inventaire.Boisson;
 import soprajc.TaverneSpringBoot.model.inventaire.Utilisation;
 import soprajc.TaverneSpringBoot.repository.UtilisationRepository;
@@ -18,6 +19,11 @@ public class UtilisationService {
 	@Autowired
 	BoissonService boissonService;
 	
+	public Utilisation getById(Long id) {
+		Check.checkLong(id);
+		return utilisationRepo.findById(id).orElseThrow(UtilisationException::new);
+	}
+	
 	public List<Utilisation> getAllByBoisson(Boisson boisson){
 		Check.checkLong(boisson.getId());
 		return utilisationRepo.findAllByBoisson(boisson);
@@ -29,15 +35,19 @@ public class UtilisationService {
 		return utilisationRepo.save(util);
 	}
 	
-//	public void delete(Long id) {
-//		//Check.checkLong(boisson.getId());
-//		List <Utilisation> UtilisationEnBase = utilisationRepo.findAllByBoisson(boissonService.getById(id));
-////		boissonRepo.deleteByBar(BoissonEnBase);
-//		utilisationRepo.delete(UtilisationEnBase);
-//	}
+	public void delete(Long id) {
+		utilisationRepo.delete(getById(id));
+	}
+	
+	public void delete(Utilisation util) {
+		Check.checkLong(util.getId());
+		utilisationRepo.delete(util);
+	}
 	
 	public void delete(List<Utilisation> utils) {
-		delete(utils);
+		utils.forEach(u->{
+			utilisationRepo.delete(u);			
+		});
 	}
 	
 	
