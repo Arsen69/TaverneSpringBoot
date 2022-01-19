@@ -21,7 +21,7 @@
     <div class="col-6">Total:</div>
     <div class="col-3">{{total| currency: "€":"€":"1.2-2" }}</div>
     <div class="col-3">
-      <button class="btn btn-primary btnPaiement">Paiement</button>
+      <button class="btn btn-primary btnPaiement" (click)="passerAuPaiement()">Paiement</button>
     </div>
   </div>
 </div>
@@ -37,4 +37,9 @@
     class="iconX"
     [ngClass]="{ cacher: hide }"
   ></ion-icon>
+</div>
+
+
+<div class="hider">
+
 </div>

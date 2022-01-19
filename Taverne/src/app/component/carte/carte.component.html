@@ -13,5 +13,6 @@
     [item]="Boisson"
     (commande)="addPanier($event)"
   ></app-carte-item>
-  <app-panier [panier] = "panier" [total]= "total" (commande)="addPanier($event)"></app-panier>
+  <app-panier [panier] = "panier" [total]= "total" (commande)="addPanier($event)" (paiement)="passerAuPaiement()"></app-panier>
+  <app-paiement [ngClass]="{'invisible': !paiement}" [panier]="panier"></app-paiement>
 </div>
