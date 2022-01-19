@@ -33,3 +33,7 @@
   left: 5%;
   align-items: center;
 }
+
+.invisible {
+  display: none;
+}
