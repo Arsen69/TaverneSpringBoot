@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
+  AsyncValidatorFn,
   FormControl,
   FormGroup,
   ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { debounceTime, map, Observable, of } from 'rxjs';
 import { LoginUnique } from 'src/app/CustomValidators/login-unique';
 import { Compte } from 'src/app/model/comptes/compte';
+import { CheckDataService } from 'src/app/services/Users/check-data.service';
+import { CheckService } from 'src/app/services/Users/check.service';
 import { InscriptionService } from 'src/app/services/Users/inscription.service';
 
 @Component({
@@ -23,7 +27,7 @@ export class FormInscriptionComponent implements OnInit {
   compte: Compte = new Compte();
 
   entreprise: string = '';
-  artiste: string = ';';
+  artiste: string = '';
 
   passwordCtrl: FormControl = new FormControl('', [Validators.required]);
   confirmCtrl: FormControl = new FormControl('');
@@ -31,13 +35,15 @@ export class FormInscriptionComponent implements OnInit {
   constructor(
     private inscriptionService: InscriptionService,
     private router: Router,
-    private loginUnique: LoginUnique
+    private checkDataService: CheckDataService,
+    private checkData: CheckService
   ) {
     this.form = new FormGroup({
-      login: new FormControl('', [
-        Validators.required,
-        this.loginUnique.checkPasDansListe,
-      ]),
+      login: new FormControl(
+        '',
+        [Validators.required],
+        [this.checkDataInList()]
+      ),
       prenom: new FormControl(''),
       nom: new FormControl(''),
       mail: new FormControl('', [Validators.required]),
@@ -52,6 +58,16 @@ export class FormInscriptionComponent implements OnInit {
         this.checkEquals
       ),
     });
+  }
+
+  checkDataInList(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.checkData.check(control.value).pipe(
+        map((res: boolean) => {
+          return res ? { error: true } : null;
+        })
+      );
+    };
   }
 
   checkEquals(group: AbstractControl): ValidationErrors | null {
@@ -72,9 +88,15 @@ export class FormInscriptionComponent implements OnInit {
       nom: this.form.controls['nom'].value,
       prenom: this.form.controls['prenom'].value,
       mail: this.form.controls['mail'].value,
-      entreprise: this.form.controls['entreprise'].value,
-      artiste: this.form.controls['artiste'].value,
     };
+    if (this.typeCompte == 'Intervenant' || this.typeCompte == 'Fournisseur') {
+      Object.assign(user, {
+        entreprise: this.form.controls['entreprise'].value,
+      });
+    }
+    if (this.typeCompte == 'Intervenant') {
+      Object.assign(user, { artiste: this.form.controls['artiste'].value });
+    }
     this.inscriptionService
       .inscription(user, this.typeCompte)
       .subscribe((ok) => {

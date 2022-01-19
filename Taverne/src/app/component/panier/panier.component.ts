@@ -10,7 +10,13 @@ export class PanierComponent implements OnInit {
 
   hide: boolean = true;
 
-  ngOnInit(): void {}
+  clientConnected: boolean = false;
+
+  ngOnInit(): void {
+    if (localStorage.getItem('role') == 'Client') {
+      this.clientConnected = true;
+    }
+  }
 
   ngOnChanges() {}
 
@@ -23,7 +29,10 @@ export class PanierComponent implements OnInit {
   }[] = [];
 
   @Input('total')
-  total: number =0;
+  total: number = 0;
+
+  @Output()
+  paiement: EventEmitter<any> = new EventEmitter();
 
   @Output()
   commande: EventEmitter<{
@@ -58,5 +67,14 @@ export class PanierComponent implements OnInit {
       prix: item.prix,
       qty: -1,
     });
+  }
+
+  passerAuPaiement() {
+    if (localStorage.getItem('login') == '') {
+
+    } else {
+    this.paiement.emit(true);
+    this.swap();
+    }
   }
 }

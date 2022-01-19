@@ -50,6 +50,16 @@ public class CompteRestController {
 		return "\"" + Long.toString(compteService.getByLogin(login).getId()) + "\"";
 	}
 	
+	@GetMapping("/bool/{login}")
+	public boolean getBoolByLogin(@PathVariable String login) {
+		try{
+			compteService.getByLogin(login).getId();
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
+	}
+	
 	@GetMapping("/{id}")
 	@JsonView(JsonViews.Common.class)
 	private Compte getById(@PathVariable Long id) {
