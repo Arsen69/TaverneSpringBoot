@@ -19,6 +19,7 @@ public class Utilisation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(JsonViews.Common.class)
 	private Long id;
 	@JsonView(JsonViews.Common.class)
 	private double volume;

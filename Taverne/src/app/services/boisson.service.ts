@@ -3,15 +3,14 @@ import { Boisson } from '../model/inventaire/boisson';
 import { Bar } from 'src/app/model/inventaire/bar';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthenticationService } from './Users/authentication.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BoissonService {
   private static URL: string = 'http://localhost:8080/Taverne/api/bar';
-  constructor(
-    private http: HttpClient //private auth: AuthentificationService
-  ) {}
+  constructor(private http: HttpClient, private auth: AuthenticationService) {}
 
   public getAll(): Observable<Boisson[]> {
     return this.http.get<Boisson[]>(BoissonService.URL + '/boissons', {
@@ -34,11 +33,7 @@ export class BoissonService {
     });
   }
 
-  public updateSoft(
-    boisson: Boisson
-    // id: number,
-    // idBar: number
-  ): Observable<Boisson> {
+  public updateSoft(boisson: Boisson): Observable<Boisson> {
     const b = this.formatBoissonToJson(boisson);
     return this.http.put<Boisson>(
       BoissonService.URL +
@@ -48,20 +43,10 @@ export class BoissonService {
         boisson.id,
       b,
       {
-        //headers: this.auth.headers,
+        headers: this.auth.getHeaders(),
       }
     );
   }
-
-  // updateSoft(boisson: Boisson): Observable<Boisson> {
-  //   return this.http.put<Boisson>(
-  //     BoissonService.URL + '/' + boisson.id,
-  //     this.formatPersonnageToJson(boisson)
-  //     // {
-  //     //   headers: this.auth.headers,
-  //     // }
-  //   );
-  // }
 
   public updateAlcool(boisson: Boisson): Observable<Boisson> {
     return this.http.put<Boisson>(
@@ -71,7 +56,7 @@ export class BoissonService {
         '/alcool/' +
         boisson.id,
       {
-        //headers: this.auth.headers,
+        headers: this.auth.getHeaders(),
       }
     );
   }
@@ -102,20 +87,21 @@ export class BoissonService {
         '/boisson/' +
         id,
       {
-        //headers: this.auth.headers,
+        headers: this.auth.getHeaders(),
       }
     );
   }
 
-  //boisson.idBar = localStorage.getItem('idBar');
-
   formatBoissonToJson(boisson: Boisson): Object {
     let id_Bar = Number(localStorage.getItem('idBar'));
     const b = {
-      id: boisson.id,
       nom: boisson.nom,
       bar: { idBar: id_Bar },
+      utilisations: boisson.utilisations,
     };
+    if (!!boisson.id) {
+      Object.assign(b, { id: boisson.id });
+    }
     return b;
   }
 }

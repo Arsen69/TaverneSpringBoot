@@ -39,7 +39,7 @@ public abstract class Boisson {
 	@JsonView({ JsonViews.Common.class, JsonViews.BoissonByBar.class })
 	protected double tva;
 
-	@JsonView(JsonViews.BoissonByBar.class)
+	@JsonView(JsonViews.Common.class)
 	@ManyToOne
 	@JoinColumn(name = "id_bar")
 	protected Bar bar;

@@ -14,4 +14,10 @@ export class BarService {
   getAll(): Observable<Bar[]> {
     return this.http.get<Bar[]>(BarService.URL);
   }
+
+  getById(id: number): Observable<Bar> {
+    return this.http.get<Bar>(BarService.URL + '/' + id, {
+      headers: this.auth.getHeaders(),
+    });
+  }
 }

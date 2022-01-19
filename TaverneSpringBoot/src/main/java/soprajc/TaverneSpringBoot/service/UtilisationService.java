@@ -34,6 +34,13 @@ public class UtilisationService {
 		Check.checkLong(util.getIngredient().getIdStock());
 		return utilisationRepo.save(util);
 	}
+	public Utilisation update(Utilisation util) {
+		Check.checkLong(util.getId());
+		Check.checkLong(util.getBoisson().getId());
+		Check.checkLong(util.getIngredient().getIdStock());
+		Check.checkNegatif(util.getVolume());
+		return utilisationRepo.save(util);
+	}
 	
 	public void delete(Long id) {
 		utilisationRepo.delete(getById(id));

@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Boisson } from 'src/app/model/inventaire/boisson';
 import { Bar } from 'src/app/model/inventaire/bar';
+import { Utilisation } from 'src/app/model/inventaire/utilisation';
+import { Stock } from 'src/app/model/inventaire/stock';
+import { Observable } from 'rxjs';
+import { StockService } from 'src/app/services/stock/stock-service.service';
 
 @Component({
   selector: 'app-edit-boisson',
@@ -11,13 +15,14 @@ import { Bar } from 'src/app/model/inventaire/bar';
 })
 export class EditBoissonComponent implements OnInit {
   boisson: Boisson = new Boisson();
-  bar: Bar = new Bar();
-  id: number = 0;
-  idBar: number = 0;
+  utilisations: Utilisation[] = [];
+  stocks: Observable<Stock[]> | null = null;
+  util: Utilisation = new Utilisation();
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private boissonService: BoissonService,
+    private stockService: StockService,
     private router: Router
   ) {}
 
@@ -26,16 +31,18 @@ export class EditBoissonComponent implements OnInit {
       if (!!params['id']) {
         this.boissonService.getById(params['id']).subscribe((result) => {
           this.boisson = result;
+          this.utilisations = this.boisson.utilisations!;
         });
       }
     });
+    this.stocks = this.stockService.getAll();
   }
 
   saveSoft() {
     console.log('entrée dans saveSoft');
     console.log('boisson.id:' + this.boisson.id);
-    console.log('boisson.idbar:' + this.boisson.idBar);
-    console.log('bar.idbar:' + this.bar.idBar);
+    console.log('boisson.idbar:' + this.boisson.bar!.idBar);
+    console.log('bar.idbar:' + this.boisson.bar!.idBar);
     // if (!!this.boisson.id) {
     this.boissonService.updateSoft(this.boisson).subscribe((ok) => {
       this.router.navigate(['/carte2']);
@@ -44,5 +51,9 @@ export class EditBoissonComponent implements OnInit {
       //   // this.boissonService.createSoft(this.boisson).subscribe((ok) => {
       //   //   this.router.navigate(['/carte2']);
     });
+  }
+
+  ajouterUtil() {
+    this.utilisations.push(new Utilisation());
   }
 }
