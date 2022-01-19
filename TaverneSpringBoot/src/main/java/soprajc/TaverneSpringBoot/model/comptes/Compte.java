@@ -1,5 +1,6 @@
 package soprajc.TaverneSpringBoot.model.comptes;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
@@ -43,7 +44,11 @@ public abstract class Compte implements UserDetails{
 	@Column(nullable=false)
 	protected String password;
 	@JsonView(JsonViews.Common.class)
+	@Column(nullable=false)
 	protected String mail;
+	@JsonView(JsonViews.Common.class)
+	@Column(name="date_naissance",nullable=true)
+	protected LocalDate birthday;
 	@Version
 	protected int version;
 	@Column(nullable=false)

@@ -7,7 +7,8 @@ export class Compte {
     protected _password?: string,
     protected _mail?: string,
     protected _version?: number,
-    protected _enabled?: boolean
+    protected _enabled?: boolean,
+    private _birthday?: Date
   ) {}
 
   get id(): number | undefined {
@@ -72,5 +73,20 @@ export class Compte {
 
   set enabled(value: boolean | undefined) {
     this._enabled = value;
+  }
+  /**
+   * Getter birthday
+   * @return {Date}
+   */
+  public get birthday(): Date | undefined {
+    return this._birthday;
+  }
+
+  /**
+   * Setter birthday
+   * @param {Date} value
+   */
+  public set birthday(value: Date | undefined) {
+    this._birthday = value;
   }
 }

@@ -1,9 +1,37 @@
-<td>{{ stock.idStock }}</td>
-<td>{{ stock.volumeTot }}</td>
-<td>{{ stock.seuilLimite }}</td>
-<td>{{ stock.articles![0].nom }}</td>
 <td>
-  <div class="form-group">
+  <div>
+    <div *ngIf="visible == false">{{ stock.idStock }}</div>
+    <div *ngIf="visible == true">
+      <input type="text" />
+    </div>
+  </div>
+</td>
+<td>
+  <div *ngIf="visible == false">
+    {{ stock.volumeTot }}
+  </div>
+  <div *ngIf="visible == true">
+    <input type="text" />
+  </div>
+</td>
+<td>
+  <div *ngIf="visible == false">
+    {{ stock.seuilLimite }}
+  </div>
+  <div *ngIf="visible == true">
+    <input type="text" />
+  </div>
+</td>
+<td>
+  <div *ngIf="visible == false">
+    {{ stock.articles![0].nom }}
+  </div>
+  <div *ngIf="visible == true">
+    <input type="text" />
+  </div>
+</td>
+<td>
+  <div class="form-group" *ngIf="visible == true">
     <button
       *ngIf="role == 'Admin'"
       class="btn btn-primary"
@@ -15,25 +43,25 @@
 </td>
 
 <td>
-  <div class="form-group">
-    <button
-      *ngIf="role == 'Admin'"
-      class="btn btn-primary"
-      (click)="validation()"
-    >
-      modifier
-    </button>
-  </div>
-</td>
-
-<td>
-  <div class="form-group">
+  <div class="form-group" *ngIf="visible == true">
     <button
       *ngIf="role == 'Admin'"
       class="btn btn-primary"
       (click)="validation()"
     >
       supprimer
+    </button>
+  </div>
+</td>
+
+<td>
+  <div class="form-group" *ngIf="visible == false">
+    <button
+      *ngIf="role == 'Admin'"
+      class="btn btn-primary"
+      (click)="modifier()"
+    >
+      modifier
     </button>
   </div>
 </td>

@@ -18,7 +18,7 @@
     <div class="row m-2">
       <label class="form-label col-sm-3">Login</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" [(ngModel)]="compte.login" />
+        <input type="text" class="form-control" formControlName="login" />
       </div>
     </div>
     <div fromGroupName="group1">
@@ -29,7 +29,6 @@
             [formControl]="passwordCtrl"
             type="text"
             class="form-control"
-            [(ngModel)]="compte.password"
           />
         </div>
       </div>
@@ -60,7 +59,7 @@
           type="email"
           class="form-control"
           placeholder="name@example.com"
-          [(ngModel)]="compte.mail"
+          formControlName="mail"
         />
         <small id="emailHelp" class="form-text text-muted"
           >Nous ne partagerons pas votre adresse mail avec qui que ce soit
@@ -72,7 +71,7 @@
         <label class="form-label">Date de naissance</label><br />
       </div>
       <div class="col-sm-2">
-        <input type="date" class="form-control" />
+        <input type="date" class="form-control" formControlName="birthday" />
       </div>
       <small id="birthdayHelp" class="form-text text-muted"
         >Vous devez être majeur pour créér un compte chez nous
@@ -81,25 +80,25 @@
     <div class="row m-2">
       <label class="form-label col-sm-3">Nom</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" [(ngModel)]="compte.nom" />
+        <input type="text" class="form-control" formControlName="nom" />
       </div>
     </div>
     <div class="row m-2">
       <label class="form-label col-sm-3">Prénom</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" [(ngModel)]="compte.prenom" />
+        <input type="text" class="form-control" formControlName="prenom" />
       </div>
     </div>
     <div *ngIf="typeCompte == 'Fournisseur'" class="row m-2">
       <label class="form-label col-sm-3">Entreprise</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" [(ngModel)]="entreprise" />
+        <input type="text" class="form-control" formControlName="entreprise" />
       </div>
     </div>
     <div *ngIf="typeCompte == 'Intervenant'" class="row m-2">
       <label class="form-label col-sm-3">Nom d'artiste</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" [(ngModel)]="artiste" />
+        <input type="text" class="form-control" formControlName="artiste" />
       </div>
     </div>
 
