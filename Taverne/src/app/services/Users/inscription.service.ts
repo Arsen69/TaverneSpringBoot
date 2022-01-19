@@ -41,6 +41,7 @@ export class InscriptionService {
       password: c.password,
       mail: c.mail,
       enabled: true,
+      birthday: c.birthday,
     };
   }
 
