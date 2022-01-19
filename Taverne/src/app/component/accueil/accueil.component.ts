@@ -1,3 +1,4 @@
+import { CompteService } from 'src/app/services/comptes/compte.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./accueil.component.css'],
 })
 export class AccueilComponent implements OnInit {
-  constructor() {}
+  constructor(private compteService: CompteService) {}
 
-  ngOnInit(): void {}
+  role: String = '';
+
+  ngOnInit(): void {
+    if (localStorage.getItem('role') != null) {
+      this.role = localStorage.getItem('role')!;
+    }
+  }
 
   showMe() {
     console.log(localStorage.getItem('idBar'));
