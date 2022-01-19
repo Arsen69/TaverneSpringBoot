@@ -1,0 +1,27 @@
+<div class="listePanier" [ngClass]="{'invisible': achatEffectue}">
+  <div class="item row">
+    <div class="col-6">Article</div>
+    <div class="col-3">Prix</div>
+    <div class="col-3">Quantité</div>
+  </div>
+  <div *ngFor="let e of panier" class="item row">
+    <div class="nomItem col-6">{{ e.nom }}</div>
+    <div class="prixItem col-3">{{ e.prix | currency: "€":"€":"1.2-2" }}</div>
+    <div class="nbItem col-3">
+      {{ e.qty }}
+    </div>
+  </div>
+  <div class="dashe row">-----------------------------------------</div>
+  <div class="item row">
+    <div class="col-6">Total:</div>
+    <div class="col-3">{{ total | currency: "€":"€":"1.2-2" }}</div>
+    <div class="col-3">
+      <button class="btn btn-primary btnPaiement" (click)="acheter()">
+        Acheter
+      </button>
+    </div>
+  </div>
+</div>
+<div class="listePanier done" [ngClass]="{'invisible': !achatEffectue}">
+  Votre achat à bien été effectué, bonne dégustation!
+</div>

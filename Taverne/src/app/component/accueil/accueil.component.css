@@ -1,3 +1,42 @@
 button {
   background-color: crimson;
 }
+
+.invisible {
+  display: none !important;
+}
+
+.cNous {
+  max-width: 40%;
+  min-width: 300px;
+}
+
+.client {
+  display: flex;
+  justify-content: center;
+}
+
+.titre {
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--scdColor);
+}
+
+.listeBtn {
+  width: fit-content;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.page {
+  width: 100vw;
+  position: relative;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+

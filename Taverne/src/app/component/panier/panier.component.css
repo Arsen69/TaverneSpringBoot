@@ -96,10 +96,23 @@
 
 .hider {
   margin: auto;
-  height: 100vh;
-  width: 100vw;
+  position: fixed;
+  justify-self: center;
+  height: fit-content;
+  width: fit-content;
+  max-width: 500px;
   background-color: var(--bckColor);
-  opacity: 0.5;
+  opacity: 0.80;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border: 3px solid var(--scdColor);
+  border-radius: 20px;
+  color: var(--txtColor);
+  text-align: center;
+  vertical-align: middle;
+  font-size: 30px;
 }
 
 @keyframes fadeInOpacity {

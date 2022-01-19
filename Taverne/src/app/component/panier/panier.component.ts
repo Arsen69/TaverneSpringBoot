@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-panier',
@@ -6,16 +7,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./panier.component.css'],
 })
 export class PanierComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
   hide: boolean = true;
 
-  clientConnected: boolean = false;
+  redirect: boolean = false;
 
   ngOnInit(): void {
-    if (localStorage.getItem('role') == 'Client') {
-      this.clientConnected = true;
-    }
   }
 
   ngOnChanges() {}
@@ -71,7 +69,11 @@ export class PanierComponent implements OnInit {
 
   passerAuPaiement() {
     if (localStorage.getItem('login') == '') {
-
+      this.swap();
+      this.redirect = true;
+      setTimeout(() => {
+        this.router.navigate(['connexion']);
+      }, 2500);
     } else {
     this.paiement.emit(true);
     this.swap();
