@@ -16,4 +16,8 @@ export class AccueilComponent implements OnInit {
       this.role = localStorage.getItem('role')!;
     }
   }
+
+  afficherInfos() {
+    console.log(localStorage.getItem('idBar'));
+  }
 }

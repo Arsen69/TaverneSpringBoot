@@ -28,12 +28,9 @@
             ><ion-icon name="logo-facebook"></ion-icon
           ></span>
         </a>
-        <a href="https://twitter.com/TaverneApp_" target="_blank">
+        <a redirectTo="https://twitter.com/TaverneApp_" target="_blank">
           <span class="rezoLogo"
-            ><ion-icon
-              name="logo-twitter"
-              redirectTo="https://twitter.com"
-            ></ion-icon
+            ><ion-icon name="logo-twitter"></ion-icon
           ></span>
         </a>
       </div>
@@ -57,7 +54,7 @@
   <div class="noMargin hRight col-12 col-lg-4 row">
     <ul>
       <li
-        *ngIf="role == ''; else connected"
+        *ngIf="role == '' || role == null; else connected"
         class="navListe"
         routerLink="/connexion"
         routerLinkActive="active-link"

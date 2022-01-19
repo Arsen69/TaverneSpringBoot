@@ -1,23 +1,44 @@
 <div class="client" *ngIf="role == '' || role == 'Client'">
   <img src="/assets/images/LesDevs.png" alt="" class="cNous" />
+  <button (click)="afficherInfos()">Afficher infos</button>
 </div>
 
 <div class="page admin" *ngIf="role == 'Admin'">
   <div class="bienvenue row col-12">
     <h1 class="titre">Bienvenue!</h1>
   </div>
-  <app-btn-accueil [txt]="'Consulter les boissons disponibles'" [path]="'carte2'"></app-btn-accueil>
-  <app-btn-accueil [txt]="'Créer un compte'" [path]="'inscription'"></app-btn-accueil>
-  <app-btn-accueil [txt]="'Consulter les stocks'" [path]="'stock'"></app-btn-accueil>
-  <app-btn-accueil [txt]="'Consulter le cataloque fournisseur'" [path]="'catalogue'"></app-btn-accueil>
-  <app-btn-accueil [txt]="'Changer de bar'" [path]="'choixBar'"></app-btn-accueil>
+  <app-btn-accueil
+    [txt]="'Consulter les boissons disponibles'"
+    [path]="'carte2'"
+  ></app-btn-accueil>
+  <app-btn-accueil
+    [txt]="'Créer un compte'"
+    [path]="'inscription'"
+  ></app-btn-accueil>
+  <app-btn-accueil
+    [txt]="'Consulter les stocks'"
+    [path]="'stock'"
+  ></app-btn-accueil>
+  <app-btn-accueil
+    [txt]="'Consulter le cataloque fournisseur'"
+    [path]="'catalogue'"
+  ></app-btn-accueil>
+  <app-btn-accueil
+    [txt]="'Changer de bar'"
+    [path]="'choixBar'"
+  ></app-btn-accueil>
 </div>
 
 <div class="page fournisseur" *ngIf="role == 'Fournisseur'">
   <div class="bienvenue row col-12">
     <h1 class="titre">Bienvenue!</h1>
   </div>
-  <app-btn-accueil [txt]="'Consulter mon catalogue'" [path]="'catalogue'"></app-btn-accueil>
-  <app-btn-accueil [txt]="'Modifier mes informations'" [path]="'monCompte'"></app-btn-accueil>
+  <app-btn-accueil
+    [txt]="'Consulter mon catalogue'"
+    [path]="'catalogue'"
+  ></app-btn-accueil>
+  <app-btn-accueil
+    [txt]="'Modifier mes informations'"
+    [path]="'monCompte'"
+  ></app-btn-accueil>
 </div>
-

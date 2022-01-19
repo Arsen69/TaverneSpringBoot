@@ -24,7 +24,10 @@ export const routes: Routes = [
     component: AccueilComponent,
     canActivate: [BarChosenService],
   },
-  { path: 'carte', component: CarteComponent, canActivate: [BarChosenService] },
+  {
+    path: 'carte',
+    component: CarteComponent,
+  },
   {
     path: 'connexion',
     component: LoginComponent,
@@ -38,6 +41,7 @@ export const routes: Routes = [
   {
     path: 'inscription',
     component: InscriptionComponent,
+    canActivate: [AuthenticationService],
   },
   {
     path: 'carte2',
