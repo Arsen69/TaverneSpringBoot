@@ -40,7 +40,7 @@ export class ArticleService {
 
   public update(data: Article): Observable<Article> {
     const o = this.articleToJson(data);
-    return this.http.put<Article>(ArticleService.URL + '/' + o.id, data, {
+    return this.http.put<Article>(ArticleService.URL + '/' + o.id, o, {
       headers: this.auth.getHeaders(),
     });
   }
