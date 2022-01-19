@@ -45,7 +45,7 @@ export class PaiementComponent implements OnInit {
       }, 1000);
     }, 1500);
     setTimeout(() => {
-      this.router.navigate(['home']);
+      this.router.navigate(['achatDone']);
     }, 1500);
   }
 }

@@ -1,3 +1,4 @@
+import { MonCompteComponent } from './component/mon-compte/mon-compte.component';
 import { StockListComponent } from './component/stock/stock-list/stock-list.component';
 import { EditBoissonComponent } from './component/edit-boisson/edit-boisson.component';
 
@@ -13,6 +14,7 @@ import { LoginComponent } from './connexion/login/login.component';
 import { AuthenticationService } from './services/Users/authentication.service';
 import { CatalogueGlobalComponent } from './component/articles/catalogue-global/catalogue-global.component';
 import { BarChosenService } from './services/Users/bar-chosen.service';
+import { AchatEffectueComponent } from './component/achat-effectue/achat-effectue.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -29,7 +31,7 @@ export const routes: Routes = [
   },
   {
     path: 'monCompte',
-    component: LogOffComponent,
+    component: MonCompteComponent,
     canActivate: [BarChosenService],
   },
   {
@@ -52,4 +54,5 @@ export const routes: Routes = [
   },
   { path: 'catalogue', component: CatalogueGlobalComponent },
   { path: 'choixBar', component: ChoixBarComponent },
+  { path: 'achatDone', component: AchatEffectueComponent}
 ];
