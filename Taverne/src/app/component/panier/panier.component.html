@@ -1,6 +1,6 @@
 <div
   class="listePanier"
-  [ngClass]="{ cacher: total == 0 || hide, 'fade-in': !hide }"
+  [ngClass]="{ 'cacher': total == 0 || hide, 'fade-in': !hide }"
 >
   <div class="item row">
     <div class="col-6">Article</div>
@@ -40,6 +40,6 @@
 </div>
 
 
-<div class="hider">
-
+<div class="hider" [ngClass]="{'cacher': !redirect}">
+  Vous n'êtes pas connecté. Vous allez être redirigé vers la page de connexion.
 </div>
