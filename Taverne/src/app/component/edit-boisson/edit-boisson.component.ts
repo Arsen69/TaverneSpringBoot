@@ -31,7 +31,9 @@ export class EditBoissonComponent implements OnInit {
       if (!!params['id']) {
         this.boissonService.getById(params['id']).subscribe((result) => {
           this.boisson = result;
+          console.log(this.boisson);
           this.utilisations = this.boisson.utilisations!;
+          console.log(this.utilisations);
         });
       }
     });
@@ -54,6 +56,10 @@ export class EditBoissonComponent implements OnInit {
   }
 
   ajouterUtil() {
+    console.log(this.utilisations);
     this.utilisations.push(new Utilisation());
+    console.log(this.utilisations);
+    console.log(this.boisson.utilisations);
+    this.boisson.utilisations = this.utilisations;
   }
 }

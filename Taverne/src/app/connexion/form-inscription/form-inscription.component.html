@@ -130,6 +130,17 @@
         </div>
       </div>
 
+      <div *ngIf="typeCompte == 'Employe'" class="row m-2">
+        <label class="form-label col-sm-3">Bar d'affectation</label>
+        <div class="col-sm-3">
+          <select formControlName="bar" class="form-control">
+            <option *ngFor="let b of bars | async" [ngValue]="b">
+              {{ b.nom }}
+            </option>
+          </select>
+        </div>
+      </div>
+
       <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
         Submit
       </button>
