@@ -1,3 +1,4 @@
+import { AchatEffectueComponent } from './component/achat-effectue/achat-effectue.component';
 import { StockListComponent } from './component/stock/stock-list/stock-list.component';
 import { EditBoissonComponent } from './component/edit-boisson/edit-boisson.component';
 
@@ -52,4 +53,5 @@ export const routes: Routes = [
   },
   { path: 'catalogue', component: CatalogueGlobalComponent },
   { path: 'choixBar', component: ChoixBarComponent },
+  { path: 'achatDone', component: AchatEffectueComponent}
 ];
