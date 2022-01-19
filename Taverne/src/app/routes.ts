@@ -44,6 +44,11 @@ export const routes: Routes = [
     canActivate: [AuthenticationService],
   },
   {
+    path: 'inscriptionAdmin',
+    component: InscriptionComponent,
+    canActivate: [AdminService],
+  },
+  {
     path: 'carte2',
     component: Carte2Component,
     canActivate: [BarChosenService, AdminService],
