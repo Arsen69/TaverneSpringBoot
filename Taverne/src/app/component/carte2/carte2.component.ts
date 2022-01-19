@@ -2,6 +2,8 @@ import { Boisson } from './../../model/inventaire/boisson';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BoissonService } from 'src/app/services/boisson.service';
+import { Bar } from 'src/app/model/inventaire/bar';
+import { BarService } from 'src/app/services/bar.service';
 
 @Component({
   selector: 'app-carte2',
@@ -9,27 +11,26 @@ import { BoissonService } from 'src/app/services/boisson.service';
   styleUrls: ['./carte2.component.css'],
 })
 export class Carte2Component implements OnInit {
-  boisson: Observable<Boisson[]> | null = null;
-  //boisson: Boisson[] = [];
-  constructor(private boissonService: BoissonService) {}
+  boissons: Observable<Boisson[]> | null = null;
+  idBar: number = 0;
+
+  bar: Bar = new Bar();
+  constructor(
+    private boissonService: BoissonService,
+    private barService: BarService
+  ) {}
 
   ngOnInit(): void {
-    //this.boissonService.getAllbyBar(1).subscribe((result) => {
-    // this.boisson = result;
-    //  });
-    console.log('id du bar: ' + localStorage.getItem('idBar'));
-    console.log('id du bar: ' + Number(localStorage.getItem('idBar')));
-
-    this.boisson = this.boissonService.getAllbyBar(
-      Number(localStorage.getItem('idBar'))
-    ); // ajouter localStorage.getItem('idBar')
+    this.idBar = Number(localStorage.getItem('idBar'));
+    this.barService.getById(this.idBar).subscribe((result) => {
+      this.bar = result;
+    });
+    this.boissons = this.boissonService.getAllbyBar(this.idBar);
   }
 
-  delete(id: number, idBar: number) {
-    this.boissonService.delete(id, idBar).subscribe((ok) => {
-      this.boisson = this.boissonService.getAllbyBar(
-        Number(localStorage.getItem('idBar'))
-      );
+  delete(id: number) {
+    this.boissonService.delete(id, this.idBar).subscribe((ok) => {
+      this.boissons = this.boissonService.getAllbyBar(this.idBar);
     });
   }
 }
