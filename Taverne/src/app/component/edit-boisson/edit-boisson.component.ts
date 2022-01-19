@@ -2,6 +2,7 @@ import { BoissonService } from './../../services/boisson.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Boisson } from 'src/app/model/inventaire/boisson';
+import { Bar } from 'src/app/model/inventaire/bar';
 
 @Component({
   selector: 'app-edit-boisson',
@@ -10,6 +11,7 @@ import { Boisson } from 'src/app/model/inventaire/boisson';
 })
 export class EditBoissonComponent implements OnInit {
   boisson: Boisson = new Boisson();
+  bar: Bar = new Bar();
   id: number = 0;
   idBar: number = 0;
 
@@ -31,15 +33,16 @@ export class EditBoissonComponent implements OnInit {
 
   saveSoft() {
     console.log('entrée dans saveSoft');
+    console.log('boisson.id:' + this.boisson.id);
+    console.log('boisson.idbar:' + this.boisson.idBar);
+    console.log('bar.idbar:' + this.bar.idBar);
     // if (!!this.boisson.id) {
-    this.boissonService
-      .updateSoft(this.boisson, this.id, this.idBar)
-      .subscribe((ok) => {
-        this.router.navigate(['/carte2']);
-        // });
-        // } else {
-        //   // this.boissonService.createSoft(this.boisson).subscribe((ok) => {
-        //   //   this.router.navigate(['/carte2']);
-      });
+    this.boissonService.updateSoft(this.boisson).subscribe((ok) => {
+      this.router.navigate(['/carte2']);
+      // });
+      // } else {
+      //   // this.boissonService.createSoft(this.boisson).subscribe((ok) => {
+      //   //   this.router.navigate(['/carte2']);
+    });
   }
 }

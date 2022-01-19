@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Boisson } from '../model/inventaire/boisson';
+import { Bar } from 'src/app/model/inventaire/bar';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -34,13 +35,17 @@ export class BoissonService {
   }
 
   public updateSoft(
-    boisson: Boisson,
-    id: number,
-    idBar: number
+    boisson: Boisson
+    // id: number,
+    // idBar: number
   ): Observable<Boisson> {
     const b = this.formatBoissonToJson(boisson);
     return this.http.put<Boisson>(
-      BoissonService.URL + '/' + localStorage.getItem('idBar') + '/soft/' + id,
+      BoissonService.URL +
+        '/' +
+        localStorage.getItem('idBar') +
+        '/soft/' +
+        boisson.id,
       b,
       {
         //headers: this.auth.headers,
@@ -58,17 +63,13 @@ export class BoissonService {
   //   );
   // }
 
-  public updateAlcool(
-    boisson: Boisson,
-    id: number,
-    idBar: number
-  ): Observable<Boisson> {
+  public updateAlcool(boisson: Boisson): Observable<Boisson> {
     return this.http.put<Boisson>(
       BoissonService.URL +
         '/' +
         localStorage.getItem('idBar') +
         '/alcool/' +
-        id,
+        boisson.id,
       {
         //headers: this.auth.headers,
       }
@@ -106,19 +107,15 @@ export class BoissonService {
     );
   }
 
+  //boisson.idBar = localStorage.getItem('idBar');
+
   formatBoissonToJson(boisson: Boisson): Object {
+    let id_Bar = Number(localStorage.getItem('idBar'));
     const b = {
       id: boisson.id,
       nom: boisson.nom,
-      idBar: boisson.idBar,
+      bar: { idBar: id_Bar },
     };
-
-    // if (!!personnage.familier && personnage.familier.id !== undefined) {
-    //   Object.assign(p, { familier: { id: personnage.familier.id } });
-    // }
-    // if (!!personnage.id) {
-    //   Object.assign(p, { id: personnage.id });
-    // }
     return b;
   }
 }
