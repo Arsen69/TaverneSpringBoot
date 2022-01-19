@@ -19,7 +19,7 @@ export class BoissonService {
     });
   }
 
-  public getAllbyBar(idBar: number): Observable<Boisson[]> {
+  public getAllbyBar(): Observable<Boisson[]> {
     return this.http.get<Boisson[]>(
       BoissonService.URL + '/' + localStorage.getItem('idBar') + '/boissons',
       {
@@ -34,11 +34,7 @@ export class BoissonService {
     });
   }
 
-  public updateSoft(
-    boisson: Boisson
-    // id: number,
-    // idBar: number
-  ): Observable<Boisson> {
+  public updateSoft(boisson: Boisson): Observable<Boisson> {
     const b = this.formatBoissonToJson(boisson);
     return this.http.put<Boisson>(
       BoissonService.URL +
@@ -53,16 +49,6 @@ export class BoissonService {
     );
   }
 
-  // updateSoft(boisson: Boisson): Observable<Boisson> {
-  //   return this.http.put<Boisson>(
-  //     BoissonService.URL + '/' + boisson.id,
-  //     this.formatPersonnageToJson(boisson)
-  //     // {
-  //     //   headers: this.auth.headers,
-  //     // }
-  //   );
-  // }
-
   public updateAlcool(boisson: Boisson): Observable<Boisson> {
     return this.http.put<Boisson>(
       BoissonService.URL +
@@ -70,6 +56,7 @@ export class BoissonService {
         localStorage.getItem('idBar') +
         '/alcool/' +
         boisson.id,
+      this.formatBoissonToJson(boisson),
       {
         //headers: this.auth.headers,
       }
@@ -94,7 +81,7 @@ export class BoissonService {
   //   });
   // }
 
-  public delete(id: number, idBar: number): Observable<void> {
+  public delete(id: number): Observable<void> {
     return this.http.delete<void>(
       BoissonService.URL +
         '/' +
@@ -112,6 +99,7 @@ export class BoissonService {
   formatBoissonToJson(boisson: Boisson): Object {
     let id_Bar = Number(localStorage.getItem('idBar'));
     const b = {
+      type: boisson.type,
       id: boisson.id,
       nom: boisson.nom,
       bar: { idBar: id_Bar },

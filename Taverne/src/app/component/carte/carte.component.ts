@@ -36,16 +36,13 @@ export class CarteComponent implements OnInit {
         }
       }
     }, 500);
-
   }
 
   initCarte() {
     if (Number(localStorage.getItem('idBar')) != 0) {
-      this.boissonService
-        .getAllbyBar(Number(localStorage.getItem('idBar')))
-        .subscribe((result) => {
-          this.listeBoisson = result;
-        });
+      this.boissonService.getAllbyBar().subscribe((result) => {
+        this.listeBoisson = result;
+      });
     }
   }
 

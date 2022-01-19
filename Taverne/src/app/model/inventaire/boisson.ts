@@ -1,19 +1,19 @@
 export class Boisson {
   constructor(
+    protected _type?: string,
     protected _id?: number,
-    protected _idBar?: number,
     protected _nom?: string,
     protected _prixHT?: number,
     protected _prixHThh?: number,
     protected _tva?: number
   ) {}
 
-  get id(): number | undefined {
-    return this._id;
+  get type(): string | undefined {
+    return this._type;
   }
 
-  get idBar(): number | undefined {
-    return this._idBar;
+  get id(): number | undefined {
+    return this._id;
   }
 
   get nom(): string | undefined {
@@ -32,12 +32,12 @@ export class Boisson {
     return this._tva;
   }
 
-  set id(value: number | undefined) {
-    this._id = value;
+  set type(value: string | undefined) {
+    this._type = value;
   }
 
-  set idBar(value: number | undefined) {
-    this._idBar = value;
+  set id(value: number | undefined) {
+    this._id = value;
   }
 
   set nom(value: string | undefined) {
