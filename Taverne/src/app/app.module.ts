@@ -30,6 +30,7 @@ import { DisplayBarComponent } from './component/Bars/display-bar/display-bar.co
 import { PaiementComponent } from './component/paiement/paiement.component';
 import { CheckService } from './services/Users/check.service';
 import { CheckDataService } from './services/Users/check-data.service';
+import { BtnAccueilComponent } from './component/btn-accueil/btn-accueil.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { CheckDataService } from './services/Users/check-data.service';
     FormArticleComponent,
     DisplayBarComponent,
     PaiementComponent,
+    BtnAccueilComponent,
   ],
   imports: [
     BrowserModule,

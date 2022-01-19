@@ -1,0 +1,26 @@
+.leBtn {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 180px;
+  background-color: var(--bckColor);
+  border-radius: 20px;
+  border: 3px solid var(--scdColor);
+  margin: 20px 20px 20px 20px;
+  opacity: 80%;
+  box-shadow: 5px 0px 5px 0px var(--bckColor), 0px 3px 3px 0px var(--bckColor);
+  cursor: pointer;
+}
+
+.txt {
+  font-size: 30px;
+  color: var(--txtColor);
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+}
+.scale {
+  scale: 2;
+  background-color: var(--scdColor);
+}
