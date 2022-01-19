@@ -27,6 +27,7 @@ import { CatalogueGlobalComponent } from './component/articles/catalogue-global/
 import { ArticleComponent } from './component/articles/article/article.component';
 import { FormArticleComponent } from './component/articles/form-article/form-article.component';
 import { DisplayBarComponent } from './component/Bars/display-bar/display-bar.component';
+import { PaiementComponent } from './component/paiement/paiement.component';
 import { CheckService } from './services/Users/check.service';
 import { CheckDataService } from './services/Users/check-data.service';
 
@@ -53,6 +54,7 @@ import { CheckDataService } from './services/Users/check-data.service';
     ArticleComponent,
     FormArticleComponent,
     DisplayBarComponent,
+    PaiementComponent,
   ],
   imports: [
     BrowserModule,

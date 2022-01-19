@@ -15,6 +15,8 @@ export class CarteComponent implements OnInit {
 
   total: number = 0;
 
+  paiement: boolean = false;
+
   panier: {
     id: number;
     nom: string;
@@ -126,5 +128,9 @@ export class CarteComponent implements OnInit {
     }
     codedString = codedString.slice(0, codedString.length - 1);
     return codedString;
+  }
+
+  passerAuPaiement() {
+    this.paiement = true;
   }
 }
