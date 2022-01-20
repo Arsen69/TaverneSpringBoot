@@ -19,7 +19,7 @@
         {{ s.articles![0].typeProduit }}
       </option>
     </select>
-    <input type="number" [(ngModel)]="u.volume" class="form-control" />
+    <input type="number" min="0" [(ngModel)]="u.volume" class="form-control" />
   </div>
 
   <button class="btn btn-outline-primary" (click)="ajouterUtil()">
@@ -27,11 +27,21 @@
   </button>
   <div class="form-group">
     <label>Prix HT:</label>
-    <input [(ngModel)]="boisson.prixHT" class="form-control" type="number" />
+    <input
+      [(ngModel)]="boisson.prixHT"
+      min="0"
+      class="form-control"
+      type="number"
+    />
   </div>
   <div class="form-group">
     <label>Prix HT en HappyHour:</label>
-    <input [(ngModel)]="boisson.prixHThh" class="form-control" type="number" />
+    <input
+      [(ngModel)]="boisson.prixHThh"
+      min="0"
+      class="form-control"
+      type="number"
+    />
   </div>
   <div class="form-group">
     <label>URL de l'image</label>

@@ -1,49 +1,63 @@
 <div>
   <h2>Ajouter un Article au catalogue</h2>
-  <div class="form-group">
-    <label>ID : </label>
-    <input
-      [(ngModel)]="article.id"
-      readonly
-      [placeholder]="article.id"
-      class="form-control"
-    />
-  </div>
-  <div class="form-group">
-    <label>Nom : </label>
-    <input
-      [(ngModel)]="article.nom"
-      [placeholder]="article.nom"
-      class="form-control"
-    />
-  </div>
-  <div class="form-group">
-    <label>Cout : </label>
-    <input
-      type="number"
-      [(ngModel)]="article.cout"
-      [placeholder]="article.cout"
-      class="form-control"
-    />
-  </div>
-  <div class="form-group">
-    <label>Type de Produit : </label>
-    <select [(ngModel)]="article.typeProduit" class="form-control">
-      <option *ngFor="let t of typesProduits | keyvalue" [value]="t.key">
-        {{ t.value }}
-      </option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label>Volume : </label>
-    <input
-      type="number"
-      [(ngModel)]="article.volume"
-      [placeholder]="article.volume"
-      class="form-control"
-    />
-  </div>
-  <div class="container p-2">
-    <button class="btn btn-primary" (click)="save()">Enregistrer</button>
-  </div>
+  <form (ngSubmit)="save()" [formGroup]="form">
+    <div class="form-group">
+      <label>ID : </label>
+      <input
+        [(ngModel)]="article.id"
+        readonly
+        [placeholder]="article.id"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label>Nom : </label>
+      <input
+        [(ngModel)]="article.nom"
+        [placeholder]="article.nom"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label>Cout : </label>
+      <input
+        type="number"
+        formControlName="cout"
+        [placeholder]="article.cout"
+        class="form-control"
+      />
+      <div
+        class="col-sm-4 p-2"
+        *ngIf="form.controls['cout'].dirty && form.controls['cout'].invalid"
+      >
+        Le cout ne peut pas être négatif
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Type de Produit : </label>
+      <select [(ngModel)]="article.typeProduit" class="form-control">
+        <option *ngFor="let t of typesProduits | keyvalue" [value]="t.key">
+          {{ t.value }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Volume : </label>
+      <input
+        type="number"
+        formControlName="volume"
+        [placeholder]="article.volume"
+        class="form-control"
+      />
+      <div
+        class="col-sm-4 p-2"
+        *ngIf="form.controls['volume'].dirty && form.controls['volume'].invalid"
+      >
+        Le volume ne peut pas être négatif
+      </div>
+    </div>
+    <div class="container p-2">
+      <button class="btn btn-primary" type="submit">Enregistrer</button>
+    </div>
+  </form>
 </div>

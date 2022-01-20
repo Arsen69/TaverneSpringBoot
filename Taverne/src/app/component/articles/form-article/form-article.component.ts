@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Fournisseur } from 'src/app/model/comptes/fournisseur';
@@ -12,6 +13,7 @@ import { ArticleService } from 'src/app/services/article.service';
   styleUrls: ['./form-article.component.css'],
 })
 export class FormArticleComponent implements OnInit {
+  form: FormGroup;
   article: Article = new Article();
   articles: Observable<Article[]> = new Observable();
   typesProduits = TypeArticle;
@@ -23,13 +25,20 @@ export class FormArticleComponent implements OnInit {
   @Output()
   articlesReady: EventEmitter<Observable<Article[]>> = new EventEmitter();
 
-  constructor(private articleService: ArticleService, private router: Router) {}
+  constructor(private articleService: ArticleService, private router: Router) {
+    this.form = new FormGroup({
+      cout: new FormControl('', Validators.min(0)),
+      volume: new FormControl('', Validators.min(0)),
+    });
+  }
 
   ngOnInit(): void {}
 
   save() {
     this.article.fournisseur = this.fourn;
     this.article.fournisseur.id = this.id;
+    this.article.cout = this.form.controls['cout'].value;
+    this.article.volume = this.form.controls['volume'].value;
     this.articleService.create(this.article).subscribe((ok) => {
       this.articles = this.articleService.getAll();
       this.articlesReady.emit(this.articles);
