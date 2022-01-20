@@ -24,8 +24,6 @@ export class Carte2Component implements OnInit {
     //this.boissonService.getAllbyBar(1).subscribe((result) => {
     // this.boisson = result;
     //  });
-    console.log('id du bar: ' + localStorage.getItem('idBar'));
-
     this.boissons = this.boissonService.getAllbyBar(); // ajouter localStorage.getItem('idBar')
   }
 
@@ -37,7 +35,6 @@ export class Carte2Component implements OnInit {
 
   displayBoissons() {
     this.boissons!.subscribe((ok) => {
-      console.log(ok);
     });
   }
 }

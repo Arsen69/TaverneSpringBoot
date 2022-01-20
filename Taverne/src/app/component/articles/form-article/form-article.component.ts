@@ -31,7 +31,6 @@ export class FormArticleComponent implements OnInit {
     this.article.fournisseur = this.fourn;
     this.article.fournisseur.id = this.id;
     this.articleService.create(this.article).subscribe((ok) => {
-      console.log(ok);
       this.articles = this.articleService.getAll();
       this.articlesReady.emit(this.articles);
     });

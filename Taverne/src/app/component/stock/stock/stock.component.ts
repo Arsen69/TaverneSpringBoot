@@ -28,20 +28,15 @@ export class StockComponent implements OnInit {
   }
 
   modifier() {
-    console.log(this.stock.idStock);
     this.visible = true;
   }
 
   save() {
     this.visible = false;
-    console.log(this.stock);
-    console.log('changement du ID ' + this.stock.idStock);
-    console.log('nouvau seuil ' + this.stock.seuilLimite);
     this.StockService.updatelimit(
       this.stock.idStock!,
       this.stock.seuilLimite!
     ).subscribe((result) => {
-      console.log(result);
       this.stockRecu.seuilLimite = result.seuilLimite;
       this.stock.seuilLimite = result.seuilLimite;
     });
