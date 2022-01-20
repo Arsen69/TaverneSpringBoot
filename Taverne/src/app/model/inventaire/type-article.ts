@@ -9,4 +9,5 @@ export enum TypeArticle {
   Duvel = 'Duvel',
   EauGazeuse = 'EauGazeuse',
   JusOrange = 'JusOrange',
+  Champagne = 'Champagne',
 }

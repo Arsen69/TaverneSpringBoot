@@ -37,8 +37,6 @@ export class FormArticleComponent implements OnInit {
   save() {
     this.article.fournisseur = this.fourn;
     this.article.fournisseur.id = this.id;
-    this.article.cout = this.form.controls['cout'].value;
-    this.article.volume = this.form.controls['volume'].value;
     this.articleService.create(this.article).subscribe((ok) => {
       this.articles = this.articleService.getAll();
       this.articlesReady.emit(this.articles);

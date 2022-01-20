@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 20 jan. 2022 à 15:13
+-- Généré le : jeu. 20 jan. 2022 à 18:09
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   `version` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FKsj3w2fli459s4lsl77th2vqrn` (`id_fournisseur`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `article`
@@ -77,7 +77,8 @@ INSERT INTO `article` (`id`, `cout`, `nom`, `type_produit`, `volume`, `id_fourni
 (23, 150, 'Duvel', 'Duvel', 30, 8, 0),
 (24, 135, 'Chimay', 'Chimay', 20, 8, 0),
 (25, 120, 'Chouffe', 'Chouffe', 20, 8, 0),
-(26, 150, 'Chimay Metro', 'Chimay', 20, 6, 0);
+(26, 150, 'Chimay Metro', 'Chimay', 20, 6, 0),
+(27, 1000, 'Champaaaaagne', 'Champagne', 1, 17, 0);
 
 -- --------------------------------------------------------
 
@@ -224,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `compte` (
   PRIMARY KEY (`id`),
   KEY `FKvsg1ufkvuf5e7rucp6slfmbt` (`id_carte`),
   KEY `FKe7bu4xkyti845gkm6ihktodwf` (`id_bar`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `compte`
@@ -240,7 +241,8 @@ INSERT INTO `compte` (`Type_Compte`, `id`, `login`, `mail`, `nom`, `password`, `
 ('Fournisseur', 8, 'Beer', 'C10_fournisseur@C10.com', 'DE-MARCELUS', '$2a$10$JU1h3HtnyjmbJXQk/5rHt.Ay4dIU74W0zV7.GsdHhFyyeYzp0uxkO', 'Guillaume', NULL, 'C10', NULL, NULL, b'1', 1, '1981-12-08'),
 ('Client', 10, 'toto', 'bobdylan@mail.com', 'Bob', '$2a$10$yc8k2OlZBVPX5.luJvL85ejBEEkLF/AZRpUOdkkSupKZBA81fc.E2', 'Dylan', NULL, NULL, 1, NULL, b'1', 1, '1981-12-08'),
 ('Client', 15, 'test', 'test@mail.com', 'test', '$2a$10$VdCfFLGByNk3sZobWiTt0eiMmgfHDIyWjTyCYNSvCmzpf/BRwHXK6', 'test', NULL, NULL, NULL, NULL, b'1', 0, '1993-06-09'),
-('Fournisseur', 16, 'Promocash', 'promo@cash.com', 'Bob', '$2a$10$gpilsu1N9SRq/Vu/H41ykuPmSpBbNuA.z94TgYsCP1EA8V9P9NEhi', 'Vance', NULL, 'Vance Refregiration', NULL, NULL, b'1', 0, '1989-06-21');
+('Fournisseur', 16, 'Promocash', 'promo@cash.com', 'Bob', '$2a$10$gpilsu1N9SRq/Vu/H41ykuPmSpBbNuA.z94TgYsCP1EA8V9P9NEhi', 'Vance', NULL, 'Vance Refregiration', NULL, NULL, b'1', 0, '1989-06-21'),
+('Fournisseur', 17, 'oliv', 'olivier@ajc.com', 'Gozlan', '$2a$10$MspLB2/yv3kuKu8jzRLYXecQQGG5i6KxVSfLFEO1E14K9vymEy9cK', 'Olivier', NULL, 'OliverCorp.', NULL, NULL, b'1', 0, '2000-04-01');
 
 -- --------------------------------------------------------
 

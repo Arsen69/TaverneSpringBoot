@@ -51,7 +51,7 @@ public class ArticleService {
 	}
 	
 	public void checkArticle(Article article) {
-		if (article.getCout()==0 || article.getTypeProduit()==null || article.getVolume()==0) {
+		if (article.getCout()<0 || article.getTypeProduit()==null || article.getVolume()<0) {
 			throw new ArticleException();
 		}
 	}
