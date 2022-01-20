@@ -8,6 +8,8 @@
       <th>Nom</th>
       <th>Prix HT</th>
       <th>prix HT HH</th>
+      <th>Description</th>
+      <th>URL de l'image associée</th>
       <th>Utilisations</th>
     </thead>
     <tbody>
@@ -29,6 +31,8 @@
         <td>{{ b.nom }}</td>
         <td>{{ b.prixHT }}</td>
         <td>{{ b.prixHThh }}</td>
+        <td>{{ b.description }}</td>
+        <td>{{ b.urlImage }}</td>
         <td *ngFor="let u of b.utilisations">
           {{ u.ingredient!.articles![0].typeProduit }} : {{ u.volume }} L
         </td>
