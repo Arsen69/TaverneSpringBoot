@@ -9,7 +9,8 @@
         <input formControlName="login" class="form-control" />
       </div>
 
-      <div class="form-label"
+      <div
+        class="form-label"
         *ngIf="form.controls['login'].dirty && form.controls['login'].invalid"
       >
         Login invalide
@@ -20,7 +21,11 @@
         <label class="form-label">Password :</label>
       </div>
       <div class="">
-        <input class="form-control" formControlName="password" />
+        <input
+          class="form-control"
+          formControlName="password"
+          type="password"
+        />
       </div>
     </div>
 
