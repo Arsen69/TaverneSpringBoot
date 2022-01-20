@@ -59,7 +59,6 @@ public class CompteService {
 	public void creationClient(Client compte) {
 		checkCompte(compte);
 		encode(compte);
-		compte.setPassword(passwordEncoder.encode(compte.getPassword()));
 		compteRepo.save(compte);
 	}
 	
