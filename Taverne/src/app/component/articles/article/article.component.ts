@@ -54,7 +54,6 @@ export class ArticleComponent implements OnInit {
     this.articleService
       .acheterArticle(this.article.id!, Number(localStorage.getItem('idBar')!))
       .subscribe((ok: any) => {
-        console.log(ok);
       });
       this.achat.emit(true);
   }
@@ -74,7 +73,6 @@ export class ArticleComponent implements OnInit {
 
   save() {
     this.articleService.update(this.article).subscribe((ok) => {
-      console.log(ok);
       this.articles = this.articleService.getAll();
       this.articlesReady.emit(this.articles);
     });
@@ -87,7 +85,6 @@ export class ArticleComponent implements OnInit {
 
   delete(id: number) {
     this.articleService.delete(id).subscribe((ok) => {
-      console.log(ok);
       this.articles = this.articleService.getAll();
       this.articlesReady.emit(this.articles);
     });

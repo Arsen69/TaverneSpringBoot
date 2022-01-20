@@ -121,8 +121,6 @@ export class FormInscriptionComponent implements OnInit {
   }
 
   testDate() {
-    console.log(this.DOB);
     let d = this.DOB.toString;
-    console.log(this.DOB.getMonth());
   }
 }

@@ -111,9 +111,7 @@ export class CarteComponent implements OnInit {
         }
       }
     }
-    console.log(localStorage.getItem('panier'));
     this.panier = restoredPanier;
-    console.log(this.panier);
   }
 
   objectToString(
