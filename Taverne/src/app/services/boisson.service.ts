@@ -4,6 +4,7 @@ import { Bar } from 'src/app/model/inventaire/bar';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from './Users/authentication.service';
+import { Utilisation } from '../model/inventaire/utilisation';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,8 @@ import { AuthenticationService } from './Users/authentication.service';
 export class BoissonService {
   private static URL: string = 'http://localhost:8080/Taverne/api/bar';
   constructor(private http: HttpClient, private auth: AuthenticationService) {}
+
+  private idBar = localStorage.getItem('idBar');
 
   public getAll(): Observable<Boisson[]> {
     return this.http.get<Boisson[]>(BoissonService.URL + '/boissons', {
@@ -20,7 +23,7 @@ export class BoissonService {
 
   public getAllbyBar(idBar: number): Observable<Boisson[]> {
     return this.http.get<Boisson[]>(
-      BoissonService.URL + '/' + localStorage.getItem('idBar') + '/boissons',
+      BoissonService.URL + '/' + this.idBar + '/boissons',
       {
         // headers: this.auth.headers, //authentification des clients pour voir les boissons
       }
@@ -29,18 +32,14 @@ export class BoissonService {
 
   public getById(id: number): Observable<Boisson> {
     return this.http.get<Boisson>(BoissonService.URL + '/boisson/' + id, {
-      // headers: this.auth.headers,
+      headers: this.auth.getHeaders(),
     });
   }
 
   public updateSoft(boisson: Boisson): Observable<Boisson> {
     const b = this.formatBoissonToJson(boisson);
     return this.http.put<Boisson>(
-      BoissonService.URL +
-        '/' +
-        localStorage.getItem('idBar') +
-        '/soft/' +
-        boisson.id,
+      BoissonService.URL + '/' + this.idBar + '/soft/' + boisson.id,
       b,
       {
         headers: this.auth.getHeaders(),
@@ -49,43 +48,41 @@ export class BoissonService {
   }
 
   public updateAlcool(boisson: Boisson): Observable<Boisson> {
+    const b = this.formatBoissonToJson(boisson);
     return this.http.put<Boisson>(
-      BoissonService.URL +
-        '/' +
-        localStorage.getItem('idBar') +
-        '/alcool/' +
-        boisson.id,
+      BoissonService.URL + '/' + this.idBar + '/alcool/' + boisson.id,
+      b,
       {
         headers: this.auth.getHeaders(),
       }
     );
   }
 
-  // public createSoft(boisson: Boisson): Observable<Boisson> {
-  //   const o = {
-  //     nom: boisson.nom,
-  //   };
-  //   return this.http.post<Boisson>(BoissonService.URL + id + soft {
-  //     //headers: this.auth.headers,
-  //   });
-  // }
+  public createSoft(boisson: Boisson): Observable<Boisson> {
+    const o = this.formatBoissonToJson(boisson);
+    return this.http.post<Boisson>(
+      BoissonService.URL + '/' + this.idBar + '/soft',
+      o,
+      {
+        headers: this.auth.getHeaders(),
+      }
+    );
+  }
 
-  // public createAlcool(boisson: Boisson): Observable<Boisson> {
-  //   const o = {
-  //     nom: boisson.nom,
-  //   };
-  //   return this.http.post<Boisson>(BoissonService.URL, o, {
-  //     //headers: this.auth.headers,
-  //   });
-  // }
+  public createAlcool(boisson: Boisson): Observable<Boisson> {
+    const o = this.formatBoissonToJson(boisson);
+    return this.http.post<Boisson>(
+      BoissonService.URL + '/' + this.idBar + '/alcool',
+      o,
+      {
+        headers: this.auth.getHeaders(),
+      }
+    );
+  }
 
   public delete(id: number, idBar: number): Observable<void> {
     return this.http.delete<void>(
-      BoissonService.URL +
-        '/' +
-        localStorage.getItem('idBar') +
-        '/boisson/' +
-        id,
+      BoissonService.URL + '/' + this.idBar + '/boisson/' + id,
       {
         headers: this.auth.getHeaders(),
       }
@@ -93,15 +90,33 @@ export class BoissonService {
   }
 
   formatBoissonToJson(boisson: Boisson): Object {
-    let id_Bar = Number(localStorage.getItem('idBar'));
+    let id_Bar = Number(this.idBar);
+    var utils: Object[] = [];
     const b = {
       nom: boisson.nom,
       bar: { idBar: id_Bar },
-      utilisations: boisson.utilisations,
+      prixHT: boisson.prixHT,
+      prixHThh: boisson.prixHThh,
     };
+    for (let u of boisson.utilisations!) {
+      if (!!u.id) {
+        utils.push({
+          id: u.id,
+          volume: u.volume,
+          ingredient: { idStock: u.ingredient!.idStock },
+        });
+      }
+      utils.push({
+        volume: u.volume,
+        ingredient: { idStock: u.ingredient!.idStock },
+      });
+      console.log(b);
+    }
+    Object.assign(b, { utilisations: utils });
     if (!!boisson.id) {
       Object.assign(b, { id: boisson.id });
     }
+    console.log(b);
     return b;
   }
 }

@@ -10,7 +10,11 @@
   </div>
   <div class="form-group" *ngFor="let u of utilisations">
     <label>Ingrédient:</label>
-    <select [(ngModel)]="u.ingredient" class="form-control">
+    <select
+      [(ngModel)]="u.ingredient"
+      class="form-control"
+      [compareWith]="byId"
+    >
       <option *ngFor="let s of stocks | async" [ngValue]="s">
         {{ s.articles![0].typeProduit }}
       </option>

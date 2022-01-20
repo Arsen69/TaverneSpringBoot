@@ -62,4 +62,11 @@ export class EditBoissonComponent implements OnInit {
     console.log(this.boisson.utilisations);
     this.boisson.utilisations = this.utilisations;
   }
+
+  byId(obj1: Stock, obj2: Stock): boolean {
+    if (!!obj2 && !!obj1) {
+      return obj1.idStock === obj2.idStock;
+    }
+    return false;
+  }
 }
