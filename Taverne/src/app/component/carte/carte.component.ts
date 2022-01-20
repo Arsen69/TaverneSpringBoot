@@ -17,6 +17,8 @@ export class CarteComponent implements OnInit {
 
   paiement: boolean = false;
 
+  compteCo: string = localStorage.getItem('role')!;
+
   panier: {
     id: number;
     nom: string;

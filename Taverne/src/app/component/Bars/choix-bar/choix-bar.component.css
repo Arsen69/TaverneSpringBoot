@@ -3,3 +3,12 @@ img {
   height: 300px;
   cursor: pointer;
 }
+
+.titre {
+  color: var(--scdColor);
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-weight: bold;
+}

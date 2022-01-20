@@ -1,6 +1,6 @@
-<!-- <div *ngIf="idBar == 0 || idBar == null" [ngClass]="{ invisible: paiement }">
+<div *ngIf="idBar == 0 || idBar == null" [ngClass]="{ invisible: paiement }">
   <app-choix-bar></app-choix-bar>
-</div> -->
+</div>
 <div class="page" *ngIf="idBar != 0">
   <button
     [ngClass]="{ invisible: paiement }"
@@ -22,6 +22,7 @@
     [ngClass]="{ invisible: paiement }"
     [panier]="panier"
     [total]="total"
+    *ngIf="compteCo != 'Admin' && compteCo != 'Fournisseur'"
     (commande)="addPanier($event)"
     (paiement)="passerAuPaiement()"
   ></app-panier>
