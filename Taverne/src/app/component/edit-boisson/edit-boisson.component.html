@@ -10,7 +10,11 @@
   </div>
   <div class="form-group" *ngFor="let u of utilisations">
     <label>Ingrédient:</label>
-    <select [(ngModel)]="u.ingredient" class="form-control">
+    <select
+      [(ngModel)]="u.ingredient"
+      class="form-control"
+      [compareWith]="byId"
+    >
       <option *ngFor="let s of stocks | async" [ngValue]="s">
         {{ s.articles![0].typeProduit }}
       </option>
@@ -21,10 +25,28 @@
   <button class="btn btn-outline-primary" (click)="ajouterUtil()">
     Ajouter un ingédient
   </button>
-  <div>
-    <button class="btn btn-outline-primary" (click)="saveSoft()">
+  <div class="form-group">
+    <label>Prix HT:</label>
+    <input [(ngModel)]="boisson.prixHT" class="form-control" type="number" />
+  </div>
+  <div class="form-group">
+    <label>Prix HT en HappyHour:</label>
+    <input [(ngModel)]="boisson.prixHThh" class="form-control" type="number" />
+  </div>
+
+  <div *ngIf="!!boisson.id; else create">
+    <button class="btn btn-outline-primary" (click)="save()">
       enregistrer
     </button>
     <a routerLink="/carte2" class="btn btn-link">annuler</a>
   </div>
+  <ng-template #create>
+    <button class="btn btn-outline-primary" (click)="saveAlcool()">
+      Enregistrer un Alcool
+    </button>
+    <button class="btn btn-outline-primary" (click)="saveSoft()">
+      Enregistrer un Soft
+    </button>
+    <a routerLink="/carte2" class="btn btn-link">annuler</a>
+  </ng-template>
 </div>

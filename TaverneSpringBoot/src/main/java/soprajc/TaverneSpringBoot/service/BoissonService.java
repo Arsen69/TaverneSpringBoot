@@ -38,13 +38,14 @@ public class BoissonService {
 		if (alcool.getNom() == null) {
 			throw new BoissonException();
 		}
+		Alcool a =BoissonRepo.save(alcool);
 		alcool.setTva(1.2);
 		Set<Utilisation> utils = alcool.getUtilisations();
 		utils.forEach( u -> {
 			u.setBoisson(alcool);
 			utilisationService.create(u);
 		});
-		return BoissonRepo.save(alcool);
+		return a;
 		
 	}
 	
@@ -52,13 +53,14 @@ public class BoissonService {
 		if (soft.getNom() == null) {
 			throw new BoissonException();
 		}
+		Soft s = BoissonRepo.save(soft);
 		soft.setTva(1.1);
 		Set<Utilisation> utils = soft.getUtilisations();
 		utils.forEach( u -> {
 			u.setBoisson(soft);
 			utilisationService.create(u);
 		});
-		return BoissonRepo.save(soft);
+		return s;
 	}
 	
 	//UPDATE
@@ -73,7 +75,12 @@ public class BoissonService {
 		Set<Utilisation> utils = alcool.getUtilisations();
 		utils.forEach( u -> {
 			u.setBoisson(alcool);
-			utilisationService.update(u);
+			if(u.getId()==null) {
+				utilisationService.create(u);
+			}else {
+				utilisationService.update(u);
+			}
+			
 		});
 		return BoissonRepo.save(alcool);
 	}
@@ -82,14 +89,18 @@ public class BoissonService {
 		if (soft.getId() == null) {
 			throw new BoissonException();
 		}
-		Set<Utilisation> utils = soft.getUtilisations();
-		utils.forEach( u -> {
-			u.setBoisson(soft);
-			utilisationService.update(u);
-		});
 		Soft softEnBase = getSoftById(soft.getId());
 		soft.setVersion(softEnBase.getVersion());
 		soft.setTva(softEnBase.getTva());
+		Set<Utilisation> utils = soft.getUtilisations();
+		utils.forEach( u -> {
+			u.setBoisson(soft);
+			if(u.getId()==null) {
+				utilisationService.create(u);
+			}else {
+				utilisationService.update(u);
+			}
+		});
 		return BoissonRepo.save(soft);
 	}
 

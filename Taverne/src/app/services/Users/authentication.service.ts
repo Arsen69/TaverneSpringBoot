@@ -10,7 +10,10 @@ export class AuthenticationService implements CanActivate {
   constructor(private http: HttpClient) {}
 
   canActivate(): boolean {
-    if (localStorage.getItem('token') != null) {
+    if (
+      localStorage.getItem('token') == null ||
+      localStorage.getItem('token') == ''
+    ) {
       return true;
     } else {
       return false;

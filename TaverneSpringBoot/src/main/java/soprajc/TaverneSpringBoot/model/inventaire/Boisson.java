@@ -15,7 +15,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
-
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import soprajc.TaverneSpringBoot.model.JsonViews;
@@ -23,6 +25,15 @@ import soprajc.TaverneSpringBoot.model.JsonViews;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "Type_Boisson")
+@JsonTypeInfo(
+		  use = JsonTypeInfo.Id.NAME, 
+		  include = JsonTypeInfo.As.PROPERTY, 
+		  property = "type",
+		  visible = true)
+		@JsonSubTypes({ 
+		  @Type(value = Alcool.class, name = "alcool"), 
+		  @Type(value = Soft.class, name = "soft") 
+		})
 public abstract class Boisson {
 
 	@Id

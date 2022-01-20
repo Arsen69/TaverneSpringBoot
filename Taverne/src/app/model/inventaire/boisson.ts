@@ -3,6 +3,7 @@ import { Utilisation } from './utilisation';
 
 export class Boisson {
   constructor(
+    protected _type?: string,
     protected _id?: number,
     protected _bar?: Bar,
     protected _nom?: string,
@@ -18,6 +19,10 @@ export class Boisson {
 
   set utilisations(value: Utilisation[] | undefined) {
     this._utilisations = value;
+  }
+
+  get type(): string | undefined {
+    return this._type;
   }
 
   get id(): number | undefined {
@@ -42,6 +47,10 @@ export class Boisson {
 
   get tva(): number | undefined {
     return this._tva;
+  }
+
+  set type(value: string | undefined) {
+    this._type = value;
   }
 
   set id(value: number | undefined) {

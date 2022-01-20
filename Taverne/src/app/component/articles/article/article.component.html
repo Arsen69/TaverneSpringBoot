@@ -41,8 +41,12 @@
       </option>
     </select>
   </td>
-  <td><input [(ngModel)]="article.volume" class="form-control" /></td>
-  <td><input [(ngModel)]="article.cout" class="form-control" /></td>
+  <td>
+    <input type="number" [(ngModel)]="article.volume" class="form-control" />
+  </td>
+  <td>
+    <input type="number" [(ngModel)]="article.cout" class="form-control" />
+  </td>
   <td>{{ article.fournisseur!.entreprise }}</td>
   <td>
     <button class="btn btn-success" (click)="save()">Enregistrer</button>

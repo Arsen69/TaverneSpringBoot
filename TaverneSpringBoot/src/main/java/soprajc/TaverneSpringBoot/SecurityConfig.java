@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeHttpRequests()
 				.antMatchers(HttpMethod.OPTIONS).permitAll()
 				.antMatchers(HttpMethod.GET,"/api/compte/bool/**").permitAll()
-				.antMatchers(HttpMethod.GET, "/api/bar/boissons/**").permitAll()
+				//.antMatchers(HttpMethod.GET, "/api/bar/boissons/**").permitAll()
 				.antMatchers(HttpMethod.GET,"/api/bar/**").permitAll()
 				.antMatchers(HttpMethod.POST,"/api/bar/**").permitAll()
 				.antMatchers(HttpMethod.PUT,"/api/bar/**").permitAll()
@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/index.html","/carte").permitAll()
 //				.antMatchers("/api/reglement").hasRole("Client")
 				.antMatchers("/api/bar/stocks/**").hasAnyRole("Admin","Employe")
-				.antMatchers("/api/**").authenticated()
+				//.antMatchers("/api/**").authenticated()
 //				.anyRequest().authenticated()
 				
 			.and()

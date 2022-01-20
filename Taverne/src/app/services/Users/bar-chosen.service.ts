@@ -10,7 +10,6 @@ export class BarChosenService implements CanActivate {
     if (tokenBar != null || tokenBar != 0 || tokenBar != '') {
       return true;
     } else {
-      this.router.navigate(['/choixBar']);
       return false;
     }
   }

@@ -21,16 +21,18 @@ export class Carte2Component implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.idBar = Number(localStorage.getItem('idBar'));
-    this.barService.getById(this.idBar).subscribe((result) => {
-      this.bar = result;
-    });
-    this.boissons = this.boissonService.getAllbyBar(this.idBar);
+    //this.boissonService.getAllbyBar(1).subscribe((result) => {
+    // this.boisson = result;
+    //  });
+    console.log('id du bar: ' + localStorage.getItem('idBar'));
+    console.log('id du bar: ' + Number(localStorage.getItem('idBar')));
+
+    this.boissons = this.boissonService.getAllbyBar(); // ajouter localStorage.getItem('idBar')
   }
 
   delete(id: number) {
-    this.boissonService.delete(id, this.idBar).subscribe((ok) => {
-      this.boissons = this.boissonService.getAllbyBar(this.idBar);
+    this.boissonService.delete(id).subscribe((ok) => {
+      this.boissons = this.boissonService.getAllbyBar();
     });
   }
 }

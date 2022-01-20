@@ -1,17 +1,11 @@
 <td>
   <div>
-    <div *ngIf="visible == false">{{ stock.idStock }}</div>
-    <div *ngIf="visible == true">
-      <input type="text" />
-    </div>
+    {{ stock.idStock }}
   </div>
 </td>
 <td>
-  <div *ngIf="visible == false">
+  <div>
     {{ stock.volumeTot }}
-  </div>
-  <div *ngIf="visible == true">
-    <input type="text" />
   </div>
 </td>
 <td>
@@ -19,24 +13,21 @@
     {{ stock.seuilLimite }}
   </div>
   <div *ngIf="visible == true">
-    <input type="text" />
+    <input
+      type="number"
+      [(ngModel)]="stock.seuilLimite"
+      [placeholder]="stock.seuilLimite"
+    />
   </div>
 </td>
 <td>
-  <div *ngIf="visible == false">
+  <div>
     {{ stock.articles![0].nom }}
-  </div>
-  <div *ngIf="visible == true">
-    <input type="text" />
   </div>
 </td>
 <td>
   <div class="form-group" *ngIf="visible == true">
-    <button
-      *ngIf="role == 'Admin'"
-      class="btn btn-primary"
-      (click)="validation()"
-    >
+    <button *ngIf="role == 'Admin'" class="btn btn-primary" (click)="save()">
       valider
     </button>
   </div>
@@ -44,12 +35,8 @@
 
 <td>
   <div class="form-group" *ngIf="visible == true">
-    <button
-      *ngIf="role == 'Admin'"
-      class="btn btn-primary"
-      (click)="validation()"
-    >
-      supprimer
+    <button *ngIf="role == 'Admin'" class="btn btn-primary" (click)="cancel()">
+      Annuler
     </button>
   </div>
 </td>

@@ -27,6 +27,12 @@ export class CarteComponent implements OnInit {
   idBar: number = Number(localStorage.getItem('idBar'));
 
   ngOnInit() {
+    if (
+      localStorage.getItem('idBar') == null ||
+      localStorage.getItem('idBar') == '0'
+    ) {
+      this.router.navigate(['/choixBar']);
+    }
     this.initCarte();
     setTimeout(() => {
       if (localStorage.getItem('panier') != null) {
@@ -36,16 +42,13 @@ export class CarteComponent implements OnInit {
         }
       }
     }, 500);
-
   }
 
   initCarte() {
     if (Number(localStorage.getItem('idBar')) != 0) {
-      this.boissonService
-        .getAllbyBar(Number(localStorage.getItem('idBar')))
-        .subscribe((result) => {
-          this.listeBoisson = result;
-        });
+      this.boissonService.getAllbyBar().subscribe((result) => {
+        this.listeBoisson = result;
+      });
     }
   }
 
