@@ -68,7 +68,7 @@ export class PanierComponent implements OnInit {
   }
 
   passerAuPaiement() {
-    if (localStorage.getItem('login') == '') {
+    if (localStorage.getItem('login') == '' || localStorage.getItem('login') == null) {
       this.swap();
       this.redirect = true;
       setTimeout(() => {

@@ -32,13 +32,11 @@ export class CatalogueGlobalComponent implements OnInit {
 
     this.compteService.getIdByLoginConnected().subscribe((result) => {
       this.id = result;
-      console.log(this.id);
     });
   }
 
   getNewListe(articles: Observable<Article[]>): Observable<Article[]> {
     this.articles = articles;
-    console.log(this.articles);
     return this.articles;
   }
 

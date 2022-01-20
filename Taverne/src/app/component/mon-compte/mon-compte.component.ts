@@ -30,9 +30,7 @@ export class MonCompteComponent implements OnInit {
       this.idCompte = result;
       this.compteService.getById(this.idCompte).subscribe((result2) => {
         this.compte = result2;
-        console.log(this.compte);
         this.compteAEnvoye = JSON.parse(JSON.stringify(this.compte));
-        console.log(this.compteAEnvoye);
       });
     });
   }

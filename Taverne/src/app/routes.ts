@@ -81,4 +81,5 @@ export const routes: Routes = [
   },
   { path: 'choixBar', component: ChoixBarComponent },
   { path: 'achatDone', component: AchatEffectueComponent },
+  { path: '**', redirectTo: 'home'}
 ];

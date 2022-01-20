@@ -14,10 +14,8 @@ export class StockListComponent implements OnInit {
   /*  stockRecus: Observable<Stock> = new Stock(); */
 
   ngOnInit(): void {
-    console.log(localStorage.getItem('idBar'));
     this.StockService.getAll().subscribe((result) => {
       this.stock = result;
-      console.log(result);
     });
   }
 }

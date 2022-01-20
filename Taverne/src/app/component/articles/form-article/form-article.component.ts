@@ -40,7 +40,6 @@ export class FormArticleComponent implements OnInit {
     this.article.cout = this.form.controls['cout'].value;
     this.article.volume = this.form.controls['volume'].value;
     this.articleService.create(this.article).subscribe((ok) => {
-      console.log(ok);
       this.articles = this.articleService.getAll();
       this.articlesReady.emit(this.articles);
     });
