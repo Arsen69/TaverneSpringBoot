@@ -13,8 +13,6 @@ export class BoissonService {
   private static URL: string = 'http://localhost:8080/Taverne/api/bar';
   constructor(private http: HttpClient, private auth: AuthenticationService) {}
 
-  private idBar = localStorage.getItem('idBar');
-
   public getAll(): Observable<Boisson[]> {
     return this.http.get<Boisson[]>(BoissonService.URL + '/boissons', {
       // headers: this.auth.headers, //authentification des clients pour voir les boissons
@@ -23,7 +21,7 @@ export class BoissonService {
 
   public getAllbyBar(): Observable<Boisson[]> {
     return this.http.get<Boisson[]>(
-      BoissonService.URL + '/' + this.idBar + '/boissons',
+      BoissonService.URL + '/' + localStorage.getItem('idBar') + '/boissons',
       {
         // headers: this.auth.headers, //authentification des clients pour voir les boissons
       }
@@ -39,7 +37,11 @@ export class BoissonService {
   public updateSoft(boisson: Boisson): Observable<Boisson> {
     const b = this.formatBoissonToJson(boisson);
     return this.http.put<Boisson>(
-      BoissonService.URL + '/' + this.idBar + '/soft/' + boisson.id,
+      BoissonService.URL +
+        '/' +
+        localStorage.getItem('idBar') +
+        '/soft/' +
+        boisson.id,
       b,
       {
         headers: this.auth.getHeaders(),
@@ -50,7 +52,11 @@ export class BoissonService {
   public updateAlcool(boisson: Boisson): Observable<Boisson> {
     const b = this.formatBoissonToJson(boisson);
     return this.http.put<Boisson>(
-      BoissonService.URL + '/' + this.idBar + '/alcool/' + boisson.id,
+      BoissonService.URL +
+        '/' +
+        localStorage.getItem('idBar') +
+        '/alcool/' +
+        boisson.id,
       b,
       {
         headers: this.auth.getHeaders(),
@@ -61,7 +67,7 @@ export class BoissonService {
   public createSoft(boisson: Boisson): Observable<Boisson> {
     const o = this.formatBoissonToJson(boisson);
     return this.http.post<Boisson>(
-      BoissonService.URL + '/' + this.idBar + '/soft',
+      BoissonService.URL + '/' + localStorage.getItem('idBar') + '/soft',
       o,
       {
         headers: this.auth.getHeaders(),
@@ -72,7 +78,7 @@ export class BoissonService {
   public createAlcool(boisson: Boisson): Observable<Boisson> {
     const o = this.formatBoissonToJson(boisson);
     return this.http.post<Boisson>(
-      BoissonService.URL + '/' + this.idBar + '/alcool',
+      BoissonService.URL + '/' + localStorage.getItem('idBar') + '/alcool',
       o,
       {
         headers: this.auth.getHeaders(),
@@ -82,7 +88,11 @@ export class BoissonService {
 
   public delete(id: number): Observable<void> {
     return this.http.delete<void>(
-      BoissonService.URL + '/' + this.idBar + '/boisson/' + id,
+      BoissonService.URL +
+        '/' +
+        localStorage.getItem('idBar') +
+        '/boisson/' +
+        id,
       {
         headers: this.auth.getHeaders(),
       }
@@ -90,7 +100,7 @@ export class BoissonService {
   }
 
   formatBoissonToJson(boisson: Boisson): Object {
-    let id_Bar = Number(this.idBar);
+    let id_Bar = Number(localStorage.getItem('idBar'));
     var utils: Object[] = [];
     const b = {
       type: boisson.type,
