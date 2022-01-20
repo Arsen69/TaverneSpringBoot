@@ -98,6 +98,8 @@ export class BoissonService {
       bar: { idBar: id_Bar },
       prixHT: boisson.prixHT,
       prixHThh: boisson.prixHThh,
+      description: boisson.description,
+      urlImage: boisson.urlImage,
     };
     for (let u of boisson.utilisations!) {
       console.log(u.id);

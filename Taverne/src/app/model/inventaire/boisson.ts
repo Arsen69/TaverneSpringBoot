@@ -10,7 +10,9 @@ export class Boisson {
     protected _prixHT?: number,
     protected _prixHThh?: number,
     protected _tva?: number,
-    protected _utilisations?: Utilisation[]
+    protected _utilisations?: Utilisation[],
+    protected _description?: string,
+    protected _urlImage?: string
   ) {}
 
   get utilisations(): Utilisation[] | undefined {
@@ -75,5 +77,36 @@ export class Boisson {
 
   set tva(value: number | undefined) {
     this._tva = value;
+  }
+  /**
+   * Getter $description
+   * @return {string}
+   */
+  public get description(): string | undefined {
+    return this._description;
+  }
+
+  /**
+   * Setter $description
+   * @param {string} value
+   */
+  public set description(value: string | undefined) {
+    this._description = value;
+  }
+
+  /**
+   * Getter $urlImage
+   * @return {string}
+   */
+  public get urlImage(): string | undefined {
+    return this._urlImage;
+  }
+
+  /**
+   * Setter $urlImage
+   * @param {string} value
+   */
+  public set urlImage(value: string | undefined) {
+    this._urlImage = value;
   }
 }

@@ -31,6 +31,11 @@ public class Bar {
 	@Column(name = "url_image", nullable = true)
 	@JsonView(JsonViews.Common.class)
 	private String urlImage;
+	
+	@Column(name = "description", nullable = true)
+	@JsonView(JsonViews.Common.class)
+	private String description;
+	
 
 	@OneToMany(mappedBy = "bar")
 	Set<Stock> stocks;

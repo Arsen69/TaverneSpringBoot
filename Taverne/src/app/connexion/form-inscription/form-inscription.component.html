@@ -1,8 +1,8 @@
 <div class="container row">
   <div class="container shadow col">
     <div *ngIf="role == 'Admin'" class="row m-2">
-      <label class="form-label col-sm-3">Type de compte à créer :</label>
-      <div class="col-sm-3">
+      <label class="form-label col-sm-4">Type de compte à créer :</label>
+      <div class="col-sm-4">
         <select class="form-control" [(ngModel)]="typeCompte">
           <option value="Admin">Administrateur</option>
           <option value="Fournisseur">Fournisseur</option>
@@ -15,12 +15,12 @@
 
     <form (ngSubmit)="validate()" [formGroup]="form">
       <div class="row m-2">
-        <label class="form-label col-sm-3">Login</label>
-        <div class="col-sm-3">
+        <label class="form-label col-sm-4">Login</label>
+        <div class="col-sm-4">
           <input type="text" class="form-control" formControlName="login" />
         </div>
         <div
-          class="col-sm-3 p-2"
+          class="col-sm-4 p-2"
           *ngIf="form.controls['login'].dirty && form.controls['login'].invalid"
         >
           Ce login est déjà utilisé
@@ -29,25 +29,29 @@
 
       <div fromGroupName="group1">
         <div class="row m-2">
-          <label class="form-label col-sm-3">Mot de passe :</label>
-          <div class="col-sm-3">
+          <label class="form-label col-sm-4">Mot de passe :</label>
+          <div class="col-sm-4">
             <input
               [formControl]="passwordCtrl"
-              type="text"
+              type="password"
               class="form-control"
             />
           </div>
         </div>
         <div class="row m-2">
-          <label class="form-label col-sm-3">Confirmer le mot de passe :</label>
-          <div class="col-sm-3">
-            <input [formControl]="confirmCtrl" class="form-control" />
+          <label class="form-label col-sm-4">Confirmer le mot de passe :</label>
+          <div class="col-sm-4">
+            <input
+              type="password"
+              [formControl]="confirmCtrl"
+              class="form-control"
+            />
           </div>
         </div>
         <div class="row m-2">
-          <div class="col-sm-3"></div>
+          <div class="col-sm-4"></div>
           <div
-            class="col-sm-3"
+            class="col-sm-4"
             *ngIf="
               form.controls['passwordGroup'].dirty &&
               form.controls['passwordGroup'].invalid
@@ -59,8 +63,8 @@
       </div>
 
       <div class="row m-2">
-        <label class="form-label col-sm-3">Email</label>
-        <div class="col-sm-3">
+        <label class="form-label col-sm-4">Email</label>
+        <div class="col-sm-4">
           <input
             type="email"
             class="form-control"
@@ -72,21 +76,21 @@
           </small>
         </div>
         <div
-          class="col-sm-3 p-2"
+          class="col-sm-4 p-2"
           *ngIf="form.controls['mail'].dirty && form.controls['mail'].invalid"
         >
           Email invalide
         </div>
       </div>
       <div class="row m-2">
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <label class="form-label">Date de naissance</label><br />
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-4">
           <input type="date" class="form-control" formControlName="birthday" />
         </div>
         <div
-          class="col-sm-3 p-2"
+          class="col-sm-4 p-2"
           *ngIf="
             form.controls['birthday'].dirty && form.controls['birthday'].invalid
           "
@@ -99,14 +103,14 @@
         </small>
       </div>
       <div class="row m-2">
-        <label class="form-label col-sm-3">Nom</label>
-        <div class="col-sm-3">
+        <label class="form-label col-sm-4">Nom</label>
+        <div class="col-sm-4">
           <input type="text" class="form-control" formControlName="nom" />
         </div>
       </div>
       <div class="row m-2">
-        <label class="form-label col-sm-3">Prénom</label>
-        <div class="col-sm-3">
+        <label class="form-label col-sm-4">Prénom</label>
+        <div class="col-sm-4">
           <input type="text" class="form-control" formControlName="prenom" />
         </div>
       </div>
@@ -114,8 +118,8 @@
         *ngIf="typeCompte == 'Fournisseur' || typeCompte == 'Intervenant'"
         class="row m-2"
       >
-        <label class="form-label col-sm-3">Entreprise</label>
-        <div class="col-sm-3">
+        <label class="form-label col-sm-4">Entreprise</label>
+        <div class="col-sm-4">
           <input
             type="text"
             class="form-control"
@@ -124,15 +128,15 @@
         </div>
       </div>
       <div *ngIf="typeCompte == 'Intervenant'" class="row m-2">
-        <label class="form-label col-sm-3">Nom d'artiste</label>
-        <div class="col-sm-3">
+        <label class="form-label col-sm-4">Nom d'artiste</label>
+        <div class="col-sm-4">
           <input type="text" class="form-control" formControlName="artiste" />
         </div>
       </div>
 
       <div *ngIf="typeCompte == 'Employe'" class="row m-2">
-        <label class="form-label col-sm-3">Bar d'affectation</label>
-        <div class="col-sm-3">
+        <label class="form-label col-sm-4">Bar d'affectation</label>
+        <div class="col-sm-4">
           <select formControlName="bar" class="form-control">
             <option *ngFor="let b of bars | async" [ngValue]="b">
               {{ b.nom }}
