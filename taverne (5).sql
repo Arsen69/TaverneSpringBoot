@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 20 jan. 2022 à 18:09
+-- Généré le : jeu. 20 jan. 2022 à 18:14
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -175,7 +175,7 @@ INSERT INTO `boisson` (`Type_Boisson`, `id`, `nom`, `prixHT`, `prixHThh`, `tva`,
 ('Soft', 18, 'Eau Pétillante', 2, 2, 1.1, 2, 1, 'assets\\images\\eau-petillante.png', 'Toujours avoir de quoi se désaltérer est important !'),
 ('Alcool', 19, 'Demi de Bush', 4, 2, 1.2, 2, 1, 'assets\\images\\bush.png', 'Le Bush saura vous susurrer à l\'oreille que c\'est la seule bière qu\'il vous faut !'),
 ('Alcool', 20, 'Demi de Duvel', 4, 2, 1.2, 1, 1, 'assets\\images\\duvel.png', 'La Duvel est ancestrale ! Respectons la !'),
-('Alcool', 21, 'Rhum-Cola', 6, 5, 1.2, 2, 1, 'assets\\images\\rum-and-coke.png', 'Un bon Rhum et du Cola frémissant !'),
+('Alcool', 21, 'Cuba Libre', 6, 5, 1.2, 2, 1, 'assets\\images\\rum-and-coke.png', 'Un bon Rhum et du Cola frémissant !'),
 ('Soft', 22, 'Cola à l\'ancienne', 2, 2, 1.1, 1, 1, 'assets\\images\\coca.png', 'Un cola à l\'ancienne comme on les aime ! Il a une odeur d\'antan'),
 ('Alcool', 23, 'Vodka Kamikaze', 5, 4, 1.2, 2, 1, 'assets\\images\\kisspng-cocktail-blue-hawaii-distilled-beverage-vodka-kami-cocktail.png', 'Une boisson explosive qui vous fera de l\'effet !!');
 
