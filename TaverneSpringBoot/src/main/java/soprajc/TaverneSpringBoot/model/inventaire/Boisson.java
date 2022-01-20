@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,6 +50,12 @@ public abstract class Boisson {
 	protected double prixHThh;
 	@JsonView({ JsonViews.Common.class, JsonViews.BoissonByBar.class })
 	protected double tva;
+	@JsonView(JsonViews.Common.class)
+	@Column(name = "url_image", nullable = true)
+	protected String urlImage;
+	@JsonView(JsonViews.Common.class)
+	@Column(name = "description", nullable = true)
+	protected String description;
 
 	@JsonView(JsonViews.Common.class)
 	@ManyToOne

@@ -24,7 +24,7 @@ import soprajc.TaverneSpringBoot.repository.UtilisationRepository;
 public class BoissonService {
 
 	@Autowired
-	private BoissonRepository BoissonRepo;
+	private BoissonRepository boissonRepo;
 	@Autowired
 	private AlcoolRepository alcoolRepo;
 	@Autowired
@@ -33,12 +33,14 @@ public class BoissonService {
 	private BarService barService;
 	@Autowired
 	private UtilisationService utilisationService;
+	@Autowired
+	private AchatService achatService;
 	
 	public Alcool create(Alcool alcool) {
 		if (alcool.getNom() == null) {
 			throw new BoissonException();
 		}
-		Alcool a =BoissonRepo.save(alcool);
+		Alcool a =boissonRepo.save(alcool);
 		alcool.setTva(1.2);
 		Set<Utilisation> utils = alcool.getUtilisations();
 		utils.forEach( u -> {
@@ -53,7 +55,7 @@ public class BoissonService {
 		if (soft.getNom() == null) {
 			throw new BoissonException();
 		}
-		Soft s = BoissonRepo.save(soft);
+		Soft s = boissonRepo.save(soft);
 		soft.setTva(1.1);
 		Set<Utilisation> utils = soft.getUtilisations();
 		utils.forEach( u -> {
@@ -82,7 +84,7 @@ public class BoissonService {
 			}
 			
 		});
-		return BoissonRepo.save(alcool);
+		return boissonRepo.save(alcool);
 	}
 	
 	public Soft update(Soft soft) {
@@ -101,7 +103,7 @@ public class BoissonService {
 				utilisationService.update(u);
 			}
 		});
-		return BoissonRepo.save(soft);
+		return boissonRepo.save(soft);
 	}
 
 	public void suppression(Boisson boisson) {
@@ -112,8 +114,9 @@ public class BoissonService {
 			Utilisation utilEnBase= utilisationService.getById(u.getId());
 			utilisationService.delete(utilEnBase);
 		});
-		Boisson BoissonEnBase = BoissonRepo.findById(boisson.getId()).orElseThrow(BoissonException::new);
-		BoissonRepo.delete(BoissonEnBase);
+		Boisson boissonEnBase = boissonRepo.findById(boisson.getId()).orElseThrow(BoissonException::new);
+		achatService.deleteAllByBoisson(boissonEnBase);
+		boissonRepo.delete(boissonEnBase);
 		
 	}
 	
@@ -129,18 +132,18 @@ public class BoissonService {
 //		catch(Exception e) {
 //			System.out.println("L'id du bar saisi est inexistant");
 //		}
-		return BoissonRepo.findAllByBar(barService.getById(id));
+		return boissonRepo.findAllByBar(barService.getById(id));
 	}
 	
 	
 	
 	public List<Boisson> getAll() {
-		return BoissonRepo.findAll();
+		return boissonRepo.findAll();
 	}
 	
 	public Boisson getById(Long id) {
 		Check.checkLong(id);
-		return BoissonRepo.findById(id).orElseThrow(BoissonException::new);
+		return boissonRepo.findById(id).orElseThrow(BoissonException::new);
 	}
 	
 	public Alcool getAlcoolById(Long id) {

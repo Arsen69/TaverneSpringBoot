@@ -103,6 +103,7 @@ export class FormInscriptionComponent implements OnInit {
       prenom: this.form.controls['prenom'].value,
       mail: this.form.controls['mail'].value,
       bar: this.form.controls['bar'].value,
+      birthday: this.form.controls['birthday'].value,
     };
     if (this.typeCompte == 'Intervenant' || this.typeCompte == 'Fournisseur') {
       Object.assign(user, {
