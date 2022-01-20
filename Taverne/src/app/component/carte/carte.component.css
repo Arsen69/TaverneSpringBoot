@@ -9,7 +9,7 @@
 
 .titre {
   font-size: 60px;
-  font-family: monospace;
+  color: var(--scdColor);
   font-weight: bold;
   text-align: justify;
   text-justify: inter-word;
