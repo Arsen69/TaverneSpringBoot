@@ -4,7 +4,7 @@ export class Utilisation {
   constructor(
     private _id?: number,
     private _volume?: number,
-    private _ingerdient?: Stock,
+    private _ingredient?: Stock,
     private _boisson?: Boisson
   ) {}
   public get id(): number | undefined {
@@ -21,12 +21,12 @@ export class Utilisation {
   public set volume(value: number | undefined) {
     this._volume = value;
   }
-  public get ingerdient(): Stock | undefined {
-    return this._ingerdient;
+  public get ingredient(): Stock | undefined {
+    return this._ingredient;
   }
 
-  public set ingerdient(value: Stock | undefined) {
-    this._ingerdient = value;
+  public set ingredient(value: Stock | undefined) {
+    this._ingredient = value;
   }
   public get boisson(): Boisson | undefined {
     return this._boisson;

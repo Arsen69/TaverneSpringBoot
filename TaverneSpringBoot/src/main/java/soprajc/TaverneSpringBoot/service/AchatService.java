@@ -32,7 +32,6 @@ public class AchatService {
 	}
 
 	public Achat achatBoisson(Client client, Boisson boisson) {
-		System.out.println(boisson);
 		if (boisson.getUtilisations() == null) {
 			throw new BoissonException();
 		}

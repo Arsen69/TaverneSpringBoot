@@ -127,6 +127,14 @@ public class Stock {
 		return Objects.equals(idStock, other.idStock);
 	}
 
+//	@Override
+//	public String toString() {
+//		return "Stock [idStock=" + idStock + ", volumeTot=" + volumeTot + ", seuilLimite=" + seuilLimite + ", articles="
+//				+ articles + ", bar=" + bar + ", version=" + version + "]";
+//	}
+//	
+//	
+
 
 
 }

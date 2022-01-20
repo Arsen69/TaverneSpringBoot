@@ -8,7 +8,7 @@ import { AuthenticationService } from '../Users/authentication.service';
   providedIn: 'root',
 })
 export class CompteService {
-  private static URL: string = 'http://localhost:8080/taverne/comptes';
+  private static URL: string = 'http://localhost:8080/Taverne/api/compte';
   constructor(private http: HttpClient, private auth: AuthenticationService) {}
 
   public getAll(): Observable<Compte[]> {

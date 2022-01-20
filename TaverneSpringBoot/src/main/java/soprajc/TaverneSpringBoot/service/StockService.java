@@ -81,14 +81,17 @@ public class StockService {
 		stock.setVolumeTot(newVolume);
 		if(stock.getSeuilLimite()!=null) {
 			if (newVolume <= stock.getSeuilLimite()) {
+				System.out.println(stock);
+				System.out.println(stock.getArticles());
+				System.out.println(stock.getArticles().toArray());
 				SimpleMailMessage message = new SimpleMailMessage();
 				message.setFrom("appli.taverne1@gmail.com");
 				message.setTo("appli.taverne1@gmail.com");
 				message.setSubject("Volume du Stock sous le seuil limite");
 				message.setText(
-						"Le volume du stock '" + ((Article[]) stock.getArticles().toArray())[0].getTypeProduit().toString()
+						"Le volume du stock '" +  ((Article) (stock.getArticles().toArray())[0]).getTypeProduit().toString()
 								+ "' (" + stock.getVolumeTot() + ") dans le bar " + stock.getBar().getNom()
-								+ "est sous le seuil d'alerte : " + stock.getSeuilLimite().toString());
+								+ " est sous le seuil d'alerte : " + stock.getSeuilLimite().toString());
 				emailSender.send(message);
 		}
 		

@@ -16,18 +16,4 @@ export class ChoixBarComponent implements OnInit {
   ngOnInit(): void {
     this.bars = this.barService.getAll();
   }
-
-  tokkenBar1() {
-    localStorage.removeItem('idBar');
-    localStorage.setItem('idBar', '1');
-    window.location.reload();
-    console.log(localStorage.getItem('idBar'));
-  }
-
-  tokkenBar2() {
-    localStorage.removeItem('idBar');
-    localStorage.setItem('idBar', '2');
-    window.location.reload();
-    console.log(localStorage.getItem('idBar'));
-  }
 }

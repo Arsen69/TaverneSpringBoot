@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Boisson } from 'src/app/model/inventaire/boisson';
 import { Bar } from 'src/app/model/inventaire/bar';
+import { Utilisation } from 'src/app/model/inventaire/utilisation';
+import { Stock } from 'src/app/model/inventaire/stock';
+import { Observable } from 'rxjs';
+import { StockService } from 'src/app/services/stock/stock-service.service';
 
 @Component({
   selector: 'app-edit-boisson',
@@ -11,13 +15,14 @@ import { Bar } from 'src/app/model/inventaire/bar';
 })
 export class EditBoissonComponent implements OnInit {
   boisson: Boisson = new Boisson();
-  bar: Bar = new Bar();
-  id: number = 0;
-  idBar: number = 0;
+  utilisations: Utilisation[] = [];
+  stocks: Observable<Stock[]> | null = null;
+  util: Utilisation = new Utilisation();
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private boissonService: BoissonService,
+    private stockService: StockService,
     private router: Router
   ) {}
 
@@ -26,9 +31,13 @@ export class EditBoissonComponent implements OnInit {
       if (!!params['id']) {
         this.boissonService.getById(params['id']).subscribe((result) => {
           this.boisson = result;
+          console.log(this.boisson);
+          this.utilisations = this.boisson.utilisations!;
+          console.log(this.utilisations);
         });
       }
     });
+    this.stocks = this.stockService.getAll();
   }
 
   save() {
@@ -66,6 +75,21 @@ export class EditBoissonComponent implements OnInit {
       //   // this.boissonService.createSoft(this.boisson).subscribe((ok) => {
       //   //   this.router.navigate(['/carte2']);
     });
+  }
+
+  ajouterUtil() {
+    console.log(this.utilisations);
+    this.utilisations.push(new Utilisation());
+    console.log(this.utilisations);
+    console.log(this.boisson.utilisations);
+    this.boisson.utilisations = this.utilisations;
+  }
+
+  byId(obj1: Stock, obj2: Stock): boolean {
+    if (!!obj2 && !!obj1) {
+      return obj1.idStock === obj2.idStock;
+    }
+    return false;
   }
 
   saveAlcool() {

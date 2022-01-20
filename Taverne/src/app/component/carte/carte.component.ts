@@ -27,6 +27,12 @@ export class CarteComponent implements OnInit {
   idBar: number = Number(localStorage.getItem('idBar'));
 
   ngOnInit() {
+    if (
+      localStorage.getItem('idBar') == null ||
+      localStorage.getItem('idBar') == '0'
+    ) {
+      this.router.navigate(['/choixBar']);
+    }
     this.initCarte();
     setTimeout(() => {
       if (localStorage.getItem('panier') != null) {

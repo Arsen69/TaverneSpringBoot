@@ -93,6 +93,9 @@ public class BoissonRestController {
 	@JsonView(JsonViews.Common.class)
 	@PutMapping("/{idBar}/soft/{id}")
 	public Soft replace(@Valid @RequestBody Soft soft, BindingResult br, @PathVariable("id") Long id,@PathVariable("idBar") Long idBar) {
+		if(soft.getId()==null) {
+			soft.setId(id);
+		}
 		boissonService.update(soft);
 		return soft;
 	}

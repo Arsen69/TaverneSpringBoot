@@ -1,26 +1,42 @@
-<p>carte2 works!</p>
+<div class="container">
+  <h2>Liste des boissons accessibles dans {{ bar.nom }}</h2>
+  <table class="table">
+    <thead>
+      <th>Supprimer</th>
+      <th>Editer</th>
+      <th>Id</th>
+      <th>Nom</th>
+      <th>Prix HT</th>
+      <th>prix HT HH</th>
+      <th>Utilisations</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let b of boissons | async">
+        <td>
+          <button class="btn btn-outline-danger" (click)="delete(b.id!)">
+            supprimer
+          </button>
+        </td>
+        <td>
+          <a
+            [routerLink]="['/boisson', 'edit', b.id]"
+            routerLinkActive="active"
+            class="btn btn-outline-primary"
+            >editer</a
+          >
+        </td>
+        <td>{{ b.id }}</td>
+        <td>{{ b.nom }}</td>
+        <td>{{ b.prixHT }}</td>
+        <td>{{ b.prixHThh }}</td>
+        <td *ngFor="let u of b.utilisations">
+          {{ u.ingredient!.articles![0].typeProduit }} : {{ u.volume }} L
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-<!-- <div *ngFor="let b of boisson">{{ b.nom }}</div> -->
-
-<table class="table">
-  <tr *ngFor="let b of boisson | async">
-    <td>{{ b.id }}</td>
-    <td>{{ b.nom }}</td>
-    <td>
-      <a
-        [routerLink]="['/boisson', 'edit', b.id]"
-        routerLinkActive="active"
-        class="btn btn-outline-primary"
-        >editer</a
-      >
-    </td>
-    <td>
-      <button class="btn btn-outline-danger" (click)="delete(b.id!)">
-        supprimer
-      </button>
-    </td>
-  </tr>
-</table>
-<a routerLink="/boisson/edit" routerLinkActive="active" class="btn btn-link"
-  >ajout boisson</a
->
+  <a routerLink="/boisson/edit" routerLinkActive="active" class="btn btn-link"
+    >ajout boisson</a
+  >
+</div>

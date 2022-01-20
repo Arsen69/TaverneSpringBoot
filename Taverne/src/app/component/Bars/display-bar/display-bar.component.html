@@ -1,6 +1,9 @@
-<div class="col">
-  <div class="container shadow p-3 rounded">
-    <h1>{{ bar.nom }}</h1>
+<div
+  onmouseover="this.style.cursor='pointer'"
+  class="container shadow p-3 rounded col"
+>
+  <h1>{{ bar.nom }}</h1>
+  <div class="unBar">
     <img [src]="bar.urlImage" alt="Bar" />
   </div>
 </div>

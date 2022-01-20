@@ -1,12 +1,25 @@
+import { Bar } from './bar';
+import { Utilisation } from './utilisation';
+
 export class Boisson {
   constructor(
     protected _type?: string,
     protected _id?: number,
+    protected _bar?: Bar,
     protected _nom?: string,
     protected _prixHT?: number,
     protected _prixHThh?: number,
-    protected _tva?: number
+    protected _tva?: number,
+    protected _utilisations?: Utilisation[]
   ) {}
+
+  get utilisations(): Utilisation[] | undefined {
+    return this._utilisations;
+  }
+
+  set utilisations(value: Utilisation[] | undefined) {
+    this._utilisations = value;
+  }
 
   get type(): string | undefined {
     return this._type;
@@ -14,6 +27,10 @@ export class Boisson {
 
   get id(): number | undefined {
     return this._id;
+  }
+
+  get bar(): Bar | undefined {
+    return this._bar;
   }
 
   get nom(): string | undefined {
@@ -38,6 +55,10 @@ export class Boisson {
 
   set id(value: number | undefined) {
     this._id = value;
+  }
+
+  set bar(value: Bar | undefined) {
+    this._bar = value;
   }
 
   set nom(value: string | undefined) {

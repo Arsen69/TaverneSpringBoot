@@ -9,8 +9,10 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime, map, Observable, of } from 'rxjs';
-import { LoginUnique } from 'src/app/CustomValidators/login-unique';
+import { DobValide } from 'src/app/CustomValidators/dob-valide';
 import { Compte } from 'src/app/model/comptes/compte';
+import { Bar } from 'src/app/model/inventaire/bar';
+import { BarService } from 'src/app/services/bar.service';
 import { CheckDataService } from 'src/app/services/Users/check-data.service';
 import { CheckService } from 'src/app/services/Users/check.service';
 import { InscriptionService } from 'src/app/services/Users/inscription.service';
@@ -25,6 +27,9 @@ export class FormInscriptionComponent implements OnInit {
   role = localStorage.getItem('role');
   typeCompte: string = 'Client';
   compte: Compte = new Compte();
+  bars: Observable<Bar[]> | null = null;
+  bar: Bar = new Bar();
+  DOB: Date = new Date();
 
   entreprise: string = '';
   artiste: string = '';
@@ -35,7 +40,7 @@ export class FormInscriptionComponent implements OnInit {
   constructor(
     private inscriptionService: InscriptionService,
     private router: Router,
-    private checkDataService: CheckDataService,
+    private barService: BarService,
     private checkData: CheckService
   ) {
     this.form = new FormGroup({
@@ -46,10 +51,17 @@ export class FormInscriptionComponent implements OnInit {
       ),
       prenom: new FormControl(''),
       nom: new FormControl(''),
-      mail: new FormControl('', [Validators.required]),
-      birthday: new FormControl('', [Validators.required]),
+      mail: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+      ]),
+      birthday: new FormControl('', [
+        Validators.required,
+        DobValide.dobValidate,
+      ]),
       entreprise: new FormControl(''),
       artiste: new FormControl(''),
+      bar: new FormControl(''),
       passwordGroup: new FormGroup(
         {
           password: this.passwordCtrl,
@@ -78,7 +90,9 @@ export class FormInscriptionComponent implements OnInit {
       : null;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.bars = this.barService.getAll();
+  }
 
   validate() {
     let group = this.form.controls['passwordGroup'] as FormGroup;
@@ -88,6 +102,7 @@ export class FormInscriptionComponent implements OnInit {
       nom: this.form.controls['nom'].value,
       prenom: this.form.controls['prenom'].value,
       mail: this.form.controls['mail'].value,
+      bar: this.form.controls['bar'].value,
     };
     if (this.typeCompte == 'Intervenant' || this.typeCompte == 'Fournisseur') {
       Object.assign(user, {
@@ -102,5 +117,11 @@ export class FormInscriptionComponent implements OnInit {
       .subscribe((ok) => {
         this.router.navigate(['/home']);
       });
+  }
+
+  testDate() {
+    console.log(this.DOB);
+    let d = this.DOB.toString;
+    console.log(this.DOB.getMonth());
   }
 }

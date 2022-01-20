@@ -29,3 +29,7 @@ router-outlet {
   position: relative;
   z-index: 500;
 }
+
+.hotfixDuPauvre{
+  min-height: 80vh;
+}

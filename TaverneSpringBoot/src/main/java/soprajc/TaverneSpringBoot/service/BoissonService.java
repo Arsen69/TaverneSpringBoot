@@ -29,70 +29,68 @@ public class BoissonService {
 	private AlcoolRepository alcoolRepo;
 	@Autowired
 	private SoftRepository softRepo;
-	@Autowired
-	private BarRepository barRepo;
 	@Autowired 
 	private BarService barService;
 	@Autowired
 	private UtilisationService utilisationService;
-	@Autowired
-	private UtilisationRepository utilisationRepo;
 	
 	public Alcool create(Alcool alcool) {
 		if (alcool.getNom() == null) {
 			throw new BoissonException();
 		}
-		Alcool a = BoissonRepo.save(alcool);
+		alcool.setTva(1.2);
 		Set<Utilisation> utils = alcool.getUtilisations();
 		utils.forEach( u -> {
 			u.setBoisson(alcool);
 			utilisationService.create(u);
 		});
-		return a;
+		return BoissonRepo.save(alcool);
+		
 	}
 	
-	public void create(Soft soft) {
+	public Soft create(Soft soft) {
 		if (soft.getNom() == null) {
 			throw new BoissonException();
 		}
+		soft.setTva(1.1);
 		Set<Utilisation> utils = soft.getUtilisations();
 		utils.forEach( u -> {
 			u.setBoisson(soft);
 			utilisationService.create(u);
 		});
-		BoissonRepo.save(soft);
+		return BoissonRepo.save(soft);
 	}
 	
 	//UPDATE
 	
-	public void update(Boisson boisson) {
-		if (boisson.getId() == null) {
-			throw new BoissonException();
-		}
-		Boisson boissonEnBase = getById(boisson.getId());
-		boisson.setVersion(boissonEnBase.getVersion());
-		
-		BoissonRepo.save(boisson);
-	}
-	
-	public void update(Alcool alcool) {
+	public Alcool update(Alcool alcool) {
 		if (alcool.getId() == null) {
 			throw new BoissonException();
 		}
 		Alcool alcoolEnBase = getAlcoolById(alcool.getId());
 		alcool.setVersion(alcoolEnBase.getVersion());
-		
-		BoissonRepo.save(alcool);
+		alcool.setTva(alcoolEnBase.getTva());
+		Set<Utilisation> utils = alcool.getUtilisations();
+		utils.forEach( u -> {
+			u.setBoisson(alcool);
+			utilisationService.update(u);
+		});
+		return BoissonRepo.save(alcool);
 	}
 	
-	public void update(Soft soft) {
+	public Soft update(Soft soft) {
 		if (soft.getId() == null) {
 			throw new BoissonException();
 		}
+		Set<Utilisation> utils = soft.getUtilisations();
+		utils.forEach( u -> {
+			u.setBoisson(soft);
+			utilisationService.update(u);
+		});
 		Soft softEnBase = getSoftById(soft.getId());
 		soft.setVersion(softEnBase.getVersion());
-		
-		BoissonRepo.save(soft);
+		soft.setTva(softEnBase.getTva());
+		return BoissonRepo.save(soft);
 	}
 
 	public void suppression(Boisson boisson) {

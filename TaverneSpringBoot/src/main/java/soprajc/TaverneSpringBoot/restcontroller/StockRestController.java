@@ -51,8 +51,9 @@ public class StockRestController {
 
 	@PutMapping("/{id}/stocks/{idStock}")
 	@JsonView(JsonViews.Common.class)
-	public Stock updateLimit(@RequestBody Integer seuil, BindingResult br, @PathVariable("id") Long idBar,
+	public Stock updateLimit(@RequestBody Integer seuil, @PathVariable("id") Long idBar,
 			@PathVariable Long idStock) {
+		System.out.println("le nouveau seuil que tu me transmet : "+seuil);
 		Stock stock =stockService.getById(idStock);
 		if(seuil<0) {
 			return stockService.updateSeuilLimite(stock, null);
