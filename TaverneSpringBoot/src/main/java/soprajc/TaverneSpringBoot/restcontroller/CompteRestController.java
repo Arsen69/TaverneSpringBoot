@@ -24,6 +24,7 @@ import soprajc.TaverneSpringBoot.model.comptes.Admin;
 import soprajc.TaverneSpringBoot.model.comptes.Client;
 import soprajc.TaverneSpringBoot.model.comptes.Compte;
 import soprajc.TaverneSpringBoot.model.comptes.Employe;
+import soprajc.TaverneSpringBoot.model.comptes.Fournisseur;
 import soprajc.TaverneSpringBoot.service.CompteService;
 
 @RestController
@@ -101,6 +102,17 @@ public class CompteRestController {
 			throw new CompteException();
 		}
 		compteService.creationEmploye(compte);
+		return compte;
+	}
+	
+	@PostMapping("/Fournisseur")
+	@ResponseStatus(code = HttpStatus.CREATED)
+	@JsonView(JsonViews.Common.class)
+	public Compte create(@Valid @RequestBody Fournisseur compte, BindingResult br) {
+		if (br.hasErrors()) {
+			throw new CompteException();
+		}
+		compteService.creationFournisseur(compte);
 		return compte;
 	}
 	

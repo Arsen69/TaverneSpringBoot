@@ -1,0 +1,45 @@
+.titre {
+  color: var(--scdColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.titre h2 {
+  font-size: 45px;
+  font-weight: bold;
+}
+
+.page {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  color: var(--txtColor);
+  flex-flow: row wrap;
+  font-size: 22px;
+}
+
+.connexion {
+  background-color: var(--bckColor);
+  opacity: 0.8;
+  width: fit-content;
+  border-radius: 20px;
+  border: 3px solid var(--scdColor);
+  margin: auto;
+}
+
+.form-control {
+  width: inherit;
+}
+
+.btn-primary {
+  width: fit-content;
+}
+
+.btnSub {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+  padding: 5px;
+}
