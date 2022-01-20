@@ -26,6 +26,12 @@
         [placeholder]="article.cout"
         class="form-control"
       />
+      <div
+        class="col-sm-4 p-2"
+        *ngIf="form.controls['cout'].dirty && form.controls['cout'].invalid"
+      >
+        Le cout ne peut pas être négatif
+      </div>
     </div>
     <div class="form-group">
       <label>Type de Produit : </label>
@@ -43,6 +49,12 @@
         [placeholder]="article.volume"
         class="form-control"
       />
+      <div
+        class="col-sm-4 p-2"
+        *ngIf="form.controls['volume'].dirty && form.controls['volume'].invalid"
+      >
+        Le volume ne peut pas être négatif
+      </div>
     </div>
     <div class="container p-2">
       <button class="btn btn-primary" type="submit">Enregistrer</button>
