@@ -107,11 +107,25 @@
         <div class="col-sm-4">
           <input type="text" class="form-control" formControlName="nom" />
         </div>
+        <div
+          class="col-sm-4 p-2"
+          *ngIf="form.controls['nom'].dirty && form.controls['nom'].invalid"
+        >
+          Le nom ne peut contenir que des lettres de l'alphabet
+        </div>
       </div>
       <div class="row m-2">
         <label class="form-label col-sm-4">Prénom</label>
         <div class="col-sm-4">
           <input type="text" class="form-control" formControlName="prenom" />
+        </div>
+        <div
+          class="col-sm-4 p-2"
+          *ngIf="
+            form.controls['prenom'].dirty && form.controls['prenom'].invalid
+          "
+        >
+          Le prénom ne peut contenir que des lettres de l'alphabet
         </div>
       </div>
       <div
