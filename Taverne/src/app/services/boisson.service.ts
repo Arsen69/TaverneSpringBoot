@@ -63,23 +63,25 @@ export class BoissonService {
     );
   }
 
-  // public createSoft(boisson: Boisson): Observable<Boisson> {
-  //   const o = {
-  //     nom: boisson.nom,
-  //   };
-  //   return this.http.post<Boisson>(BoissonService.URL + id + soft {
-  //     //headers: this.auth.headers,
-  //   });
-  // }
+  createSoft(boisson: Boisson): Observable<Boisson> {
+    return this.http.post<Boisson>(
+      BoissonService.URL + '/' + boisson.id + 'soft/',
+      this.formatBoissonToJson(boisson)
+      // {
+      //   headers: this.auth.headers,
+      // }
+    );
+  }
 
-  // public createAlcool(boisson: Boisson): Observable<Boisson> {
-  //   const o = {
-  //     nom: boisson.nom,
-  //   };
-  //   return this.http.post<Boisson>(BoissonService.URL, o, {
-  //     //headers: this.auth.headers,
-  //   });
-  // }
+  createAlcool(boisson: Boisson): Observable<Boisson> {
+    return this.http.post<Boisson>(
+      BoissonService.URL + '/' + boisson.id + 'alcool/',
+      this.formatBoissonToJson(boisson)
+      // {
+      //   headers: this.auth.headers,
+      // }
+    );
+  }
 
   public delete(id: number): Observable<void> {
     return this.http.delete<void>(
@@ -93,8 +95,6 @@ export class BoissonService {
       }
     );
   }
-
-  //boisson.idBar = localStorage.getItem('idBar');
 
   formatBoissonToJson(boisson: Boisson): Object {
     let id_Bar = Number(localStorage.getItem('idBar'));
