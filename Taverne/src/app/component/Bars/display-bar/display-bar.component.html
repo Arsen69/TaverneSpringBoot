@@ -1,8 +1,10 @@
 <div
   onmouseover="this.style.cursor='pointer'"
-  class="container shadow p-3 rounded col"
+  class="container shadow p-3 col"
 >
-  <h1>{{ bar.nom }}</h1>
+  <div class="titre">
+    <h1>{{ bar.nom }}</h1>
+  </div>
   <div class="unBar">
     <img [src]="bar.urlImage" alt="Bar" />
   </div>

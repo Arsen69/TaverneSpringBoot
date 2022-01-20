@@ -15,6 +15,8 @@ export class CatalogueGlobalComponent implements OnInit {
     private compteService: CompteService
   ) {}
 
+  pasAchat: boolean = true;
+
   //articles: Article[] = [];
   articles: Observable<Article[]> = new Observable();
   role = localStorage.getItem('role');
@@ -38,5 +40,12 @@ export class CatalogueGlobalComponent implements OnInit {
     this.articles = articles;
     console.log(this.articles);
     return this.articles;
+  }
+
+  achat() {
+    this.pasAchat = false;
+    setTimeout(() => {
+      this.pasAchat = true;
+    }, 1000);
   }
 }

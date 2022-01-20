@@ -21,6 +21,5 @@
   text-align: center;
 }
 .scale {
-  scale: 2;
   background-color: var(--scdColor);
 }
