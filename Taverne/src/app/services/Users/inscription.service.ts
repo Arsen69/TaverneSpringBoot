@@ -26,6 +26,7 @@ export class InscriptionService {
     } else if (type == 'Intervenant') {
       o = this.intervenantToJson(compte as Intervenant);
     }
+    console.log(o);
 
     return this.http.post(
       'http://localhost:8080/Taverne/api/compte/' + type,
@@ -34,6 +35,7 @@ export class InscriptionService {
   }
 
   compteToJson(c: Client | Admin): any {
+    console.log(c.birthday);
     return {
       nom: c.nom,
       prenom: c.prenom,

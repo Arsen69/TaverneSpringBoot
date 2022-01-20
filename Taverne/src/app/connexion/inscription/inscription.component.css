@@ -1,0 +1,10 @@
+.titre {
+  display: flex;
+  justify-content: center;
+}
+
+.titre h2 {
+  font-weight: bold;
+  font-size: 40px;
+  color: var(--scdColor);
+}

@@ -19,8 +19,6 @@ export class DisplayBarComponent implements OnInit {
 
   @HostListener('click')
   setBar() {
-    console.log(String(this.bar.idBar));
-    console.log(this.bar.idBar);
     localStorage.setItem('idBar', String(this.bar.idBar));
     this.router.navigate(['/carte']);
   }
