@@ -34,15 +34,15 @@
       <div class="col-6 label">Date de naissance:</div>
       <div class="col-6 donnee" *ngIf="visible">{{ compte.birthday }}</div>
       <div class="col-6 donnee" *ngIf="!visible">
-        <input [(ngModel)]="newBirthday" type="text" class="lesInputs" placeholder="{{ compte.birthday }}"/>
+        <input [(ngModel)]="newBirthday" type="date" class="lesInputs" placeholder="{{compte.birthday}}"/>
       </div>
     </div>
     <div class="row modifier">
-      <button class="btn btn-primary" (click)="modifier()" *ngIf="visible">
+      <button class="btn btn-primary" (click)="modifier()" *ngIf="!visible">
         Modifier mes informations
       </button>
       <div class="btnValider">
-        <button class="btn btn-success" (click)="modifier()" *ngIf="!visible">
+        <button class="btn btn-success" (click)="valider()" *ngIf="!visible">
           Valider
         </button>
         <button class="btn btn-warning" (click)="annuler()" *ngIf="!visible">

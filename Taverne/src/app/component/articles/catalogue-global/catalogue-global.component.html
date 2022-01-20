@@ -19,6 +19,7 @@
           *ngFor="let a of articles | async"
           [articleRecu]="a"
           (articlesReady)="getNewListe($event)"
+          (achat)="achat()"
           app-article
         ></tr>
       </tbody>
@@ -30,4 +31,7 @@
     *ngIf="role == 'Fournisseur'"
     [id]="id"
   ></app-form-article>
+</div>
+<div class="popUp" [ngClass]="{'transparent' : pasAchat}">
+  Achat effectué!
 </div>

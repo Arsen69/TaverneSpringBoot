@@ -3,27 +3,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: radial-gradient(
-    circle at 50% -20.71%,
-    #de9c2c 0,
-    #e5922a 8.33%,
-    #ea852b 16.67%,
-    #ee772d 25%,
-    #f16731 33.33%,
-    #f35436 41.67%,
-    #f23c3c 50%,
-    #f01843 58.33%,
-    #ed004c 66.67%,
-    #e90057 75%,
-    #e30064 83.33%,
-    #db0071 91.67%,
-    #d10080 100%
-  );
+  background: var(--bckColor);
   max-width: 350px;
   min-width: 320px;
   margin: auto;
   margin-top: 50px;
-  height: inherit;
+  height: 300px;
+  opacity: 0.8;
+  border-radius: 30px;
+  border: 3px solid var(--scdColor);
 }
 
 img{
@@ -32,11 +20,18 @@ img{
   max-height:200px;
   width: auto;
   height: auto;
+  border-radius: 10px;
 }
 
 .unBar {
   width: fit-content;
   margin: 30px 30px 30px 30px;
   box-shadow: 5px 0px 5px 0px var(--bckColor), 0px 3px 3px 0px var(--bckColor);
+}
+
+.titre {
+  color: var(--txtColor);
+  top: 0px;
+  display: flex;
 }
 

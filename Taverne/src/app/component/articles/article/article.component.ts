@@ -24,6 +24,9 @@ export class ArticleComponent implements OnInit {
   @Output()
   articlesReady: EventEmitter<Observable<Article[]>> = new EventEmitter();
 
+  @Output()
+  achat: EventEmitter<any> = new EventEmitter();
+
   articles: Observable<Article[]> = new Observable();
   edition: boolean = false;
 
@@ -53,6 +56,7 @@ export class ArticleComponent implements OnInit {
       .subscribe((ok: any) => {
         console.log(ok);
       });
+      this.achat.emit(true);
   }
 
   editer() {
