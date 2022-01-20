@@ -15,6 +15,7 @@ export class LogOffComponent implements OnInit {
     localStorage.setItem('token', '');
     localStorage.setItem('role', '');
     localStorage.setItem('login', '');
+    localStorage.setItem('panier', '');
     this.router.navigate(['/home']);
   }
 }
