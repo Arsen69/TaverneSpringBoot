@@ -67,8 +67,12 @@ export class EditBoissonComponent implements OnInit {
   //   //   this.router.navigate(['/carte2']);
 
   saveSoft() {
-    console.log('entrée dans saveSoft');
-    console.log('boisson.id:' + this.boisson.id);
+    if (this.boisson.prixHT! < 0) {
+      this.boisson.prixHT = Math.abs(this.boisson.prixHT!);
+    }
+    if (this.boisson.prixHThh! < 0) {
+      this.boisson.prixHThh = Math.abs(this.boisson.prixHThh!);
+    }
     this.boisson.type = 'soft';
     this.boissonService.createSoft(this.boisson).subscribe((ok) => {
       console.log(ok);
@@ -92,6 +96,12 @@ export class EditBoissonComponent implements OnInit {
   }
 
   saveAlcool() {
+    if (this.boisson.prixHT! < 0) {
+      this.boisson.prixHT = Math.abs(this.boisson.prixHT!);
+    }
+    if (this.boisson.prixHThh! < 0) {
+      this.boisson.prixHThh = Math.abs(this.boisson.prixHThh!);
+    }
     console.log('entrée dans saveAlcool');
     this.boisson.type = 'alcool';
     this.boissonService.createAlcool(this.boisson).subscribe((ok) => {
