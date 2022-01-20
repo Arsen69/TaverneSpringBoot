@@ -45,6 +45,11 @@ export class LoginComponent implements OnInit {
             console.info('complete');
           },
         });
+      } else {
+        this.error = !res;
+        setTimeout(() => {
+          this.error = false;
+        }, 2000);
       }
     });
   }

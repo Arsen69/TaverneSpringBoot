@@ -10,7 +10,7 @@
       </div>
 
       <div
-        class="form-label"
+        class="form-label redTxt"
         *ngIf="form.controls['login'].dirty && form.controls['login'].invalid"
       >
         Login invalide
@@ -42,5 +42,8 @@
     >
       Pas de Compte ? En créer un ici
     </button>
+  </div>
+  <div class="connexion redTxt" *ngIf="error">
+    Login et/ou mot de passe érronés.
   </div>
 </div>

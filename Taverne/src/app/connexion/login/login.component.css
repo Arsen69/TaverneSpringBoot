@@ -43,3 +43,8 @@
   margin: 5px;
   padding: 5px;
 }
+
+.redTxt {
+  color: red;
+  padding: 10px;
+}
