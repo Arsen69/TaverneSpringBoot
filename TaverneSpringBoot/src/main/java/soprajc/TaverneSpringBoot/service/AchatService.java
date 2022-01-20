@@ -49,6 +49,12 @@ public class AchatService {
 //		boissonRepo.deleteByBar(BoissonEnBase);
 		achatRepo.delete(achatEnBase);
 	}
+	
+	public void deleteAllByBoisson(Boisson boisson) {
+		Check.checkLong(boisson.getId());
+		List<Achat> achats = achatRepo.findAllByBoisson(boisson);
+		achatRepo.deleteAll(achats);
+	}
 
 	public List<Achat> getAllByClient(Client client) {
 		Check.checkLong(client.getId());
