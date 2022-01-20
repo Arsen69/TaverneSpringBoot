@@ -49,11 +49,13 @@ export class EditBoissonComponent implements OnInit {
     if (this.boisson.type == 'alcool') {
       console.log('boucle alcool');
       this.boissonService.updateAlcool(this.boisson).subscribe((ok) => {
+        console.log(ok);
         this.router.navigate(['/carte2']);
       });
     } else if (this.boisson.type == 'soft') {
       console.log('boucle soft');
       this.boissonService.updateSoft(this.boisson).subscribe((ok) => {
+        console.log(ok);
         this.router.navigate(['/carte2']);
       });
     }
@@ -67,13 +69,10 @@ export class EditBoissonComponent implements OnInit {
   saveSoft() {
     console.log('entrée dans saveSoft');
     console.log('boisson.id:' + this.boisson.id);
-    // if (!!this.boisson.id) {
-    this.boissonService.updateSoft(this.boisson).subscribe((ok) => {
+    this.boisson.type = 'soft';
+    this.boissonService.createSoft(this.boisson).subscribe((ok) => {
+      console.log(ok);
       this.router.navigate(['/carte2']);
-      // });
-      // } else {
-      //   // this.boissonService.createSoft(this.boisson).subscribe((ok) => {
-      //   //   this.router.navigate(['/carte2']);
     });
   }
 
@@ -94,7 +93,9 @@ export class EditBoissonComponent implements OnInit {
 
   saveAlcool() {
     console.log('entrée dans saveAlcool');
-    this.boissonService.updateAlcool(this.boisson).subscribe((ok) => {
+    this.boisson.type = 'alcool';
+    this.boissonService.createAlcool(this.boisson).subscribe((ok) => {
+      console.log(ok);
       this.router.navigate(['/carte2']);
     });
   }

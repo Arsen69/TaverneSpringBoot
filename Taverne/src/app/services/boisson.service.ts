@@ -100,17 +100,19 @@ export class BoissonService {
       prixHThh: boisson.prixHThh,
     };
     for (let u of boisson.utilisations!) {
+      console.log(u.id);
       if (!!u.id) {
         utils.push({
           id: u.id,
           volume: u.volume,
           ingredient: { idStock: u.ingredient!.idStock },
         });
+      } else {
+        utils.push({
+          volume: u.volume,
+          ingredient: { idStock: u.ingredient!.idStock },
+        });
       }
-      utils.push({
-        volume: u.volume,
-        ingredient: { idStock: u.ingredient!.idStock },
-      });
       console.log(b);
     }
     Object.assign(b, { utilisations: utils });
