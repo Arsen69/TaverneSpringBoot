@@ -34,4 +34,10 @@ export class Carte2Component implements OnInit {
       this.boissons = this.boissonService.getAllbyBar();
     });
   }
+
+  displayBoissons() {
+    this.boissons!.subscribe((ok) => {
+      console.log(ok);
+    });
+  }
 }
