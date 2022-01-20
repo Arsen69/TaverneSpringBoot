@@ -72,6 +72,12 @@ public class StockService {
 	public void delete(Long id) {
 		delete(getById(id));
 	}
+	
+	public void deleteArticleDeStock(Long idArticle) {
+		Check.checkLong(idArticle);
+		System.out.println(idArticle);
+		stockRepo.deleteArticleStock(idArticle);
+	}
 
 	public void utiliserVolume(double volume, Stock stock) {
 		Check.checkLong(stock.getIdStock());

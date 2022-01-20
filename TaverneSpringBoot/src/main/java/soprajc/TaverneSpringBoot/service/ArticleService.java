@@ -19,6 +19,8 @@ public class ArticleService {
 	private ArticleRepository articleRepo;
 	@Autowired
 	private CompteService compteService;
+	@Autowired
+	private StockService stockService;
 	
 	public List<Article> getAll(){
 		return articleRepo.findAll();
@@ -69,6 +71,7 @@ public class ArticleService {
 	
 	public void delete(Article article) {
 		Check.checkLong(article.getId());
+		stockService.deleteArticleDeStock(article.getId());
 		articleRepo.delete(article);
 	}
 	
