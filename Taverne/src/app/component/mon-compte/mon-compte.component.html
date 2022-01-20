@@ -1,2 +1,57 @@
-<p>mon-compte works!</p>
-<app-log-off></app-log-off>
+<div class="titre col 12 row">Mon compte:</div>
+
+<div class="page">
+  <div class="info">
+    <div class="col-12 row item">
+      <div class="col-6 label">Prénom:</div>
+      <div class="col-6 donnee" *ngIf="visible">{{ compte.prenom }}</div>
+      <div class="col-6 donnee" *ngIf="!visible">
+        <input [(ngModel)]="newPrenom" type="text" class="lesInputs" placeholder="{{ compte.prenom }}"/>
+      </div>
+    </div>
+    <div class="col-12 row item">
+      <div class="col-6 label">Nom:</div>
+      <div class="col-6 donnee" *ngIf="visible">{{ compte.nom }}</div>
+      <div class="col-6 donnee" *ngIf="!visible">
+        <input [(ngModel)]="newNom" type="text" class="lesInputs" placeholder="{{ compte.nom }}" />
+      </div>
+    </div>
+    <div class="col-12 row item">
+      <div class="col-6 label">Login:</div>
+      <div class="col-6 donnee" *ngIf="visible">{{ compte.login }}</div>
+      <div class="col-6 donnee" *ngIf="!visible">
+        <input [(ngModel)]="newLogin" type="text" class="lesInputs" placeholder="{{ compte.login }}" />
+      </div>
+    </div>
+    <div class="col-12 row item">
+      <div class="col-6 label">Mail:</div>
+      <div class="col-6 donnee" *ngIf="visible">{{ compte.mail }}</div>
+      <div class="col-6 donnee" *ngIf="!visible">
+        <input [(ngModel)]="newMail" type="text" class="lesInputs" placeholder="{{ compte.mail }}" />
+      </div>
+    </div>
+    <div class="col-12 row item">
+      <div class="col-6 label">Date de naissance:</div>
+      <div class="col-6 donnee" *ngIf="visible">{{ compte.birthday }}</div>
+      <div class="col-6 donnee" *ngIf="!visible">
+        <input [(ngModel)]="newBirthday" type="text" class="lesInputs" placeholder="{{ compte.birthday }}"/>
+      </div>
+    </div>
+    <div class="row modifier">
+      <button class="btn btn-primary" (click)="modifier()" *ngIf="visible">
+        Modifier mes informations
+      </button>
+      <div class="btnValider">
+        <button class="btn btn-success" (click)="modifier()" *ngIf="!visible">
+          Valider
+        </button>
+        <button class="btn btn-warning" (click)="annuler()" *ngIf="!visible">
+          Annuler
+        </button>
+      </div>
+    </div>
+    <div class="logoff">
+      <app-log-off></app-log-off>
+    </div>
+  </div>
+</div>
