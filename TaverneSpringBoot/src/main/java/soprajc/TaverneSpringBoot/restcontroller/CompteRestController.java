@@ -41,6 +41,7 @@ public class CompteRestController {
 		return compteService.getAll();
 	}
 	
+	@ResponseStatus(code = HttpStatus.ACCEPTED)
 	@GetMapping("/role/{login}")
 	public String login(@PathVariable String login) {
 		return "\"" + compteService.getByLogin(login).getClass().getSimpleName() + "\"";
