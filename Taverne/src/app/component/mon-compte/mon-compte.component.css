@@ -1,0 +1,57 @@
+.page {
+  height: fit-content;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.info {
+  border: 3px solid var(--scdColor);
+  width: fit-content;
+  min-width: 40%;
+  border-radius: 20px;
+  background-color: var(--bckColor);
+  opacity: 0.8;
+}
+
+.row {
+  display: flex;
+}
+
+.titre {
+  font-size: 45px;
+  font-weight: bold;
+  color: var(--scdColor);
+  justify-content: center;
+  display: flex;
+}
+
+.item {
+  margin: 10px;
+  padding: 10px;
+  color: var(--txtColor);
+  font-size: 23px;
+}
+
+.logoff {
+  padding: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.modifier {
+  margin: 10px;
+}
+
+.btnValider {
+  display: flex;
+  justify-content: space-around;
+}
+
+.lesInputs {
+  font-size: 20px;
+  color: black;
+}
